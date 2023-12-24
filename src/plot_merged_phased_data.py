@@ -30,6 +30,8 @@ parser = ArgumentParser(
 parser.add_argument("-l", "--localps", action="store_true", help="local PS1 files")
 parser.add_argument("-v", "--verln", action="store_true",
                     help="draw vertical line on phased plot")
+parser.add_argument("-s", "--show", action="store_true",
+                    help="Show interactive plot instead of saving figure")
 parser.add_argument("-f", "--filename", type=str, default="",
                     help="file with object parameters")
 args = parser.parse_args()
@@ -157,8 +159,8 @@ for name, obj in objs.items():
         gaiadata["averagemag"] = gaiadata["averagemag"].astype(float)
         gaiadata["JD(TCB)"] = gaiadata["JD(TCB)"] - JD_SHIFT
         plt.plot(
-            gaiadata["JD(TCB)"], gaiadata.get("averagemag"),
-            "*", ms=5, c="orange", label=obj["gaiaobj"],
+            gaiadata["JD(TCB)"], gaiadata.get("averagemag"), "*", markeredgecolor="k",
+            mew=0.5, ms=6, c="darkgrey", label=obj["gaiaobj"],
         )
 
     # Atlas Stuff
@@ -179,7 +181,7 @@ for name, obj in objs.items():
         )
         afiltr = "o"
         alcurve_o = alcurve[alcurve["filter"] == afiltr]
-        atlas_data_fnam = f"{DATA_PATH}{obj['atlasfnam'].removeprefix('.txt')}-{afiltr}-cleaned-{ATLAS_MAG_LIM}m.dat"
+        atlas_data_fnam = f"{DATA_PATH}{obj['atlasfnam'].removeprefix('.txt')}-{afiltr}-cleaned-{round(ATLAS_MAG_LIM, 3)}m.dat"
         save_datafile(alcurve_o, atlas_data_fnam, hjdprec=6, magprec=3)
 
         afiltr = "c"
@@ -189,15 +191,15 @@ for name, obj in objs.items():
         # Plot filtered raw data
         if obj["plot"].get("atlasfilt") and "c" in obj["plot"].get("atlasfilt"):
             plt.errorbar(
-                alcurve_c["mjd"], alcurve_c["mag"], alcurve_c["magerr"],
+                alcurve_c["hjd"] - JD_SHIFT, alcurve_c["mag"], alcurve_c["magerr"],
                 marker="o", ls="none", elinewidth=ELINEWDTH, c="darkblue",
-                ms=2, label="ATLAS c", zorder=0,
+                ms=2, label="ATLAS c", zorder=0, markeredgecolor="k", mew=0.5,
             )
         if obj["plot"].get("atlasfilt") and "o" in obj["plot"].get("atlasfilt"):
             plt.errorbar(
-                alcurve_o["mjd"], alcurve_o["mag"], alcurve_o["magerr"],
+                alcurve_o["hjd"] - JD_SHIFT, alcurve_o["mag"], alcurve_o["magerr"],
                 marker="o", ls="none", elinewidth=ELINEWDTH, c="darkorange",
-                ms=3, label="ATLAS o", zorder=0,
+                ms=3, label="ATLAS o", zorder=0, markeredgecolor="k", mew=0.5,
             )
 
         if obj.get("plot") and obj["plot"].get("ylim"):
@@ -279,7 +281,7 @@ for name, obj in objs.items():
         plt.errorbar(
             datag["hjd"] - JD_SHIFT, datag["mag"], datag["magerr"],
             marker="o", ls="none", c="g", elinewidth=ELINEWDTH, label="ZTF g",
-            ms=ZMS,
+            ms=ZMS, markeredgecolor="k", mew=0.5,
         )
     except NameError:
         pass
@@ -288,7 +290,7 @@ for name, obj in objs.items():
         plt.errorbar(
             datar["hjd"] - JD_SHIFT, datar["mag"], datar["magerr"],
             marker="o", ls="none", c="r", elinewidth=ELINEWDTH, label="ZTF r",
-            ms=ZMS,
+            ms=ZMS, markeredgecolor="k", mew=0.5,
         )
     except NameError:
         pass
@@ -296,7 +298,7 @@ for name, obj in objs.items():
     try:
         plt.errorbar(
             datai["hjd"] - JD_SHIFT, datai["mag"], datai["magerr"], marker="o", ls="none",
-            c="darkred", elinewidth=ELINEWDTH, label="ZTF i",
+            c="darkred", elinewidth=ELINEWDTH, label="ZTF i", markeredgecolor="k", mew=0.5,
             ms=3,
         )
     except NameError:
@@ -410,7 +412,6 @@ for name, obj in objs.items():
             hjds, mags, magerrs,
             marker="o", ls="none", c="k", elinewidth=ELINEWDTH, label="CRTS",
             ms=4,
-
         )
     # del hjds, mags
 
@@ -429,7 +430,7 @@ for name, obj in objs.items():
             xmin, xmax = ax.get_xlim()
             plt.xlim(xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"])
     plt.ylabel("Mag", fontsize=16)
-    plt.xlabel("HJD", fontsize=16)
+    plt.xlabel("HMJD", fontsize=16)
     if not obj.get("atlasfnam") and not obj.get("asasfnam"):
         plt.xlabel(f"HJD - {JD_SHIFT}", fontsize=16)
     plt.xticks(fontsize=14)
@@ -437,8 +438,8 @@ for name, obj in objs.items():
     # plt.tight_layout()
     # plt.grid(axis="y", ls=":")
     plt.legend(fontsize=14)  # , loc="upper left"
-    if obj.get("ylim"):
-        plt.ylim(obj.get("ylim"))
+    if obj["plot"].get("ylim"):
+        plt.ylim(obj["plot"].get("ylim"))
     plt.gca().invert_yaxis()
 
     crtsnam = "-css" if obj.get("crtsfnam") else ""
@@ -446,10 +447,13 @@ for name, obj in objs.items():
     asasfnam = "-asas" if obj.get("asasfnam") else ""
     oglenam = "-ogle" if obj.get("oglefnam") else ""
     gaianam = "-gaia" if obj.get("gaiafnam") else ""
-    plt.savefig(
-        f"../lc/{fnam}{psnam}{ztfnam}{crtsnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}.{EXT}",
-        dpi=120,
-    )
+    if args.show:
+        plt.show()
+    else:
+        plt.savefig(
+            f"../lc/{fnam}{psnam}{ztfnam}{crtsnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}.{EXT}",
+            dpi=120,
+        )
     # End of lightcurve plot
     plt.close()
 
@@ -618,7 +622,7 @@ for name, obj in objs.items():
         ax.tick_params(which="major", length=6)
         ax.tick_params(which="minor", length=4)
         plt.savefig(
-            f"../lc/{fnam}{ztfnam}{atlasfnam}{oglenam}-phased_{obj.get('period')}.{EXT}",
+            f"../lc/{fnam}{ztfnam}{atlasfnam}{oglenam}-ph_{round(obj.get('period'), 6)}.{EXT}",
             dpi=120,
         )
     # if loop on different objects, don't forget to delete user-defined
