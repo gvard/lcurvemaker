@@ -82,6 +82,14 @@ def read_crts_data(filename):
     return lcurve.iloc[:, 0], lcurve.iloc[:, 1], lcurve.iloc[:, 2]
 
 
+def save_gaia_datafile(curve, fnsav, hjdprec=5, magprec=2):
+    """Save lightcurve data as ASCII file with space separated values"""
+    pd.DataFrame({
+        "hjd": curve["JD(TCB)"].round(hjdprec).astype("str").str.ljust(hjdprec + 8, "0"),
+        "mag": curve["averagemag"].astype("str").str.ljust(magprec + 3, "0"),
+    }).to_csv(fnsav, sep=" ", index=False)
+
+
 def save_datafile(curve, fnsav, hjdprec=7, magprec=6, addfilter=False):
     """Save lightcurve data as ASCII file with space separated values"""
     data = pd.DataFrame({
