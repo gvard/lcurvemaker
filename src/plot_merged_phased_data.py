@@ -11,6 +11,7 @@ from astropy.utils.exceptions import AstropyWarning
 
 from curves import (
     Ps,
+    Atlas,
     read_ps_data,
     read_crts_data,
     mk_phased,
@@ -179,50 +180,45 @@ for name, obj in objs.items():
             gaiadata = mk_phased(gaiadata, obj["epoch"], obj.get("period"), jdnam="JD(TCB)")
 
     # Atlas Stuff
-    if obj.get("atlasfnam"):
-        if obj.get("atlaslim"):
-            ATLAS_MAG_LIM = obj.get("atlaslim")
-        if obj["plot"].get("atlaslim"):
-            ATLAS_MAG_LIM = obj["plot"].get("atlaslim")
-        print("atlasfnam!", obj.get("atlasfnam"), "Mag lim:", ATLAS_MAG_LIM)
-        alcurve = pd.read_csv(f"{DATA_RAW}{obj['atlasfnam']}", delim_whitespace=True)
-        alcurve = alcurve.rename(
-            columns={"###MJD": "mjd", "m": "mag", "dm": "magerr", "F": "filter"}
-        )
-        alcurve = alcurve[alcurve["magerr"] < ATLAS_MAG_LIM]
-        alcurve = alcurve[alcurve["mag"] > 11]
-        alcurve["hjd"] = mk_hjd_corr(
-            alcurve["mjd"], ra, dec, obs="Haleakala"
-        )
-        afiltr = "o"
-        alcurve_o = alcurve[alcurve["filter"] == afiltr]
-        atlas_data_fnam = f"{DATA_PATH}{obj['atlasfnam'].removesuffix('.txt')}-{afiltr}-cleaned-{round(ATLAS_MAG_LIM, 3)}m.dat"
-        save_datafile(alcurve_o, atlas_data_fnam, hjdprec=6, magprec=3)
+    ATLAS_RAWDATA = True
+    ATLAS_SAVEDATA = True
+    ATLAS_CLRS = {"o": "darkorange", "c": "darkblue"}
+    if obj.get("atlaslim"):
+        ATLAS_MAG_LIM = obj.get("atlaslim")
+    atlasfilt = "oc"
+    if obj["plot"].get("atlasfilt"):
+        atlasfilt = obj["plot"].get("atlasfilt")
+    Atl = Atlas(fnam, atlaslim=ATLAS_MAG_LIM)
+    if not ATLAS_RAWDATA and Atl.is_data_exist("o", lim=ATLAS_MAG_LIM):
+        Atl.read_prepared_data(filtlims={"o": ATLAS_MAG_LIM, "c": ATLAS_MAG_LIM})
+        print("read atlas data for", fnam, "with lim", ATLAS_MAG_LIM)
+    elif ATLAS_RAWDATA and Atl.is_raw_data_exist():
+        Atl.read_raw_data()
+        Atl.prepare_data(ra, dec)
+        print("read and prepare atlas raw data for", fnam, "with lim", ATLAS_MAG_LIM)
+        if ATLAS_SAVEDATA:
+            print(f"save atlas data for {atlasfilt} filters")
+            for filtr in atlasfilt:
+                Atl.save_datafile(filtr)
+    else:
+        print("No Atlas data", hasattr(Atl, "data"))
 
-        afiltr = "c"
-        alcurve_c = alcurve[alcurve["filter"] == afiltr]
-        atlas_data_fnam = f"{DATA_PATH}{obj['atlasfnam'].removesuffix('.txt')}-{afiltr}-cleaned-{ATLAS_MAG_LIM}m.dat"
-        save_datafile(alcurve_c, atlas_data_fnam, hjdprec=6, magprec=3)
-        # Plot filtered raw data
-        atlasfilt = "oc"
-        if obj["plot"].get("atlasfilt"):
-            atlasfilt = obj["plot"].get("atlasfilt")
-        if atlasfilt and "c" in atlasfilt:
+    atlasms = 3
+    if obj["plot"].get("atlasms"):
+        atlasms = obj["plot"].get("atlasms")
+    if hasattr(Atl, "data") and len(Atl.data.index):
+        for afiltr in atlasfilt:
+            alclr = ATLAS_CLRS[afiltr]
+            alms = {"o": atlasms, "c": atlasms - 1}[afiltr]
+            alcurve = Atl.get_data(afiltr)
             plt.errorbar(
-                alcurve_c["hjd"] - JD_SHIFT, alcurve_c["mag"], alcurve_c["magerr"],
-                marker="o", ls="none", elinewidth=ELINEWDTH, c="darkblue",
-                ms=2, label="ATLAS c", zorder=0, markeredgecolor="k", mew=0.5,
-            )
-        if atlasfilt and "o" in atlasfilt:
-            plt.errorbar(
-                alcurve_o["hjd"] - JD_SHIFT, alcurve_o["mag"], alcurve_o["magerr"],
-                marker="o", ls="none", elinewidth=ELINEWDTH, c="darkorange",
-                ms=3, label="ATLAS o", zorder=0, markeredgecolor="k", mew=0.5,
+                alcurve["hjd"] - JD_SHIFT, alcurve["mag"], alcurve["magerr"],
+                marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=0.5,
             )
 
-        if obj.get("plot") and obj["plot"].get("ylim"):
-            plt.ylim(obj["plot"].get("ylim"))
-
+    if obj.get("plot") and obj["plot"].get("ylim"):
+        plt.ylim(obj["plot"].get("ylim"))
     if obj.get("period"):
         obj["period"] = float(obj["period"])
     if obj.get("epoch"):
@@ -459,7 +455,7 @@ for name, obj in objs.items():
     plt.gca().invert_yaxis()
 
     crtsnam = "-css" if obj.get("crtsfnam") else ""
-    atlasfnam = "-atlas" if obj.get("atlasfnam") else ""
+    atlasfnam = "-atlas" if hasattr(Atl, "data") else ""
     asasfnam = "-asas" if obj.get("asasfnam") else ""
     oglenam = "-ogle" if obj.get("oglefnam") else ""
     gaianam = "-gaia" if obj.get("gaiafnam") else ""
@@ -479,7 +475,7 @@ for name, obj in objs.items():
         fig.subplots_adjust(0.06, 0.09, 0.985, 0.95)
         data_to_merge = []  # data in JD to be merged!
         ELINEWDTH = 0.8
-        if "g" in obj["plot"].get("ztffilt"):
+        if "g" in obj["plot"].get("ztffilt") and "datag" in globals():
             plt.errorbar(
                 datag["phased"], datag["mag"] - filtshift["g"], datag["magerr"],
                 markeredgewidth=0.4, markeredgecolor="k", marker="o", ls="none",
@@ -525,58 +521,25 @@ for name, obj in objs.items():
                 )
             except NameError:
                 pass
-        ATMS = obj["plot"].get("atlasms")
+        ATMS = 2
+        if obj["plot"].get("atlasms"):
+            ATMS = obj["plot"].get("atlasms")
         ELINEWDTH = 0.2  # 0.5
         if obj["plot"].get("atlaselw"):
             ELINEWDTH = obj["plot"].get("atlaselw")
-        if (
-            obj.get("atlasfnam")
-            and obj["plot"].get("atlasfilt")
-            and "o" in obj["plot"].get("atlasfilt")
-        ):
-            alcurve_o["phased"] = (
-                (alcurve_o["hjd"] - obj["epoch"]) % obj.get("period")
-            ) / obj.get("period")
-            dsh = alcurve_o[alcurve_o["phased"] > 0.5]
-            dsh["phased"] = dsh["phased"] - 1
-            alcurve_o = pd.concat((alcurve_o, dsh))
-            data_to_merge.append(
-                pd.DataFrame({
-                    "mjd": alcurve_o["mjd"],
-                    "mag": alcurve_o["mag"] - filtshift["o"],
-                    "magerr": alcurve_o["magerr"],
-                })
-            )
-            plt.errorbar(
-                alcurve_o["phased"], alcurve_o["mag"] - filtshift["o"], alcurve_o["magerr"],
-                marker="o", ls="none", elinewidth=ELINEWDTH, c="darkorange",
-                label=f"ATLAS o{mk_fsh(filtshift['o'])}", zorder=0,
-                ms=ATMS,
-            )
-        if (
-            obj.get("atlasfnam")
-            and obj["plot"].get("atlasfilt")
-            and "c" in obj["plot"].get("atlasfilt")
-        ):
-            alcurve_c["phased"] = (
-                (alcurve_c["hjd"] - obj["epoch"]) % obj.get("period")
-            ) / obj.get("period")
-            data_to_merge.append(
-                pd.DataFrame({
-                    "mjd": alcurve_c["mjd"],
-                    "mag": alcurve_c["mag"] - filtshift["c"],
-                    "magerr": alcurve_c["magerr"],
-                })
-            )
-            dsh = alcurve_c[alcurve_c["phased"] > 0.5]
-            dsh["phased"] = dsh["phased"] - 1
-            alcurve_c = pd.concat((alcurve_c, dsh))
-            plt.errorbar(
-                alcurve_c["phased"], alcurve_c["mag"] - filtshift["c"], alcurve_c["magerr"],
-                marker="o", ls="none", elinewidth=ELINEWDTH, c="darkblue",
-                label=f"ATLAS c{mk_fsh(filtshift['c'])}", zorder=0,
-                ms=ATMS,
-            )
+        if hasattr(Atl, "data") and len(Atl.data.index) and atlasfilt:
+            Atl.mk_phased(obj["epoch"], obj.get("period"))
+            for afiltr in atlasfilt:
+                alclr = ATLAS_CLRS[afiltr]
+                alms = {"o": atlasms, "c": atlasms - 1}[afiltr]
+                alcurve = Atl.get_data(afiltr)
+                plt.errorbar(
+                    alcurve["phased"], alcurve["mag"] - filtshift["o"], alcurve["magerr"],
+                    marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                    label=f"ATLAS {afiltr}{mk_fsh(filtshift[afiltr])}", zorder=0,
+                    ms=alms, markeredgewidth=0.4, markeredgecolor="k",
+                )
+
         if obj.get("asasfnam"):
             plt.errorbar(
                 asasd_V["phased"], asasd_V["mag"], asasd_V["magerr"],

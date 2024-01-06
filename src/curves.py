@@ -71,6 +71,85 @@ class Ps:
             })
 
 
+class Data:
+    def __init__(self):
+        self.data_dir = "../data"
+        self.raw_dir = f"{self.data_dir}/raw"
+        self.name = ""
+        self.survey = ""
+        self.maglim = None
+        self.columns = None
+
+    def is_raw_data_exist(self, add="", ext="csv"):
+        return os.path.isfile(f"{self.raw_dir}/{self.name}-{self.survey}{add}.{ext}")
+
+    def is_data_exist(self, filtr, lim="", ext="dat"):
+        return os.path.isfile(f"{self.data_dir}/{self.name}-{self.survey}{filtr}{lim}.{ext}")
+
+    def read_raw_data(self, add="", ext="csv"):
+        self.raw_data = pd.read_csv(f"{self.raw_dir}/{self.name}-{self.survey}{add}.{ext}",
+                                    delim_whitespace=True)
+        if self.columns:
+            self.raw_data = self.raw_data.rename(columns=self.columns)
+
+
+class Atlas(Data):
+    def __init__(self, name, atlaslim=0.5):
+        super().__init__()
+        self.name = name
+        self.survey = "atlas"
+        self.maglim = atlaslim
+        self.columns = {"###MJD": "mjd", "m": "mag", "dm": "magerr", "F": "filter"}
+
+    def is_raw_data_exist(self, add="", ext="txt"):
+        return super().is_raw_data_exist(add=add, ext=ext)
+
+    def is_data_exist(self, filtr, lim=0.5, ext="dat"):
+        return super().is_data_exist(filtr, lim=f"-cleaned-{lim}m", ext=ext)
+
+    def read_raw_data(self, add="", ext="txt"):
+        super().read_raw_data(add=add, ext=ext)
+
+    def prepare_data(self, ra, dec, maglim_up=10, maglim_low=None):
+        data = self.raw_data[self.raw_data["magerr"] < self.maglim]
+        data = data[data["mag"] > maglim_up]
+        if maglim_low:
+            data = data[data["mag"] < maglim_low]
+        data["hjd"] = mk_hjd_corr(data["mjd"], ra, dec, obs="Haleakala")
+        self.data = pd.DataFrame({
+            "hjd": data["hjd"],
+            # "mjd": data["mjd"],
+            "filter": data["filter"],
+            "mag": data["mag"],
+            "magerr": data["magerr"]
+        })
+
+    def mk_phased(self, epoch, period):
+        self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
+
+
+    def save_datafile(self, filtr="o", ext="dat", hjdprec=6, magprec=3):
+        atlas_data_fnam = f"{self.data_dir}/{self.name}-{self.survey}{filtr}-cleaned-{round(self.maglim, 2)}m.{ext}"
+        data = self.data[self.data["filter"] == filtr]
+        if len(data.index):
+            save_datafile(data, atlas_data_fnam, hjdprec=hjdprec, magprec=magprec)
+
+    def read_prepared_data(self, filtlims={"o": 0.5, "c": 0.5}, ext="dat"):
+        alldata = []
+        for filtr, lim in filtlims.items():
+            if self.is_data_exist(filtr, lim=lim):
+                data = pd.read_csv(
+                    f"{self.data_dir}/{self.name}-{self.survey}{filtr}-cleaned-{round(lim, 2)}m.{ext}",
+                    delim_whitespace=True
+                    )
+                data["filter"] = filtr
+                alldata.append(data)
+        self.data = pd.concat(alldata)
+
+    def get_data(self, filtr="o"):
+        return self.data[self.data["filter"] == filtr]
+
+
 def read_ps_data(filename):
     """read data: mjd mag magerr"""
     return pd.read_csv(filename, delim_whitespace=True)
