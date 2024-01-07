@@ -12,6 +12,7 @@ from astropy.utils.exceptions import AstropyWarning
 from curves import (
     Ps,
     Atlas,
+    Ogle,
     read_ps_data,
     read_crts_data,
     mk_phased,
@@ -49,7 +50,6 @@ DATA_PATH = "../data/"
 DATA_RAW = f"{DATA_PATH}raw/"
 EXT = "png"
 JD_SHIFT = 2400000.5
-OGLE_SHIFT = 2400000
 
 # Data filtering constants, change it in objects JSON parameters file
 PS_MAG_LIM = 0.11
@@ -68,7 +68,9 @@ for name, obj in objs.items():
     name_add = obj["other"]
     objname = f"{name} = {name_add}"
     ra, dec = obj["coordeg"]
-    filtshift = obj.get("clrshift")
+    filtshift = {"g": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0, "z": 0, "o": 0, "c": 0, "V": 0}
+    if obj.get("clrshift"):
+        filtshift = obj.get("clrshift")
     print(f"-=={name}==-")
     psms = (
         obj.get("plot").get("psms")
@@ -77,6 +79,8 @@ for name, obj in objs.items():
     )
     MSS = [psms - 0.5, psms + 1, psms, psms + 1, psms]
     ZMS = 3  # 5
+    if obj.get("curveshift") and obj.get("clrshift"):
+        curveshift = obj.get("clrshift")
     # Get PS1 data
     if (
         not args.localps
@@ -211,11 +215,18 @@ for name, obj in objs.items():
             alclr = ATLAS_CLRS[afiltr]
             alms = {"o": atlasms, "c": atlasms - 1}[afiltr]
             alcurve = Atl.get_data(afiltr)
-            plt.errorbar(
-                alcurve["hjd"] - JD_SHIFT, alcurve["mag"], alcurve["magerr"],
-                marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
-                ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=0.5,
-            )
+            if obj.get("curveshift") and obj.get("clrshift"):
+                plt.errorbar(
+                    alcurve["hjd"] - JD_SHIFT, alcurve["mag"] - curveshift[afiltr], alcurve["magerr"],
+                    marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                    ms=alms, label=f"ATLAS {afiltr}{mk_fsh(curveshift[afiltr])}", zorder=0, markeredgecolor="k", mew=0.5,
+                )
+            else:
+                plt.errorbar(
+                    alcurve["hjd"] - JD_SHIFT, alcurve["mag"], alcurve["magerr"],
+                    marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                    ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=0.5,
+                )
 
     if obj.get("plot") and obj["plot"].get("ylim"):
         plt.ylim(obj["plot"].get("ylim"))
@@ -290,20 +301,34 @@ for name, obj in objs.items():
     # if obj.get("plot") and obj["plot"].get("ztffilt") and "g" in obj["plot"].get("ztffilt"):
     ELINEWDTH = 0.75
     try:
-        plt.errorbar(
-            datag["hjd"] - JD_SHIFT, datag["mag"], datag["magerr"],
-            marker="o", ls="none", c="g", elinewidth=ELINEWDTH, label="ZTF g",
-            ms=ZMS, markeredgecolor="k", mew=0.5,
-        )
+        if obj.get("curveshift") and obj.get("clrshift"):
+            plt.errorbar(
+                datag["hjd"] - JD_SHIFT, datag["mag"] - curveshift['g'], datag["magerr"],
+                marker="o", ls="none", c="g", elinewidth=ELINEWDTH, label=f"ZTF g{mk_fsh(curveshift['g'])}",
+                ms=ZMS, markeredgecolor="k", mew=0.5,
+            )
+        else:
+            plt.errorbar(
+                datag["hjd"] - JD_SHIFT, datag["mag"], datag["magerr"],
+                marker="o", ls="none", c="g", elinewidth=ELINEWDTH, label="ZTF g",
+                ms=ZMS, markeredgecolor="k", mew=0.5,
+            )
     except NameError:
         pass
     # if obj.get("plot") and obj["plot"].get("ztffilt") and "r" in obj["plot"].get("ztffilt"):
     try:
-        plt.errorbar(
-            datar["hjd"] - JD_SHIFT, datar["mag"], datar["magerr"],
-            marker="o", ls="none", c="r", elinewidth=ELINEWDTH, label="ZTF r",
-            ms=ZMS, markeredgecolor="k", mew=0.5,
-        )
+        if obj.get("curveshift") and obj.get("clrshift"):
+            plt.errorbar(
+                datar["hjd"] - JD_SHIFT, datar["mag"] - curveshift['r'], datar["magerr"],
+                marker="o", ls="none", c="r", elinewidth=ELINEWDTH, label=f"ZTF r{mk_fsh(curveshift['r'])}",
+                ms=4, markeredgecolor="k", mew=0.5, zorder=1
+            )
+        else:
+            plt.errorbar(
+                datar["hjd"] - JD_SHIFT, datar["mag"], datar["magerr"],
+                marker="o", ls="none", c="r", elinewidth=ELINEWDTH, label="ZTF r",
+                ms=ZMS, markeredgecolor="k", mew=0.5,
+            )
     except NameError:
         pass
     # if obj.get("plot") and obj["plot"].get("ztffilt") and "i" in obj["plot"].get("ztffilt"):
@@ -318,37 +343,24 @@ for name, obj in objs.items():
     ztfnam = "-ztf" if obj.get("plot") and obj["plot"].get("ztffilt") else ""
 
     if obj.get("oglefnam"):
-        ogled = pd.read_csv(
-            f"{DATA_RAW}{obj['oglefnam']}", delim_whitespace=True
-        )
-        ogled.iloc[:, 0] = ogled.iloc[:, 0] + 50000
+        Ogl = Ogle(obj.get("oglefnam"))
+        Ogl.read_raw_data()
         plt.errorbar(
-            ogled.iloc[:, 0], ogled.iloc[:, 1], ogled.iloc[:, 2], marker="o",
-            ls="none", c="k", label="OGLE I",
-            ms=3,
+            Ogl.data["hjd"] - JD_SHIFT, Ogl.data["mag"], Ogl.data["magerr"], marker="o",
+            ls="none", c="indigo", label="OGLE I",
+            ms=4, markeredgecolor="k", mew=0.5, elinewidth=0.8,
         )
 
         if obj.get("period"):
-            ogled["phased"] = (
-                (ogled.iloc[:, 0] + OGLE_SHIFT - obj["epoch"]) % obj.get("period")
-            ) / obj.get("period")
-            print(ogled.iloc[:, 0] - obj["epoch"])
-            dsh = ogled[ogled["phased"] > 0.5]
-            dsh["phased"] = dsh["phased"] - 1
-            ogled = pd.concat((ogled, dsh))
+            Ogl.mk_phased(obj["epoch"], obj["period"])
 
-        oglei = pd.DataFrame({
-            "hjd": ogled.iloc[:, 0] + OGLE_SHIFT,
-            "mag": ogled.iloc[:, 1],
-            "magerr": ogled.iloc[:, 2],
-        })
-        imerg = pd.concat((datai, oglei)).sort_values(by=["hjd"])
+        imerg = pd.concat((datai, Ogl.data)).sort_values(by=["hjd"])
         pd.DataFrame({
             "hjd": imerg["hjd"].astype("str").str.ljust(18, "0"),
             "mag": imerg["mag"].round(6).astype("str").str.ljust(9, "0"),
             "magerr": imerg["magerr"].round(6).astype("str").str.ljust(8, "0"),
         }).to_csv(f"{DATA_PATH}{fnam}-ogle-ztf-imerg.dat", sep=" ", index=False)
-        print(f"OGLE range for {name}: {min(ogled.iloc[:, 1])}-{max(ogled.iloc[:, 1])}")
+        print(f"OGLE range for {name}: {min(Ogl.data['mag'])}-{max(Ogl.data['mag'])}")
 
     # Plot PS1 data
     psnam = ""
@@ -473,7 +485,7 @@ for name, obj in objs.items():
         # Phased plot figure
         fig, ax = plt.subplots(figsize=(16, 9))
         fig.subplots_adjust(0.06, 0.09, 0.985, 0.95)
-        data_to_merge = []  # data in JD to be merged!
+        data_to_merge = []  # data in HJD to be merged
         ELINEWDTH = 0.8
         if "g" in obj["plot"].get("ztffilt") and "datag" in globals():
             plt.errorbar(
@@ -484,22 +496,22 @@ for name, obj in objs.items():
             )
             data_to_merge.append(
                 pd.DataFrame({
-                    "mjd": datag["mjd"],
+                    "hjd": datag["hjd"],
                     "mag": datag["mag"] - filtshift["g"],
                     "magerr": datag["magerr"],
                 })
             )
-        if "r" in obj["plot"].get("ztffilt"):
+        if "r" in obj["plot"].get("ztffilt") and "datar" in globals():
             plt.errorbar(
-                datar["phased"], datar["mag"], datar["magerr"],
+                datar["phased"], datar["mag"] - filtshift["r"], datar["magerr"],
                 marker="o", markeredgewidth=0.4, markeredgecolor="k", ls="none",
-                elinewidth=ELINEWDTH, c="r", label="ZTF r",
+                elinewidth=ELINEWDTH, c="r", label=f"ZTF r{mk_fsh(filtshift['r'])}",
                 ms=4,
             )
             data_to_merge.append(
                 pd.DataFrame({
-                    "mjd": datar["mjd"],
-                    "mag": datar["mag"],
+                    "hjd": datar["hjd"],
+                    "mag": datar["mag"] - filtshift["r"],
                     "magerr": datar["magerr"],
                 })
             )
@@ -514,7 +526,7 @@ for name, obj in objs.items():
                 )
                 data_to_merge.append(
                     pd.DataFrame({
-                        "mjd": datai["mjd"],
+                        "hjd": datai["hjd"],
                         "mag": datai["mag"] - filtshift["i"],
                         "magerr": datai["magerr"],
                     })
@@ -534,12 +546,18 @@ for name, obj in objs.items():
                 alms = {"o": atlasms, "c": atlasms - 1}[afiltr]
                 alcurve = Atl.get_data(afiltr)
                 plt.errorbar(
-                    alcurve["phased"], alcurve["mag"] - filtshift["o"], alcurve["magerr"],
+                    alcurve["phased"], alcurve["mag"] - filtshift[afiltr], alcurve["magerr"],
                     marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
                     label=f"ATLAS {afiltr}{mk_fsh(filtshift[afiltr])}", zorder=0,
                     ms=alms, markeredgewidth=0.4, markeredgecolor="k",
                 )
-
+                data_to_merge.append(
+                    pd.DataFrame({
+                        "hjd": alcurve["hjd"],
+                        "mag": alcurve["mag"] - filtshift[afiltr],
+                        "magerr": alcurve["magerr"],
+                    })
+                )
         if obj.get("asasfnam"):
             plt.errorbar(
                 asasd_V["phased"], asasd_V["mag"], asasd_V["magerr"],
@@ -553,12 +571,11 @@ for name, obj in objs.items():
                 mew=0.5, label="ASAS-SN g", ms=4, elinewidth=ELINEWDTH,
             )
 
-
         if obj.get("oglefnam"):
             plt.errorbar(
-                ogled["phased"], ogled.iloc[:, 1], ogled.iloc[:, 2], marker="o",
-                ls="none", c="k", label="OGLE I",
-                ms=5,
+                Ogl.data["phased"], Ogl.data["mag"] - filtshift["I"], Ogl.data["magerr"],
+                marker="o", ls="none", c="indigo", label=f"OGLE I{mk_fsh(filtshift['I'])}", ms=5,
+                markeredgecolor="k", mew=0.5, elinewidth=0.8,
             )
         if obj.get("gaiafnam"):
             plt.plot(
@@ -578,8 +595,8 @@ for name, obj in objs.items():
                 if filter in psdata:
                     try:
                         psfiltshift = filtshift[filter]
-                        if obj.get("clrshift").get("ps" + filter):
-                            psfiltshift = obj.get("clrshift").get("ps" + filter)
+                        if filtshift.get("ps" + filter):
+                            psfiltshift = filtshift.get("ps" + filter)
                         ELINEWDTH = 1
                         plt.errorbar(
                             psdata[filter]["phased"], psdata[filter]["mag"] - psfiltshift,
@@ -589,13 +606,13 @@ for name, obj in objs.items():
                             markeredgecolor="k", label=f"PS1 {filter}{mk_fsh(psfiltshift)}",
                             ms=MSS[i],
                         )
-                        data_to_merge.append(
-                            pd.DataFrame({
-                                "mjd": psdata[filter]["mjd"],
-                                "mag": psdata[filter]["mag"] - psfiltshift,
-                                "magerr": psdata[filter]["magerr"],
-                            })
-                        )
+                        # data_to_merge.append(
+                        #     pd.DataFrame({
+                        #         "mjd": psdata[filter]["mjd"],
+                        #         "mag": psdata[filter]["mag"] - psfiltshift,
+                        #         "magerr": psdata[filter]["magerr"],
+                        #     })
+                        # )
                     except KeyError:
                         print("pass ps filter", filter)
                         pass

@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 
@@ -11,6 +13,7 @@ from panstarrs import ps1cone, ps1search, addfilter
 HALEAKALA = EarthLocation(lon=-156.257, lat=20.71, height=3048)
 PALOMAR = EarthLocation(lon=-116.86194, lat=33.3581, height=1712)
 JD_SHIFT = 2400000.5
+OGLE_SHIFT = 2450000
 ABZPMAG_JY = 8.9
 LGE_25 = 2.5 / np.log(10.0)
 
@@ -127,7 +130,6 @@ class Atlas(Data):
     def mk_phased(self, epoch, period):
         self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
 
-
     def save_datafile(self, filtr="o", ext="dat", hjdprec=6, magprec=3):
         atlas_data_fnam = f"{self.data_dir}/{self.name}-{self.survey}{filtr}-cleaned-{round(self.maglim, 2)}m.{ext}"
         data = self.data[self.data["filter"] == filtr]
@@ -148,6 +150,24 @@ class Atlas(Data):
 
     def get_data(self, filtr="o"):
         return self.data[self.data["filter"] == filtr]
+
+
+class Ogle(Data):
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+        self.survey = "ogle"
+        self.maglim = 1.6
+
+    def read_raw_data(self, add="", ext="dat"):
+        columns = ["hjd", "mag", "magerr"]
+        self.data = pd.read_csv(
+            f"{self.raw_dir}/{self.name}", delim_whitespace=True,
+            names=columns)
+        self.data["hjd"] += OGLE_SHIFT
+
+    def mk_phased(self, epoch, period):
+        self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
 
 
 def read_ps_data(filename):
@@ -192,9 +212,9 @@ def mk_phased(data, epoch, period, jdnam="hjd"):
 def save_merged(data, fnam):
     "save merged data to .dat file"
     pd.DataFrame({
-        "jd": (data["mjd"] + JD_SHIFT).round(6).astype("str").str.ljust(14, "0"),
-        "mag": data["mag"].round(6).astype("str").str.ljust(9, "0"),
-        "magerr": data["magerr"].round(6).astype("str").str.ljust(8, "0"),
+        "hjd": (data["hjd"]).round(6).astype("str").str.ljust(14, "0"),
+        "mag": data["mag"].round(5).astype("str").str.ljust(8, "0"),
+        "magerr": data["magerr"].round(5).astype("str").str.ljust(7, "0"),
     }).to_csv(f"../data/{fnam}-allmerged.dat", sep=" ", index=False)
 
 
