@@ -74,9 +74,9 @@ for name, obj in objs.items():
                 }
     curveshift = filtshift
     if obj.get("clrshift"):
-        filtshift = obj.get("clrshift")
+        filtshift.update(obj.get("clrshift"))
     if obj.get("curveshift") and obj.get("clrshift"):
-        curveshift = obj.get("clrshift")
+        curveshift.update(obj.get("clrshift"))
     print(f"-=={name}==-")
     psms = (
         obj.get("plot").get("psms")
@@ -160,16 +160,16 @@ for name, obj in objs.items():
                 label=f"ASAS-SN V{mk_fsh(curveshift['V'])}", ms=ASASMS-1, elinewidth=ELINEWDTH,
             )
             print(
-                f'ASASSN range for {name}, V: {min(asasd_V["mag"])}-{max(asasd_V["mag"])}'
+                f'ASAS-SN range for {name}, V: {min(asasd_V["mag"])}-{max(asasd_V["mag"])}'
             )
-        if "g" in obj["plot"].get("asasfilt") and len(asasd_g["mag"]):
+        if obj["plot"].get("asasfilt") and "g" in obj["plot"].get("asasfilt") and len(asasd_g["mag"]):
             plt.errorbar(
                 asasd_g["hjd"] - JD_SHIFT, asasd_g["mag"] - curveshift["asasg"], asasd_g["magerr"],
                 marker="d", ls="none", c="lightgreen", markeredgecolor="k",  # lime
                 mew=0.5, label=f"ASAS-SN g{mk_fsh(curveshift['asasg'])}", ms=ASASMS, elinewidth=ELINEWDTH,
             )
             print(
-                f'ASASSN range for {name}, g: {min(asasd_g["mag"])}-{max(asasd_g["mag"])}'
+                f'ASAS-SN range for {name}, g: {min(asasd_g["mag"])}-{max(asasd_g["mag"])}'
             )
 
     if obj.get("gaiafnam"):
@@ -232,9 +232,6 @@ for name, obj in objs.items():
                     marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
                     ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=0.5,
                 )
-
-    if obj.get("plot") and obj["plot"].get("ylim"):
-        plt.ylim(obj["plot"].get("ylim"))
     if obj.get("period"):
         obj["period"] = float(obj["period"])
     if obj.get("epoch"):
@@ -346,7 +343,7 @@ for name, obj in objs.items():
                 if obj.get("clrshift").get("ps" + filter):
                     psfiltshift = obj.get("clrshift").get("ps" + filter)
                 plt.errorbar(
-                    pslc["mjd"], pslc["mag"] - psfiltshift, pslc["magerr"],
+                    pslc["hjd"] - JD_SHIFT, pslc["mag"] - psfiltshift, pslc["magerr"],
                     marker=MARKERS[i], ls="none", c=FILT_CLRS[filter],
                     markeredgewidth=0.5, markeredgecolor="k",
                     label=f"PS1 {filter}{mk_fsh(psfiltshift)}", lw=0.75,
@@ -387,9 +384,11 @@ for name, obj in objs.items():
             ax.xaxis.set_minor_locator(MultipleLocator(obj["plot"]["xmil"]))
         # ax.yaxis.set_major_locator(MultipleLocator(0.5))
         if obj["plot"].get("ymil"):
-            ax.yaxis.set_minor_locator(MultipleLocator(obj["plot"]["ymil"]))
+            YMIL = obj["plot"].get("ymil")
+            ax.yaxis.set_minor_locator(MultipleLocator(YMIL))
         if obj["plot"].get("ymal"):
-            ax.yaxis.set_major_locator(MultipleLocator(obj["plot"]["ymal"]))
+            YMAL = obj["plot"].get("ymal")
+            ax.yaxis.set_major_locator(MultipleLocator(YMAL))
         if obj["plot"].get("xedges"):
             xmin, xmax = ax.get_xlim()
             plt.xlim(xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"])
@@ -405,9 +404,9 @@ for name, obj in objs.items():
     # plt.grid(axis="y", ls=":")
     plt.legend(fontsize=14)  # , loc="upper left"
     if obj["plot"].get("ylima"):
-        plt.ylim(obj["plot"].get("ylima"))
+        ax.set_ylim(obj["plot"].get("ylima"))
     else:
-        plt.gca().invert_yaxis()
+        ax.invert_yaxis()
 
     crtsnam = "-css" if obj.get("crtsfnam") else ""
     atlasfnam = "-atlas" if (hasattr(Atl, "data") and obj["plot"].get("atlasfilt")) else ""
@@ -426,8 +425,8 @@ for name, obj in objs.items():
 
     if obj.get("period"):
         # Phased plot figure
-        fig, ax = plt.subplots(figsize=(16, 9))
-        fig.subplots_adjust(0.06, 0.09, 0.985, 0.95)
+        fig2, ax2 = plt.subplots(figsize=(16, 9))
+        fig2.subplots_adjust(0.06, 0.09, 0.985, 0.95)
         data_to_merge = []  # data in HJD to be merged
         ELINEWDTH = 0.8
         for filtr in ztffilt:
@@ -470,7 +469,11 @@ for name, obj in objs.items():
                         "magerr": alcurve["magerr"],
                     })
                 )
-        if obj.get("asasfnam"):
+        if (
+            obj["plot"].get("asasfilt")
+            and "V" in obj["plot"].get("asasfilt")
+            and len(asasd_V["mag"])
+        ):
             plt.errorbar(
                 asasd_V["phased"], asasd_V["mag"], asasd_V["magerr"],
                 marker="s", ls="none", c="g", markeredgecolor="k", mew=0.5,
@@ -478,9 +481,9 @@ for name, obj in objs.items():
             )
         if obj["plot"].get("asasfilt") and "g" in obj["plot"].get("asasfilt") and len(asasd_g["mag"]):
             plt.errorbar(
-                asasd_g["phased"], asasd_g["mag"], asasd_g["magerr"],
+                asasd_g["phased"], asasd_g["mag"] - curveshift["asasg"], asasd_g["magerr"],
                 marker="d", ls="none", c="lightgreen", markeredgecolor="k",  # lime
-                mew=0.5, label="ASAS-SN g", ms=4, elinewidth=ELINEWDTH,
+                mew=0.5, label=f"ASAS-SN g {mk_fsh(curveshift['asasg'])}", ms=4, elinewidth=ELINEWDTH,
             )
 
         if obj.get("oglefnam"):
@@ -541,21 +544,19 @@ for name, obj in objs.items():
         plt.xlim(-0.5, 1)
         YLIM = obj["plot"].get("ylim")
         if YLIM:
-            plt.ylim(YLIM)
+            ax2.set_ylim(YLIM)
             if args.verln:
                 plt.plot([0, 0], YLIM, "--k")
         else:
             plt.gca().invert_yaxis()
-        YML = 0.5
         if obj["plot"].get("ymal"):
-            YML = obj["plot"].get("ymal")
+            ax2.yaxis.set_major_locator(MultipleLocator(YMAL))
         if obj["plot"].get("ymil"):
-            ax.yaxis.set_minor_locator(MultipleLocator(obj["plot"].get("ymil")))
-        ax.yaxis.set_major_locator(MultipleLocator(YML))
-        ax.xaxis.set_major_locator(MultipleLocator(0.5))
-        ax.xaxis.set_minor_locator(MultipleLocator(0.05))
-        ax.tick_params(which="major", length=6)
-        ax.tick_params(which="minor", length=4)
+            ax2.yaxis.set_minor_locator(MultipleLocator(YMIL))
+        ax2.xaxis.set_major_locator(MultipleLocator(0.5))
+        ax2.xaxis.set_minor_locator(MultipleLocator(0.05))
+        ax2.tick_params(which="major", length=6)
+        ax2.tick_params(which="minor", length=4)
         plt.savefig(
             f"../lc/{fnam}{ztfnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}-ph_{round(obj.get('period'), 6)}.{EXT}",
             dpi=120,
