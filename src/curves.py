@@ -259,8 +259,8 @@ def read_ps_data(filename):
 
 def read_crts_data(filename):
     """Read CRTS data"""
-    lcurve = pd.read_csv(filename, delim_whitespace=True)
-    return lcurve.iloc[:, 0], lcurve.iloc[:, 1], lcurve.iloc[:, 2]
+    columns = ["hjd", "mag", "magerr"]
+    return pd.read_csv(filename, delim_whitespace=True, names=columns)
 
 
 def save_gaia_datafile(curve, fnsav, hjdprec=5, magprec=2):

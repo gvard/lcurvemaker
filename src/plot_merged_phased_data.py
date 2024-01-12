@@ -1,5 +1,4 @@
 import json
-import os
 import warnings
 from argparse import ArgumentParser
 
@@ -26,10 +25,10 @@ from curves import (
 
 
 warnings.simplefilter("ignore", category=AstropyWarning)
-pd.options.mode.chained_assignment = None  # default='warn'
+pd.options.mode.chained_assignment = None  # default="warn"
 
 parser = ArgumentParser(
-    description="Graph plotter script with number of people in space"
+    description="Python script for working with light curves of variable stars"
 )
 parser.add_argument("-l", "--localps", action="store_true", help="local PS1 files")
 parser.add_argument("-v", "--verln", action="store_true",
@@ -37,7 +36,7 @@ parser.add_argument("-v", "--verln", action="store_true",
 parser.add_argument("-s", "--show", action="store_true",
                     help="Show interactive plot instead of saving figure")
 parser.add_argument("-f", "--filename", type=str, default="",
-                    help="file with object parameters")
+                    help="json filename with object parameters")
 args = parser.parse_args()
 
 print("localps", args.localps, "filename", args.filename)
@@ -62,6 +61,9 @@ ELINEWDTH = 0.5
 MARKERS = "DpshX"
 # colors = "grmkb"
 FILT_CLRS = {"g": "g", "r": "r", "i": "m", "z": "k", "y": "darkgrey"}
+filtshift = {"g": 0, "psg": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0,
+                "z": 0, "psz": 0, "o": 0, "c": 0, "V": 0, "G": 0, "asasg": 0,
+            }
 
 for name, obj in objs.items():
     fnam = name.lower().replace(" ", "")
@@ -69,9 +71,6 @@ for name, obj in objs.items():
     name_add = obj["other"]
     objname = f"{name} = {name_add}"
     ra, dec = obj["coordeg"]
-    filtshift = {"g": 0, "psg": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0,
-                 "z": 0, "psz": 0, "o": 0, "c": 0, "V": 0, "G": 0, "asasg": 0,
-                }
     curveshift = filtshift
     if obj.get("clrshift"):
         filtshift.update(obj.get("clrshift"))
@@ -85,6 +84,7 @@ for name, obj in objs.items():
     )
     MSS = [psms - 0.5, psms + 1, psms, psms + 1, psms]
     ZMS = 3  # 5
+    ASASMS = 3
     # Get PS1 data
     if (
         not args.localps
@@ -148,7 +148,6 @@ for name, obj in objs.items():
         }).to_csv(f"{DATA_PATH}{fnam}-asassn.dat", sep=" ", index=False)
         if obj["plot"].get("asasupperlim") and len(asasd_bad["mag"]):
             plt.plot(asasd_bad["hjd"] - JD_SHIFT, asasd_bad["mag"], marker="v", ls="none", c="#bbb", ms=2, zorder=-2)  # , label="ASAS-SN"
-        ASASMS = 3
         if (
             obj["plot"].get("asasfilt")
             and "V" in obj["plot"].get("asasfilt")
@@ -364,19 +363,16 @@ for name, obj in objs.items():
                 print(f"no PS1 plot for {filter}")
 
     if obj.get("crtsfnam"):
-        hjds, mags, magerrs = read_crts_data(f"{DATA_PATH}{obj['crtsfnam']}")
-        hjds -= JD_SHIFT
+        crts_data = read_crts_data(f"{DATA_PATH}{obj['crtsfnam']}")
         ELINEWDTH = 0.8
         plt.errorbar(
-            hjds, mags, magerrs,
-            marker="o", ls="none", c="k", elinewidth=ELINEWDTH, label="CRTS",
-            ms=4,
+            crts_data["hjd"] - JD_SHIFT, crts_data["mag"], crts_data["magerr"],
+            marker="o", ls="none", c="#888", elinewidth=ELINEWDTH, label="CRTS",
+            markeredgecolor="k", mew=0.7, ms=4,
         )
-    # del hjds, mags
 
     plt.title(objname, fontsize=18)
     # ax.ticklabel_format(useOffset=False, style="plain")
-    xmal = 1000
     if obj.get("plot"):
         if obj["plot"].get("xmal"):
             ax.xaxis.set_major_locator(MultipleLocator(obj["plot"]["xmal"]))
@@ -395,9 +391,7 @@ for name, obj in objs.items():
         elif obj["plot"].get("xlima"):
             plt.xlim(obj["plot"].get("xlima"))
     plt.ylabel("Mag", fontsize=16)
-    plt.xlabel("HMJD", fontsize=16)
-    if not obj.get("atlasfnam") and not obj.get("asasfnam"):
-        plt.xlabel(f"HJD - {JD_SHIFT}", fontsize=16)
+    plt.xlabel(f"HJD - {JD_SHIFT}", fontsize=16)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     # plt.tight_layout()
@@ -499,9 +493,9 @@ for name, obj in objs.items():
                     )
             # data_to_merge.append(
             #     pd.DataFrame({
-            #         "mjd": gaiadata["mjd"],
-            #         "mag": gaiadata["mag"] - psfiltshift,
-            #         "magerr": gaiadata["magerr"],
+            #         "hjd": gaiadata["JD(TCB)"],
+            #         "mag": gaiadata["averagemag"] - filtshift["G"],
+            #         "magerr": 0.1,
             #     })
             # )
 
@@ -521,17 +515,16 @@ for name, obj in objs.items():
                             markeredgecolor="k", label=f"PS1 {filter}{mk_fsh(psfiltshift)}",
                             ms=MSS[i],
                         )
-                        # data_to_merge.append(
-                        #     pd.DataFrame({
-                        #         "mjd": psdata[filter]["mjd"],
-                        #         "mag": psdata[filter]["mag"] - psfiltshift,
-                        #         "magerr": psdata[filter]["magerr"],
-                        #     })
-                        # )
+                        data_to_merge.append(
+                            pd.DataFrame({
+                                "hjd": psdata[filter]["hjd"],
+                                "mag": psdata[filter]["mag"] - psfiltshift,
+                                "magerr": psdata[filter]["magerr"],
+                            })
+                        )
                     except KeyError:
                         print("pass ps filter", filter)
-                        pass
-        merged = pd.concat(data_to_merge)  # .sort_values(by=["mjd"])
+        merged = pd.concat(data_to_merge)  # .sort_values(by=["hjd"])
         save_merged(merged, fnam)
 
         # Phased plot parameters
