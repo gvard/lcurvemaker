@@ -170,6 +170,88 @@ class Ogle(Data):
         self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
 
 
+class Ztf(Data):
+    def __init__(self, name, ztflim=None):
+        super().__init__()
+        self.name = name
+        self.survey = "ztf"
+        self.maglim = ztflim
+
+    def is_raw_data_exist(self, add="", ext="csv"):
+        return os.path.isfile(f"{self.raw_dir}/{self.name}-z{add}.{ext}")
+
+    def is_data_exist(self, filtr, lim="", ext="dat"):
+        return super().is_data_exist(filtr, lim=lim, ext=ext)
+
+    def read_raw_data_filtr(self, filtr="r", ext="csv"):
+        all_data = []
+        for i in range(1, 4):
+            try:
+                ztf_fnam = f"{self.raw_dir}/{self.name}-z{filtr}{i}.{ext}"
+                all_data.append(pd.read_csv(ztf_fnam))
+            except FileNotFoundError:
+                pass
+        if all_data:
+            data = pd.concat(all_data)
+            data = data.sort_values(by=["hjd"])
+            data = data.reset_index(drop=True)
+            return pd.DataFrame({
+                "hjd": data["hjd"],
+                "mag": data["mag"],
+                "magerr": data["magerr"],
+                "filter": filtr,
+            })
+        else:
+            return False
+
+    def read_raw_data(self, filtrs="gri", ext="csv"):
+        for filtr in filtrs:
+            data = self.read_raw_data_filtr(filtr=filtr)
+            if data:
+                try:
+                    self.data = pd.concat(self.data, data)
+                except ValueError:
+                    self.data = data
+
+    def prepare_data(self, maglim_up=None, maglim_low=None):
+        self.data = self.data[self.data["magerr"] < self.maglim]
+        if maglim_up:
+            self.data = self.data[self.data["mag"] > maglim_up]
+        if maglim_low:
+            self.data = self.data[self.data["mag"] < maglim_low]
+
+    def mk_phased(self, epoch, period):
+        self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
+
+    def save_datafile(self, filtr="r", ext="dat", hjdprec=7, magprec=6):
+        data = self.data[self.data["filter"] == filtr]
+        if len(data.index):
+            save_datafile(data, f"{self.data_dir}/{self.name}-ztf{filtr}.{ext}", hjdprec=hjdprec, magprec=magprec)
+
+    def read_prepared_data_filtr(self, filtr="r", ext="dat"):
+        if self.is_data_exist(filtr):
+            data = pd.read_csv(
+                f"{self.data_dir}/{self.name}-{self.survey}{filtr}.{ext}",
+                delim_whitespace=True
+                )
+            data["filter"] = filtr
+            return data
+        else:
+            return False
+
+    def read_prepared_data(self, filtrs="gri", ext="dat"):
+        for filtr in filtrs:
+            data = self.read_prepared_data_filtr(filtr=filtr)
+            if data:
+                try:
+                    self.data = pd.concat(data, self.data)
+                except ValueError:
+                    self.data = data
+
+    def get_data(self, filtr="r"):
+        return self.data[self.data["filter"] == filtr]
+
+
 def read_ps_data(filename):
     """read data: mjd mag magerr"""
     return pd.read_csv(filename, delim_whitespace=True)
