@@ -8,6 +8,7 @@ from matplotlib.ticker import MultipleLocator
 import pandas as pd
 from astropy.utils.exceptions import AstropyWarning
 
+import const
 from curves import (
     Ps,
     Ztf,
@@ -16,7 +17,6 @@ from curves import (
     read_ps_data,
     read_crts_data,
     mk_phased,
-    mk_hjd_corr,
     mk_fsh,
     save_datafile,
     save_merged,
@@ -46,24 +46,8 @@ if args.filename:
 with open(f"../objects/{FN}", "r", encoding="utf8") as loc_file:
     objs = json.load(loc_file)
 
-DATA_PATH = "../data/"
-DATA_RAW = f"{DATA_PATH}raw/"
-EXT = "png"
 JD_SHIFT = 2400000.5
-
-# Data filtering constants, change it in objects JSON parameters file
-PS_MAG_LIM = 0.11
-ASAS_MAG_LIM = 0.75
-ATLAS_MAG_LIM = 0.19
-
-# Plotting parameters
-ELINEWDTH = 0.5
-MARKERS = "DpshX"
-# colors = "grmkb"
-FILT_CLRS = {"g": "g", "r": "r", "i": "m", "z": "k", "y": "darkgrey"}
-filtshift = {"g": 0, "psg": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0,
-                "z": 0, "psz": 0, "o": 0, "c": 0, "V": 0, "G": 0, "asasg": 0,
-            }
+filtshift = const.ZEROFILTSHIFT
 
 for name, obj in objs.items():
     fnam = name.lower().replace(" ", "")
@@ -77,25 +61,24 @@ for name, obj in objs.items():
     if obj.get("curveshift") and obj.get("clrshift"):
         curveshift.update(obj.get("clrshift"))
     print(f"-=={name}==-")
-    psms = (
-        obj.get("plot").get("psms")
-        if obj.get("plot") and obj.get("plot").get("psms")
-        else 5
-    )
-    MSS = [psms - 0.5, psms + 1, psms, psms + 1, psms]
-    ZMS = 3  # 5
-    ASASMS = 3
+    if obj.get("plot") and obj["plot"].get("psms"):
+        const.PSMS = obj["plot"].get("psms")
+    MSS = [const.PSMS - 0.5, const.PSMS + 1, const.PSMS, const.PSMS + 1, const.PSMS]
+
     # Get PS1 data
+    const.PSFILT
+    if obj.get("plot") and obj["plot"].get("psfilt"):
+        const.PSFILT = obj["plot"].get("psfilt")
     if (
         not args.localps
         and obj.get("plot")
-        and obj["plot"].get("psfilt")
+        and const.PSFILT
         and not obj.get("pslocal")
     ):
         Psdat = Ps(ra, dec)
         Psdat.cone_search()
         if obj.get("plot") and obj.get("plot").get("psfilt"):
-            Psdat.PSFILTRS = obj["plot"]["psfilt"]
+            Psdat.PSFILTRS = const.PSFILT
         if Psdat.results:
             Psdat.get_table()
         else:
@@ -106,8 +89,10 @@ for name, obj in objs.items():
     fig.subplots_adjust(0.06, 0.09, 0.985, 0.95)
 
     # ASAS Stuff
+    if obj.get("plot") and obj["plot"].get("asasfilt"):
+        const.ASASFILT = obj["plot"].get("asasfilt")
     if obj.get("asasfnam"):
-        asasd = pd.read_csv(f"{DATA_RAW}{obj['asasfnam']}")
+        asasd = pd.read_csv(f"{const.DATA_RAW}{obj['asasfnam']}")
         asasd = asasd.rename(
             columns={"HJD": "hjd", "mag_err": "magerr", "Filter": "filter"}
         )
@@ -118,7 +103,7 @@ for name, obj in objs.items():
         except TypeError:
             asasd_bad["mag"] = asasd_bad["mag"].str.lstrip(">").astype(float)
             asasd_bad = asasd_bad[asasd_bad["mag"] < 21]
-        ASASERRLIM = obj.get("asaslim") if obj.get("asaslim") else ASAS_MAG_LIM
+        ASASERRLIM = obj.get("asaslim") if obj.get("asaslim") else const.ASAS_MAG_LIM
         asasd = asasd[asasd["magerr"] != 99.99]
         asasd = asasd[asasd["magerr"] < ASASERRLIM]
         asasd_V = asasd[asasd["filter"] == "V"]
@@ -139,45 +124,41 @@ for name, obj in objs.items():
             )
         except ValueError:
             pass
-        save_datafile(asasd, f"{DATA_PATH}{fnam}-asassn.dat", hjdprec=6, magprec=3)
+        save_datafile(asasd, f"{const.DATA_PATH}{fnam}-asassn.dat", hjdprec=6, magprec=3)
         pd.DataFrame({
             "hjd": asasd["hjd"].astype("str").str.ljust(13, "0"),
             "mag": asasd["mag"].round(6).astype("str").str.ljust(6, "0"),
             "magerr": asasd["magerr"].astype("str").str.ljust(5, "0"),
             "filter": asasd["filter"],
-        }).to_csv(f"{DATA_PATH}{fnam}-asassn.dat", sep=" ", index=False)
+        }).to_csv(f"{const.DATA_PATH}{fnam}-asassn.dat", sep=" ", index=False)
         if obj["plot"].get("asasupperlim") and len(asasd_bad["mag"]):
             plt.plot(asasd_bad["hjd"] - JD_SHIFT, asasd_bad["mag"], marker="v", ls="none", c="#bbb", ms=2, zorder=-2)  # , label="ASAS-SN"
-        if (
-            obj["plot"].get("asasfilt")
-            and "V" in obj["plot"].get("asasfilt")
-            and len(asasd_V["mag"])
-        ):
+        if "V" in const.ASASFILT and len(asasd_V["mag"]):
             plt.errorbar(
                 asasd_V["hjd"] - JD_SHIFT, asasd_V["mag"] - curveshift["V"], asasd_V["magerr"],
                 marker="s", ls="none", c="lime", markeredgecolor="k", mew=0.5,
-                label=f"ASAS-SN V{mk_fsh(curveshift['V'])}", ms=ASASMS-1, elinewidth=ELINEWDTH,
+                label=f"ASAS-SN V{mk_fsh(curveshift['V'])}", ms=const.ASASMS-1, elinewidth=const.ASELINWDTH,
             )
             print(
                 f'ASAS-SN range for {name}, V: {min(asasd_V["mag"])}-{max(asasd_V["mag"])}'
             )
-        if obj["plot"].get("asasfilt") and "g" in obj["plot"].get("asasfilt") and len(asasd_g["mag"]):
+        if "g" in const.ASASFILT and len(asasd_g["mag"]):
             plt.errorbar(
                 asasd_g["hjd"] - JD_SHIFT, asasd_g["mag"] - curveshift["asasg"], asasd_g["magerr"],
-                marker="d", ls="none", c="lightgreen", markeredgecolor="k",  # lime
-                mew=0.5, label=f"ASAS-SN g{mk_fsh(curveshift['asasg'])}", ms=ASASMS, elinewidth=ELINEWDTH,
+                marker="d", ls="none", c=const.FILT_CLRS["asasg"], markeredgecolor="k", mew=0.5,
+                label=f"ASAS-SN g{mk_fsh(curveshift['asasg'])}", ms=const.ASASMS,
+                elinewidth=const.ASELINWDTH,
             )
             print(
                 f'ASAS-SN range for {name}, g: {min(asasd_g["mag"])}-{max(asasd_g["mag"])}'
             )
 
     if obj.get("gaiafnam"):
-        gaiadata = pd.read_csv(f"{DATA_RAW}{obj['gaiafnam']}", skiprows=1)
+        gaiadata = pd.read_csv(f"{const.DATA_RAW}{obj['gaiafnam']}", skiprows=1)
         gaiadata = gaiadata[gaiadata["averagemag"].notna()]
         gaiadata = gaiadata[gaiadata["averagemag"] != "untrusted"]
         gaiadata["averagemag"] = gaiadata["averagemag"].astype(float)
         # Time of observation is in barycentric coordinate time (TCB)
-        gaiadata["JD(TCB)"] = gaiadata["JD(TCB)"]  # - JD_SHIFT
         gaiadata["hmjd"] = gaiadata["JD(TCB)"] - JD_SHIFT
         save_gaia_datafile(gaiadata, f"../data/{obj['gaiafnam'].removesuffix('.csv')}.dat")
         plt.plot(
@@ -188,47 +169,43 @@ for name, obj in objs.items():
             gaiadata = mk_phased(gaiadata, obj["epoch"], obj.get("period"), jdnam="JD(TCB)")
 
     # Atlas Stuff
-    ATLAS_RAWDATA = True
-    ATLAS_SAVEDATA = True
-    ATLAS_CLRS = {"o": "darkorange", "c": "darkblue"}
+    const.ATLAS_SAVEDATA = True
     if obj.get("atlaslim"):
-        ATLAS_MAG_LIM = obj.get("atlaslim")
-    atlasfilt = "oc"
+        const.ATLAS_MAG_LIM = obj.get("atlaslim")
     if obj["plot"].get("atlasfilt"):
-        atlasfilt = obj["plot"].get("atlasfilt")
-    Atl = Atlas(fnam, atlaslim=ATLAS_MAG_LIM)
-    if not ATLAS_RAWDATA and Atl.is_data_exist("o", lim=ATLAS_MAG_LIM):
-        Atl.read_prepared_data(filtlims={"o": ATLAS_MAG_LIM, "c": ATLAS_MAG_LIM})
-        print("read atlas data for", fnam, "with lim", ATLAS_MAG_LIM)
-    elif ATLAS_RAWDATA and Atl.is_raw_data_exist():
+        const.ATLASFILT = obj["plot"].get("atlasfilt")
+    Atl = Atlas(fnam, atlaslim=const.ATLAS_MAG_LIM)
+    if not const.ATLAS_RAWDATA and Atl.is_data_exist("o", lim=const.ATLAS_MAG_LIM):
+        Atl.read_prepared_data(filtlims={"o": const.ATLAS_MAG_LIM, "c": const.ATLAS_MAG_LIM})
+        print("read atlas data for", fnam, "with lim", const.ATLAS_MAG_LIM)
+    elif const.ATLAS_RAWDATA and Atl.is_raw_data_exist():
         Atl.read_raw_data()
         Atl.prepare_data(ra, dec)
-        print("read and prepare atlas raw data for", fnam, "with lim", ATLAS_MAG_LIM)
-        if ATLAS_SAVEDATA:
-            print(f"save atlas data for {atlasfilt} filters")
-            for filtr in atlasfilt:
+        print("read and prepare atlas raw data for", fnam, "with lim", const.ATLAS_MAG_LIM)
+        if const.ATLAS_SAVEDATA:
+            print(f"save atlas data for {const.ATLASFILT} filters")
+            for filtr in const.ATLASFILT:
                 Atl.save_datafile(filtr)
     else:
         print("No Atlas data", hasattr(Atl, "data"))
 
-    atlasms = 3
     if obj["plot"].get("atlasms"):
-        atlasms = obj["plot"].get("atlasms")
+        const.ATLASMS = obj["plot"].get("atlasms")
     if hasattr(Atl, "data") and len(Atl.data.index):
-        for afiltr in atlasfilt:
-            alclr = ATLAS_CLRS[afiltr]
-            alms = {"o": atlasms, "c": atlasms - 1}[afiltr]
+        for afiltr in const.ATLASFILT:
+            alclr = const.FILT_CLRS[afiltr]
+            alms = {"o": const.ATLASMS, "c": const.ATLASMS - 1}[afiltr]
             alcurve = Atl.get_data(afiltr)
-            if obj.get("curveshift") and obj.get("clrshift") and obj["plot"].get("atlasfilt"):
+            if obj.get("curveshift") and obj.get("clrshift") and const.ATLASFILT:
                 plt.errorbar(
                     alcurve["hjd"] - JD_SHIFT, alcurve["mag"] - curveshift[afiltr], alcurve["magerr"],
-                    marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                    marker="o", ls="none", elinewidth=const.ATELINWDTH, c=alclr,
                     ms=alms, label=f"ATLAS {afiltr}{mk_fsh(curveshift[afiltr])}", zorder=0, markeredgecolor="k", mew=0.5,
                 )
-            elif obj["plot"].get("atlasfilt"):
+            elif const.ATLASFILT:
                 plt.errorbar(
                     alcurve["hjd"] - JD_SHIFT, alcurve["mag"], alcurve["magerr"],
-                    marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                    marker="o", ls="none", elinewidth=const.ATELINWDTH, c=alclr,
                     ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=0.5,
                 )
     if obj.get("period"):
@@ -237,21 +214,18 @@ for name, obj in objs.items():
         obj["epoch"] = float(obj["epoch"])
 
     # -== ZTF stuff ==-
-    ztffilt = "gri"
     if obj["plot"].get("ztffilt"):
-        ztffilt = obj["plot"].get("ztffilt")
+        const.ZTFFILT = obj["plot"].get("ztffilt")
     if obj.get("plot") and obj["plot"].get("zms"):
-        ZMS = obj["plot"].get("zms")
-    zmss = {"g": ZMS, "r": ZMS, "i": ZMS}
+        const.ZMS = obj["plot"].get("zms")
+    zmss = {"g": const.ZMS, "r": const.ZMS, "i": const.ZMS}
 
-    ztfclrs = {"g": "g", "r": "r", "i": "m"}
-    ELINEWDTH = 0.75
     Zt = Ztf(fnam)
     zdata = {}
-    for filtr in ztffilt:
+    for filtr in const.ZTFFILT:
         data = Zt.read_raw_data_filtr(filtr=filtr)
         try:
-            save_datafile(data, f"{DATA_PATH}{fnam}-ztf{filtr}.dat", hjdprec=7, magprec=6)
+            save_datafile(data, f"{const.DATA_PATH}{fnam}-ztf{filtr}.dat", hjdprec=7, magprec=6)
             print(
                 f'ZTF range for {name} {filtr}: {round(min(data["mag"]), 2)}-{round(max(data["mag"]), 2)}'
             )
@@ -262,28 +236,28 @@ for name, obj in objs.items():
             if obj.get("curveshift") and obj.get("clrshift"):
                 plt.errorbar(
                     zdata[filtr]["hjd"] - JD_SHIFT, zdata[filtr]["mag"] - curveshift[filtr], zdata[filtr]["magerr"],
-                    marker="o", ls="none", c=ztfclrs[filtr], elinewidth=ELINEWDTH, label=f"ZTF {filtr}{mk_fsh(curveshift[filtr])}",
+                    marker="o", ls="none", c=const.FILT_CLRS[filtr], elinewidth=const.ZELINWDTH, label=f"ZTF {filtr}{mk_fsh(curveshift[filtr])}",
                     ms=zmss[filtr], markeredgecolor="k", mew=0.5,
                 )
             else:
                 plt.errorbar(
                     zdata[filtr]["hjd"] - JD_SHIFT, zdata[filtr]["mag"], zdata[filtr]["magerr"],
-                    marker="o", ls="none", c=ztfclrs[filtr], elinewidth=ELINEWDTH, label=f"ZTF {filtr}",
+                    marker="o", ls="none", c=const.FILT_CLRS[filtr], elinewidth=const.ZELINWDTH, label=f"ZTF {filtr}",
                     ms=zmss[filtr], markeredgecolor="k", mew=0.5,
                 )
         except TypeError:
             continue
         except NameError:
             print(f"Err {filtr}")
-    ztfnam = "-ztf" if obj.get("plot") and obj["plot"].get("ztffilt") else ""
+    ztfnam = "-ztf" if obj.get("plot") and const.ZTFFILT else ""
 
     if obj.get("oglefnam"):
         Ogl = Ogle(obj.get("oglefnam"))
         Ogl.read_raw_data()
         plt.errorbar(
             Ogl.data["hjd"] - JD_SHIFT, Ogl.data["mag"] - filtshift["I"], Ogl.data["magerr"], marker="o",
-            ls="none", c="indigo", label=f"OGLE I{mk_fsh(filtshift['I'])}",
-            ms=4, markeredgecolor="k", mew=0.5, elinewidth=0.8,
+            ls="none", c=const.FILT_CLRS["I"], label=f"OGLE I{mk_fsh(filtshift['I'])}",
+            ms=4, markeredgecolor="k", mew=0.5, elinewidth=const.OELINWDTH,
         )
 
         if obj.get("period"):
@@ -294,17 +268,17 @@ for name, obj in objs.items():
             "hjd": imerg["hjd"].astype("str").str.ljust(18, "0"),
             "mag": imerg["mag"].round(6).astype("str").str.ljust(9, "0"),
             "magerr": imerg["magerr"].round(6).astype("str").str.ljust(8, "0"),
-        }).to_csv(f"{DATA_PATH}{fnam}-ogle-ztf-imerg.dat", sep=" ", index=False)
+        }).to_csv(f"{const.DATA_PATH}{fnam}-ogle-ztf-imerg.dat", sep=" ", index=False)
         print(f"OGLE range for {name}: {min(Ogl.data['mag'])}-{max(Ogl.data['mag'])}")
 
     # Plot PS1 data
     psnam = ""
     psdata = {}
     if obj.get("pslim"):
-        PS_MAG_LIM = obj.get("pslim")
+        const.PS_MAG_LIM = obj.get("pslim")
     if not args.localps and obj.get("plot") and obj.get("plot").get("psfilt") and Psdat.results:
         psnam = "-ps1"
-        for i, filter in enumerate(obj["plot"]["psfilt"]):
+        for i, filter in enumerate(const.PSFILT):
             w = np.where(Psdat.dtab["filter"] == filter)
             try:
                 print(
@@ -312,16 +286,16 @@ for name, obj in objs.items():
                 )
                 plt.errorbar(
                     Psdat.t[w], Psdat.mag[w], Psdat.magerr[w],
-                    marker=MARKERS[i], ls="none", c=FILT_CLRS[filter],
-                    markeredgewidth=0.5, markeredgecolor="k", label=f"PS1 {filter}", lw=0.75,
+                    marker=const.MARKERS[i], ls="none", c=const.FILT_CLRS[filter],
+                    mew=0.5, markeredgecolor="k", label=f"PS1 {filter}", lw=0.75,
                     ms=MSS[i],
                 )
                 psdata[filter] = Psdat.mk_data(w)
                 save_datafile(
-                    psdata[filter], f"{DATA_PATH}{objpsfnam}{filter}.dat",
+                    psdata[filter], f"{const.DATA_PATH}{objpsfnam}{filter}.dat",
                     hjdprec=7, magprec=4,
                 )
-                psdata[filter] = psdata[filter][psdata[filter]["magerr"] < PS_MAG_LIM]
+                psdata[filter] = psdata[filter][psdata[filter]["magerr"] < const.PS_MAG_LIM]
                 if obj.get("period"):
                     psdata[filter] = mk_phased(
                         psdata[filter], obj["epoch"], obj.get("period")
@@ -330,9 +304,9 @@ for name, obj in objs.items():
                 print(f"no PS1 plot for {filter}")
     if args.localps and obj.get("plot") and obj.get("plot").get("psfilt"):
         psnam = "-ps1"
-        for i, filter in enumerate(obj["plot"]["psfilt"]):
+        for i, filter in enumerate(const.PSFILT):
             try:
-                ps_fnam = f"{DATA_PATH}{fnam}-ps{filter}.dat"
+                ps_fnam = f"{const.DATA_PATH}{fnam}-ps{filter}.dat"
                 pslc = read_ps_data(ps_fnam)
                 print(
                     f"PS1 for {name}, filter {filter}:",
@@ -343,19 +317,18 @@ for name, obj in objs.items():
                     psfiltshift = obj.get("clrshift").get("ps" + filter)
                 plt.errorbar(
                     pslc["hjd"] - JD_SHIFT, pslc["mag"] - psfiltshift, pslc["magerr"],
-                    marker=MARKERS[i], ls="none", c=FILT_CLRS[filter],
-                    markeredgewidth=0.5, markeredgecolor="k",
+                    marker=const.MARKERS[i], ls="none", c=const.FILT_CLRS[filter],
+                    mew=0.5, markeredgecolor="k",
                     label=f"PS1 {filter}{mk_fsh(psfiltshift)}", lw=0.75,
                     ms=MSS[i],
                 )
                 if obj.get("period"):
-                    # t_corr = mk_hjd_corr(pslc["mjd"], ra, dec, obs="Haleakala")
                     psdata[filter] = pd.DataFrame({
                         "hjd": pslc["hjd"],
                         "mag": pslc["mag"],
                         "magerr": pslc["magerr"],
                     })
-                    psdata[filter] = psdata[filter][psdata[filter]["magerr"] < PS_MAG_LIM]
+                    psdata[filter] = psdata[filter][psdata[filter]["magerr"] < const.PS_MAG_LIM]
                     psdata[filter] = mk_phased(
                         psdata[filter], obj["epoch"], obj.get("period")
                     )
@@ -363,11 +336,10 @@ for name, obj in objs.items():
                 print(f"no PS1 plot for {filter}")
 
     if obj.get("crtsfnam"):
-        crts_data = read_crts_data(f"{DATA_PATH}{obj['crtsfnam']}")
-        ELINEWDTH = 0.8
+        crts_data = read_crts_data(f"{const.DATA_PATH}{obj['crtsfnam']}")
         plt.errorbar(
             crts_data["hjd"] - JD_SHIFT, crts_data["mag"], crts_data["magerr"],
-            marker="o", ls="none", c="#888", elinewidth=ELINEWDTH, label="CRTS",
+            marker="o", ls="none", c="#888", elinewidth=const.CELINWDTH, label="CRTS",
             markeredgecolor="k", mew=0.7, ms=4,
         )
 
@@ -403,7 +375,7 @@ for name, obj in objs.items():
         ax.invert_yaxis()
 
     crtsnam = "-css" if obj.get("crtsfnam") else ""
-    atlasfnam = "-atlas" if (hasattr(Atl, "data") and obj["plot"].get("atlasfilt")) else ""
+    atlasfnam = "-atlas" if hasattr(Atl, "data") and const.ATLASFILT else ""
     asasfnam = "-asas" if obj.get("asasfnam") else ""
     oglenam = "-ogle" if obj.get("oglefnam") else ""
     gaianam = "-gaia" if obj.get("gaiafnam") else ""
@@ -411,7 +383,7 @@ for name, obj in objs.items():
         plt.show()
     else:
         plt.savefig(
-            f"../lc/{fnam}{psnam}{ztfnam}{crtsnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}.{EXT}",
+            f"../lc/{fnam}{psnam}{ztfnam}{crtsnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}.{const.EXT}",
             dpi=120,
         )
     # End of lightcurve plot
@@ -422,12 +394,11 @@ for name, obj in objs.items():
         fig2, ax2 = plt.subplots(figsize=(16, 9))
         fig2.subplots_adjust(0.06, 0.09, 0.985, 0.95)
         data_to_merge = []  # data in HJD to be merged
-        ELINEWDTH = 0.8
-        for filtr in ztffilt:
+        for filtr in const.ZTFFILT:
             plt.errorbar(
                 zdata[filtr]["phased"], zdata[filtr]["mag"] - filtshift[filtr], zdata[filtr]["magerr"],
-                markeredgewidth=0.4, markeredgecolor="k", marker="o", ls="none",
-                elinewidth=ELINEWDTH, c=ztfclrs[filtr], label=f"ZTF {filtr}{mk_fsh(filtshift[filtr])}",
+                mew=0.4, markeredgecolor="k", marker="o", ls="none",
+                elinewidth=const.ZELINWDTH, c=const.FILT_CLRS[filtr], label=f"ZTF {filtr}{mk_fsh(filtshift[filtr])}",
                 ms=zmss[filtr],
             )
             data_to_merge.append(
@@ -438,23 +409,19 @@ for name, obj in objs.items():
                 })
             )
 
-        ATMS = 2
-        if obj["plot"].get("atlasms"):
-            ATMS = obj["plot"].get("atlasms")
-        ELINEWDTH = 0.2  # 0.5
         if obj["plot"].get("atlaselw"):
-            ELINEWDTH = obj["plot"].get("atlaselw")
-        if hasattr(Atl, "data") and len(Atl.data.index) and atlasfilt:
+            const.ATELINWDTH = obj["plot"].get("atlaselw")
+        if hasattr(Atl, "data") and len(Atl.data.index) and const.ATLASFILT:
             Atl.mk_phased(obj["epoch"], obj.get("period"))
-            for afiltr in atlasfilt:
-                alclr = ATLAS_CLRS[afiltr]
-                alms = {"o": atlasms, "c": atlasms - 1}[afiltr]
+            for afiltr in const.ATLASFILT:
+                alclr = const.FILT_CLRS[afiltr]
+                alms = {"o": const.ATLASMS, "c": const.ATLASMS - 1}[afiltr]
                 alcurve = Atl.get_data(afiltr)
                 plt.errorbar(
                     alcurve["phased"], alcurve["mag"] - filtshift[afiltr], alcurve["magerr"],
-                    marker="o", ls="none", elinewidth=ELINEWDTH, c=alclr,
+                    marker="o", ls="none", elinewidth=const.ATELINWDTHT, c=alclr,
                     label=f"ATLAS {afiltr}{mk_fsh(filtshift[afiltr])}", zorder=0,
-                    ms=alms, markeredgewidth=0.4, markeredgecolor="k",
+                    ms=alms, mew=0.4, markeredgecolor="k",
                 )
                 data_to_merge.append(
                     pd.DataFrame({
@@ -463,33 +430,29 @@ for name, obj in objs.items():
                         "magerr": alcurve["magerr"],
                     })
                 )
-        if (
-            obj["plot"].get("asasfilt")
-            and "V" in obj["plot"].get("asasfilt")
-            and len(asasd_V["mag"])
-        ):
+        if "V" in const.ASASFILT and len(asasd_V["mag"]):
             plt.errorbar(
                 asasd_V["phased"], asasd_V["mag"], asasd_V["magerr"],
                 marker="s", ls="none", c="g", markeredgecolor="k", mew=0.5,
-                label="ASAS-SN V", ms=4, elinewidth=ELINEWDTH,
+                label="ASAS-SN V", ms=4, elinewidth=const.ASELINWDTH,
             )
-        if obj["plot"].get("asasfilt") and "g" in obj["plot"].get("asasfilt") and len(asasd_g["mag"]):
+        if "g" in const.ASASFILT and len(asasd_g["mag"]):
             plt.errorbar(
                 asasd_g["phased"], asasd_g["mag"] - curveshift["asasg"], asasd_g["magerr"],
-                marker="d", ls="none", c="lightgreen", markeredgecolor="k",  # lime
-                mew=0.5, label=f"ASAS-SN g {mk_fsh(curveshift['asasg'])}", ms=4, elinewidth=ELINEWDTH,
+                marker="d", ls="none", c=const.FILT_CLRS["asasg"], markeredgecolor="k",  # lime
+                mew=0.5, label=f"ASAS-SN g {mk_fsh(curveshift['asasg'])}", ms=4, elinewidth=const.ASELINWDTH,
             )
 
         if obj.get("oglefnam"):
             plt.errorbar(
                 Ogl.data["phased"], Ogl.data["mag"] - filtshift["I"], Ogl.data["magerr"],
-                marker="o", ls="none", c="indigo", label=f"OGLE I{mk_fsh(filtshift['I'])}", ms=5,
-                markeredgecolor="k", mew=0.5, elinewidth=0.8,
+                marker="o", ls="none", c=const.FILT_CLRS["I"], label=f"OGLE I{mk_fsh(filtshift['I'])}", ms=5,
+                markeredgecolor="k", mew=0.5, elinewidth=const.OELINWDTH,
             )
         if obj.get("gaiafnam"):
             plt.plot(
                         gaiadata["phased"], gaiadata.get("averagemag") - filtshift["G"], "*", markeredgecolor="k",
-                        mew=0.5, ms=6, c="darkgrey", label=f"{obj['gaiaobj']}{mk_fsh(filtshift['G'])}",
+                        mew=0.5, ms=6, c=const.FILT_CLRS["G"], label=f"{obj['gaiaobj']}{mk_fsh(filtshift['G'])}",
                     )
             # data_to_merge.append(
             #     pd.DataFrame({
@@ -499,19 +462,18 @@ for name, obj in objs.items():
             #     })
             # )
 
-        if obj.get("plot") and obj["plot"].get("psfilt"):
-            for i, filter in enumerate(obj["plot"]["psfilt"]):
+        if const.PSFILT:
+            for i, filter in enumerate(const.PSFILT):
                 if filter in psdata:
                     try:
                         psfiltshift = filtshift[filter]
                         if filtshift.get("ps" + filter):
                             psfiltshift = filtshift.get("ps" + filter)
-                        ELINEWDTH = 1
                         plt.errorbar(
                             psdata[filter]["phased"], psdata[filter]["mag"] - psfiltshift,
                             psdata[filter]["magerr"],
-                            marker=MARKERS[i], ls="none", c=FILT_CLRS[filter],
-                            markeredgewidth=0.5, elinewidth=ELINEWDTH,
+                            marker=const.MARKERS[i], ls="none", c=const.FILT_CLRS[filter],
+                            mew=0.5, elinewidth=const.PSELINWDTH,
                             markeredgecolor="k", label=f"PS1 {filter}{mk_fsh(psfiltshift)}",
                             ms=MSS[i],
                         )
@@ -551,7 +513,7 @@ for name, obj in objs.items():
         ax2.tick_params(which="major", length=6)
         ax2.tick_params(which="minor", length=4)
         plt.savefig(
-            f"../lc/{fnam}{ztfnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}-ph_{round(obj.get('period'), 6)}.{EXT}",
+            f"../lc/{fnam}{ztfnam}{atlasfnam}{asasfnam}{oglenam}{gaianam}-ph_{round(obj.get('period'), 6)}.{const.EXT}",
             dpi=120,
         )
     # if loop on different objects, don't forget to delete user-defined
