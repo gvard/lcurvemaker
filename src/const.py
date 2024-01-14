@@ -35,12 +35,12 @@ ATLAS_MAG_LIM = 0.19
 
 # Plotting parameters
 ZEROFILTSHIFT = {"g": 0, "psg": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0,
-             "z": 0, "psz": 0, "o": 0, "c": 0, "V": 0, "G": 0, "asasg": 0,
-             }
+                 "z": 0, "psz": 0, "o": 0, "c": 0, "V": 0, "G": 0, "asasg": 0,
+                 }
 
 # Marker colors for given filters
 FILT_CLRS = {"g": "g", "asasg": "lightgreen", "r": "r", "i": "m", "I": "indigo", "z": "k",
-             "y": "darkgrey", "o": "darkorange", "c": "darkblue", "G": "darkgrey",
+             "y": "darkgrey", "o": "darkorange", "c": "darkblue", "G": "darkgrey", "V": "lime",  # "g"
              }
 
 MARKERS = "DpshX"
@@ -49,8 +49,9 @@ PSMS = 5
 ZMS = 3
 ASASMS = 3
 ATLASMS = 3
-CRTSMS = 3
-OGLEMS = 3
+CRTSMS = 4
+OGLEMS = 5
+GAIAMS = 6
 
 ELINWDTH = 0.5
 PSELINWDTH = 1
@@ -60,3 +61,5 @@ ATELINWDTH = 0.5
 ASELINWDTH = 0.75
 CELINWDTH = 0.8
 OELINWDTH = 0.8
+
+MEW = 0.4

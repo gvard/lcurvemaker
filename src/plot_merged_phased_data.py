@@ -132,11 +132,12 @@ for name, obj in objs.items():
             "filter": asasd["filter"],
         }).to_csv(f"{const.DATA_PATH}{fnam}-asassn.dat", sep=" ", index=False)
         if obj["plot"].get("asasupperlim") and len(asasd_bad["mag"]):
-            plt.plot(asasd_bad["hjd"] - JD_SHIFT, asasd_bad["mag"], marker="v", ls="none", c="#bbb", ms=2, zorder=-2)  # , label="ASAS-SN"
+            plt.plot(asasd_bad["hjd"] - JD_SHIFT, asasd_bad["mag"], marker="v", ls="none",
+                     c="#bbb", ms=2, zorder=-2)  # , label="ASAS-SN"
         if "V" in const.ASASFILT and len(asasd_V["mag"]):
             plt.errorbar(
                 asasd_V["hjd"] - JD_SHIFT, asasd_V["mag"] - curveshift["V"], asasd_V["magerr"],
-                marker="s", ls="none", c="lime", markeredgecolor="k", mew=0.5,
+                marker="s", ls="none", c=const.FILT_CLRS["V"], markeredgecolor="k", mew=const.MEW, zorder=-1,
                 label=f"ASAS-SN V{mk_fsh(curveshift['V'])}", ms=const.ASASMS-1, elinewidth=const.ASELINWDTH,
             )
             print(
@@ -145,8 +146,8 @@ for name, obj in objs.items():
         if "g" in const.ASASFILT and len(asasd_g["mag"]):
             plt.errorbar(
                 asasd_g["hjd"] - JD_SHIFT, asasd_g["mag"] - curveshift["asasg"], asasd_g["magerr"],
-                marker="d", ls="none", c=const.FILT_CLRS["asasg"], markeredgecolor="k", mew=0.5,
-                label=f"ASAS-SN g{mk_fsh(curveshift['asasg'])}", ms=const.ASASMS,
+                marker="d", ls="none", c=const.FILT_CLRS["asasg"], markeredgecolor="k", zorder=-1,
+                mew=const.MEW, label=f"ASAS-SN g{mk_fsh(curveshift['asasg'])}", ms=const.ASASMS,
                 elinewidth=const.ASELINWDTH,
             )
             print(
@@ -159,11 +160,10 @@ for name, obj in objs.items():
         gaiadata = gaiadata[gaiadata["averagemag"] != "untrusted"]
         gaiadata["averagemag"] = gaiadata["averagemag"].astype(float)
         # Time of observation is in barycentric coordinate time (TCB)
-        gaiadata["hmjd"] = gaiadata["JD(TCB)"] - JD_SHIFT
         save_gaia_datafile(gaiadata, f"../data/{obj['gaiafnam'].removesuffix('.csv')}.dat")
         plt.plot(
-            gaiadata["hmjd"], gaiadata.get("averagemag"), "*", markeredgecolor="k",
-            mew=0.5, ms=6, c="darkgrey", label=obj["gaiaobj"],
+            gaiadata["JD(TCB)"] - JD_SHIFT, gaiadata.get("averagemag"), "*", markeredgecolor="k",
+            mew=const.MEW, ms=const.GAIAMS, c=const.FILT_CLRS["G"], label=obj["gaiaobj"],
         )
         if obj.get("period"):
             gaiadata = mk_phased(gaiadata, obj["epoch"], obj.get("period"), jdnam="JD(TCB)")
@@ -200,13 +200,14 @@ for name, obj in objs.items():
                 plt.errorbar(
                     alcurve["hjd"] - JD_SHIFT, alcurve["mag"] - curveshift[afiltr], alcurve["magerr"],
                     marker="o", ls="none", elinewidth=const.ATELINWDTH, c=alclr,
-                    ms=alms, label=f"ATLAS {afiltr}{mk_fsh(curveshift[afiltr])}", zorder=0, markeredgecolor="k", mew=0.5,
+                    ms=alms, label=f"ATLAS {afiltr}{mk_fsh(curveshift[afiltr])}", zorder=0,
+                    markeredgecolor="k", mew=const.MEW,
                 )
             elif const.ATLASFILT:
                 plt.errorbar(
                     alcurve["hjd"] - JD_SHIFT, alcurve["mag"], alcurve["magerr"],
                     marker="o", ls="none", elinewidth=const.ATELINWDTH, c=alclr,
-                    ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=0.5,
+                    ms=alms, label=f"ATLAS {afiltr}", zorder=0, markeredgecolor="k", mew=const.MEW,
                 )
     if obj.get("period"):
         obj["period"] = float(obj["period"])
@@ -236,14 +237,16 @@ for name, obj in objs.items():
             if obj.get("curveshift") and obj.get("clrshift"):
                 plt.errorbar(
                     zdata[filtr]["hjd"] - JD_SHIFT, zdata[filtr]["mag"] - curveshift[filtr], zdata[filtr]["magerr"],
-                    marker="o", ls="none", c=const.FILT_CLRS[filtr], elinewidth=const.ZELINWDTH, label=f"ZTF {filtr}{mk_fsh(curveshift[filtr])}",
-                    ms=zmss[filtr], markeredgecolor="k", mew=0.5,
+                    marker="o", ls="none", c=const.FILT_CLRS[filtr], elinewidth=const.ZELINWDTH-0.3,
+                    label=f"ZTF {filtr}{mk_fsh(curveshift[filtr])}",
+                    ms=zmss[filtr], markeredgecolor="k", mew=const.MEW,
                 )
             else:
                 plt.errorbar(
                     zdata[filtr]["hjd"] - JD_SHIFT, zdata[filtr]["mag"], zdata[filtr]["magerr"],
-                    marker="o", ls="none", c=const.FILT_CLRS[filtr], elinewidth=const.ZELINWDTH, label=f"ZTF {filtr}",
-                    ms=zmss[filtr], markeredgecolor="k", mew=0.5,
+                    marker="o", ls="none", c=const.FILT_CLRS[filtr], elinewidth=const.ZELINWDTH,
+                    label=f"ZTF {filtr}",
+                    ms=zmss[filtr], markeredgecolor="k", mew=const.MEW,
                 )
         except TypeError:
             continue
@@ -255,9 +258,9 @@ for name, obj in objs.items():
         Ogl = Ogle(obj.get("oglefnam"))
         Ogl.read_raw_data()
         plt.errorbar(
-            Ogl.data["hjd"] - JD_SHIFT, Ogl.data["mag"] - filtshift["I"], Ogl.data["magerr"], marker="o",
-            ls="none", c=const.FILT_CLRS["I"], label=f"OGLE I{mk_fsh(filtshift['I'])}",
-            ms=4, markeredgecolor="k", mew=0.5, elinewidth=const.OELINWDTH,
+            Ogl.data["hjd"] - JD_SHIFT, Ogl.data["mag"] - filtshift["I"], Ogl.data["magerr"],
+            marker="o", ls="none", c=const.FILT_CLRS["I"], label=f"OGLE I{mk_fsh(filtshift['I'])}",
+            ms=const.OGLEMS, markeredgecolor="k", mew=const.MEW, elinewidth=const.OELINWDTH,
         )
 
         if obj.get("period"):
@@ -287,7 +290,7 @@ for name, obj in objs.items():
                 plt.errorbar(
                     Psdat.t[w], Psdat.mag[w], Psdat.magerr[w],
                     marker=const.MARKERS[i], ls="none", c=const.FILT_CLRS[filter],
-                    mew=0.5, markeredgecolor="k", label=f"PS1 {filter}", lw=0.75,
+                    mew=const.MEW, markeredgecolor="k", label=f"PS1 {filter}", lw=0.75,
                     ms=MSS[i],
                 )
                 psdata[filter] = Psdat.mk_data(w)
@@ -318,7 +321,7 @@ for name, obj in objs.items():
                 plt.errorbar(
                     pslc["hjd"] - JD_SHIFT, pslc["mag"] - psfiltshift, pslc["magerr"],
                     marker=const.MARKERS[i], ls="none", c=const.FILT_CLRS[filter],
-                    mew=0.5, markeredgecolor="k",
+                    mew=const.MEW, markeredgecolor="k",
                     label=f"PS1 {filter}{mk_fsh(psfiltshift)}", lw=0.75,
                     ms=MSS[i],
                 )
@@ -340,7 +343,7 @@ for name, obj in objs.items():
         plt.errorbar(
             crts_data["hjd"] - JD_SHIFT, crts_data["mag"], crts_data["magerr"],
             marker="o", ls="none", c="#888", elinewidth=const.CELINWDTH, label="CRTS",
-            markeredgecolor="k", mew=0.7, ms=4,
+            markeredgecolor="k", mew=const.MEW+0.1, ms=const.CRTSMS,
         )
 
     plt.title(objname, fontsize=18)
@@ -397,9 +400,9 @@ for name, obj in objs.items():
         for filtr in const.ZTFFILT:
             plt.errorbar(
                 zdata[filtr]["phased"], zdata[filtr]["mag"] - filtshift[filtr], zdata[filtr]["magerr"],
-                mew=0.4, markeredgecolor="k", marker="o", ls="none",
-                elinewidth=const.ZELINWDTH, c=const.FILT_CLRS[filtr], label=f"ZTF {filtr}{mk_fsh(filtshift[filtr])}",
-                ms=zmss[filtr],
+                mew=const.MEW, markeredgecolor="k", marker="o", ls="none",
+                elinewidth=const.ZELINWDTH, c=const.FILT_CLRS[filtr],
+                label=f"ZTF {filtr}{mk_fsh(filtshift[filtr])}", ms=zmss[filtr],
             )
             data_to_merge.append(
                 pd.DataFrame({
@@ -421,7 +424,7 @@ for name, obj in objs.items():
                     alcurve["phased"], alcurve["mag"] - filtshift[afiltr], alcurve["magerr"],
                     marker="o", ls="none", elinewidth=const.ATELINWDTHT, c=alclr,
                     label=f"ATLAS {afiltr}{mk_fsh(filtshift[afiltr])}", zorder=0,
-                    ms=alms, mew=0.4, markeredgecolor="k",
+                    ms=alms, mew=const.MEW, markeredgecolor="k",
                 )
                 data_to_merge.append(
                     pd.DataFrame({
@@ -433,26 +436,27 @@ for name, obj in objs.items():
         if "V" in const.ASASFILT and len(asasd_V["mag"]):
             plt.errorbar(
                 asasd_V["phased"], asasd_V["mag"], asasd_V["magerr"],
-                marker="s", ls="none", c="g", markeredgecolor="k", mew=0.5,
-                label="ASAS-SN V", ms=4, elinewidth=const.ASELINWDTH,
+                marker="s", ls="none", c=const.FILT_CLRS["V"], markeredgecolor="k", mew=const.MEW,
+                label="ASAS-SN V", ms=const.ASASMS, elinewidth=const.ASELINWDTH,
             )
         if "g" in const.ASASFILT and len(asasd_g["mag"]):
             plt.errorbar(
                 asasd_g["phased"], asasd_g["mag"] - curveshift["asasg"], asasd_g["magerr"],
-                marker="d", ls="none", c=const.FILT_CLRS["asasg"], markeredgecolor="k",  # lime
-                mew=0.5, label=f"ASAS-SN g {mk_fsh(curveshift['asasg'])}", ms=4, elinewidth=const.ASELINWDTH,
+                marker="d", ls="none", c=const.FILT_CLRS["asasg"], markeredgecolor="k",
+                mew=const.MEW, label=f"ASAS-SN g {mk_fsh(curveshift['asasg'])}",
+                ms=const.ASASMS, elinewidth=const.ASELINWDTH,
             )
 
         if obj.get("oglefnam"):
             plt.errorbar(
                 Ogl.data["phased"], Ogl.data["mag"] - filtshift["I"], Ogl.data["magerr"],
-                marker="o", ls="none", c=const.FILT_CLRS["I"], label=f"OGLE I{mk_fsh(filtshift['I'])}", ms=5,
-                markeredgecolor="k", mew=0.5, elinewidth=const.OELINWDTH,
+                marker="o", ls="none", c=const.FILT_CLRS["I"], label=f"OGLE I{mk_fsh(filtshift['I'])}", ms=const.OGLEMS,
+                markeredgecolor="k", mew=const.MEW, elinewidth=const.OELINWDTH,
             )
         if obj.get("gaiafnam"):
             plt.plot(
                         gaiadata["phased"], gaiadata.get("averagemag") - filtshift["G"], "*", markeredgecolor="k",
-                        mew=0.5, ms=6, c=const.FILT_CLRS["G"], label=f"{obj['gaiaobj']}{mk_fsh(filtshift['G'])}",
+                        mew=const.MEW, ms=const.GAIAMS, c=const.FILT_CLRS["G"], label=f"{obj['gaiaobj']}{mk_fsh(filtshift['G'])}",
                     )
             # data_to_merge.append(
             #     pd.DataFrame({
@@ -471,9 +475,8 @@ for name, obj in objs.items():
                             psfiltshift = filtshift.get("ps" + filter)
                         plt.errorbar(
                             psdata[filter]["phased"], psdata[filter]["mag"] - psfiltshift,
-                            psdata[filter]["magerr"],
-                            marker=const.MARKERS[i], ls="none", c=const.FILT_CLRS[filter],
-                            mew=0.5, elinewidth=const.PSELINWDTH,
+                            psdata[filter]["magerr"], marker=const.MARKERS[i], ls="none",
+                            c=const.FILT_CLRS[filter], mew=const.MEW, elinewidth=const.PSELINWDTH,
                             markeredgecolor="k", label=f"PS1 {filter}{mk_fsh(psfiltshift)}",
                             ms=MSS[i],
                         )
