@@ -10,8 +10,13 @@ from astropy.time import Time
 from panstarrs import ps1cone, ps1search, addfilter
 
 
-HALEAKALA = EarthLocation(lon=-156.257, lat=20.71, height=3048)
+HALEAKALA = EarthLocation(lon=-156.257, lat=20.71, height=3040)
+ATLAS_MLO = EarthLocation(lon=-155.5761, lat=19.5361, height=3397)
+ATLAS_CHL = EarthLocation(lon=-70.76498, lat=-30.47103, height=1575)
+ATLAS_STH = EarthLocation(lon=20.8105, lat=-32.3783, height=1766)
 PALOMAR = EarthLocation(lon=-116.86194, lat=33.3581, height=1712)
+CATALINA = EarthLocation(lon=-110.789, lat=32.442, height=2791)
+SIDINGSPRINGS = EarthLocation(lon=149.1, lat=-31.3, height=1150)
 JD_SHIFT = 2400000.5
 OGLE_SHIFT = 2450000
 ABZPMAG_JY = 8.9
@@ -19,10 +24,11 @@ LGE_25 = 2.5 / np.log(10.0)
 
 
 class Ps:
-    def __init__(self, ra, dec):
+    def __init__(self, ra, dec, radius=0.53):
+        """radius in arcseconds"""
         self.ra = ra
         self.dec = dec
-        self.RADIUS = 2.1 / 3600.0 / 4
+        self.RADIUS = radius / 3600.0
         self.release = "dr2"
 
     def cone_search(self):
@@ -43,7 +49,6 @@ class Ps:
         tab = ascii.read(self.results)
         for filter in self.PSFILTRS:
             col = filter + "MeanPSFMag"
-            # print(f"{tab[col+'Err']}")
             tab[col].format = ".4f"
             tab[col][tab[col] == -999.0] = np.nan
         objid = tab["objID"][0]
@@ -113,25 +118,30 @@ class Atlas(Data):
     def read_raw_data(self, add="", ext="txt"):
         super().read_raw_data(add=add, ext=ext)
 
-    def prepare_data(self, ra, dec, maglim_up=10, maglim_low=None):
-        data = self.raw_data[self.raw_data["magerr"] < self.maglim]
+    def prepare_data(self, ra, dec, maglim_up=10, maglim_low=None, obs="Haleakala"):
+        data = self.raw_data[self.raw_data["magerr"] < max(self.maglim.values())]
+        data = data.drop(data[(data["filter"] == "o") & (data["magerr"] >= self.maglim["o"])].index)
+        data = data.drop(data[(data["filter"] == "c") & (data["magerr"] >= self.maglim["c"])].index)
         data = data[data["mag"] > maglim_up]
         if maglim_low:
             data = data[data["mag"] < maglim_low]
-        data["hjd"] = mk_hjd_corr(data["mjd"], ra, dec, obs="Haleakala")
+        data["hjd"] = mk_hjd_corr(data["mjd"], ra, dec, obs=obs)
         self.data = pd.DataFrame({
             "hjd": data["hjd"],
-            # "mjd": data["mjd"],
-            "filter": data["filter"],
             "mag": data["mag"],
-            "magerr": data["magerr"]
+            "magerr": data["magerr"],
+            "filter": data["filter"],
         })
+
+    def clean_by_filter(self, filtr="c", maglim=0.035):
+        data = self.data[self.data["filter"] == filtr]
+        return data[data["magerr"] < maglim]
 
     def mk_phased(self, epoch, period):
         self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
 
     def save_datafile(self, filtr="o", ext="dat", hjdprec=6, magprec=3):
-        atlas_data_fnam = f"{self.data_dir}/{self.name}-{self.survey}{filtr}-cleaned-{round(self.maglim, 2)}m.{ext}"
+        atlas_data_fnam = f"{self.data_dir}/{self.name}-{self.survey}{filtr}-clean{round(self.maglim[filtr], 2)}.{ext}"
         data = self.data[self.data["filter"] == filtr]
         if len(data.index):
             save_datafile(data, atlas_data_fnam, hjdprec=hjdprec, magprec=magprec)
@@ -148,8 +158,11 @@ class Atlas(Data):
                 alldata.append(data)
         self.data = pd.concat(alldata)
 
-    def get_data(self, filtr="o"):
-        return self.data[self.data["filter"] == filtr]
+    def get_data(self, filtr="o", maglim=None):
+        data = self.data[self.data["filter"] == filtr]
+        if maglim:
+            data = data[data["magerr"] < maglim]
+        return data
 
 
 class Ogle(Data):
@@ -200,6 +213,7 @@ class Ztf(Data):
                 "mag": data["mag"],
                 "magerr": data["magerr"],
                 "filter": filtr,
+                "catflags": data["catflags"]
             })
         else:
             return False
@@ -214,11 +228,13 @@ class Ztf(Data):
                     self.data = data
 
     def prepare_data(self, maglim_up=None, maglim_low=None):
-        self.data = self.data[self.data["magerr"] < self.maglim]
+        if self.maglim:
+            self.data = self.data[self.data["magerr"] < self.maglim]
         if maglim_up:
             self.data = self.data[self.data["mag"] > maglim_up]
         if maglim_low:
             self.data = self.data[self.data["mag"] < maglim_low]
+        self.data = self.data[self.data["catflags"] != 32768]
 
     def mk_phased(self, epoch, period):
         self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
@@ -241,7 +257,7 @@ class Ztf(Data):
 
     def read_prepared_data(self, filtrs="gri", ext="dat"):
         for filtr in filtrs:
-            data = self.read_prepared_data_filtr(filtr=filtr)
+            data = self.read_prepared_data_filtr(filtr=filtr, ext=ext)
             if data:
                 try:
                     self.data = pd.concat(data, self.data)
@@ -252,15 +268,92 @@ class Ztf(Data):
         return self.data[self.data["filter"] == filtr]
 
 
-def read_ps_data(filename):
-    """read data: mjd mag magerr"""
-    return pd.read_csv(filename, delim_whitespace=True)
+class Alerce(Data):
+    def __init__(self, objs):
+        super().__init__()
+        self.filters = {1: "g", 2: "r",  3: "i"}
+        self.objects = objs
+
+    def read_raw_data(self, add="detections", ext="csv"):
+        for obj in self.objects:
+            self.raw_data = pd.read_csv(f"{self.raw_dir}/{obj}{add}.{ext}")
+            self.raw_data["filter"] = self.raw_data["fid"].replace(self.filters)
+
+    def prepare_data(self):
+        self.data = pd.DataFrame({
+            "hjd": self.raw_data["mjd"] + JD_SHIFT,
+            "mag": self.raw_data["magpsf"],
+            "magerr": self.raw_data["sigmapsf"],
+            "filter": self.raw_data["filter"],
+        })
+
+    def mk_phased(self, epoch, period):
+        self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
+
+
+class Crts(Data):
+    def __init__(self, name, maglim=None):
+        super().__init__()
+        self.name = name
+        self.survey = "crts"
+        self.maglim = maglim
+        self.columns = {"Mag": "mag", "Magerr": "magerr"}
+
+    def is_raw_data_exist(self, add="", ext="csv"):
+        return os.path.isfile(f"{self.raw_dir}/{self.name}-{self.survey}.{ext}")
+
+    def is_data_exist(self, filtr="", lim="", ext="dat"):
+        return super().is_data_exist(filtr, lim=lim, ext=ext)
+
+    def read_raw_data(self, add="", ext="csv"):
+        self.raw_data = pd.read_csv(f"{self.raw_dir}/{self.name}-{self.survey}{add}.{ext}")
+
+    def prepare_data(self, ra, dec, maglim_up=None, maglim_low=None):
+        self.data = pd.DataFrame({
+            "mag": self.raw_data["Mag"],
+            "magerr": self.raw_data["Magerr"],
+        })
+        self.data["hjd"] = mk_hjd_corr(self.raw_data["MJD"], ra, dec, obs="Catalina")  # obs="Siding Springs" obs="Catalina"
+        if self.maglim:
+            self.data = self.data[self.data["magerr"] < self.maglim]
+        if maglim_up:
+            self.data = self.data[self.data["mag"] > maglim_up]
+        if maglim_low:
+            self.data = self.data[self.data["mag"] < maglim_low]
+
+    def read_data(self, filename):
+        """Read CRTS data"""
+        columns = ["hjd", "mag", "magerr"]
+        self.data = pd.read_csv(filename, delim_whitespace=True, names=columns)
+
+    def save_datafile(self, ext="dat", hjdprec=7, magprec=6):
+        if len(self.data.index):
+            save_datafile(self.data, f"{self.data_dir}/{self.name}-{self.survey}.{ext}", hjdprec=hjdprec, magprec=magprec)
+
+    def mk_phased(self, epoch, period):
+        self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
 
 
 def read_crts_data(filename):
     """Read CRTS data"""
     columns = ["hjd", "mag", "magerr"]
     return pd.read_csv(filename, delim_whitespace=True, names=columns)
+
+
+def read_gds_data(filename, filt, ra, dec, errlim=0.049):
+    """Read GDS data"""
+    columns = ["hjd", "mag", "magerr"]
+    data_dir = "../data"
+    data = pd.read_csv(f"{data_dir}/{filename}-g{filt}.dat", delim_whitespace=True, names=columns)
+    data["hjd"] = mk_hjd_corr(data["hjd"], ra, dec, obs="Siding Springs")
+    # data["hjd"] += JD_SHIFT
+    data = data[data["magerr"] < errlim]
+    return data
+
+
+def read_ps_data(filename):
+    """read data: mjd mag magerr"""
+    return pd.read_csv(filename, delim_whitespace=True)
 
 
 def save_gaia_datafile(curve, fnsav, hjdprec=5, magprec=2):
@@ -307,9 +400,18 @@ def mk_hjd_corr(dates, ra, dec, obs="Palomar"):
     loc = HALEAKALA
     if obs == "Palomar":
         loc = PALOMAR
+    elif obs == "Catalina":
+        loc = CATALINA
+    elif obs == "Siding Springs":
+        loc = SIDINGSPRINGS
+    elif obs == "Atlas-MLO":
+        loc = ATLAS_MLO
+    elif obs == "Atlas-CHL":
+        loc = ATLAS_CHL
+    elif obs == "Atlas-STH":
+        loc = ATLAS_STH
     helio_time = time + time.light_travel_time(coord, "heliocentric", location=loc)
-    # Add 15s shift derived from ZTF raw data
-    return helio_time.mjd + JD_SHIFT + 0.00017361
+    return helio_time.mjd + JD_SHIFT
 
 
 def mk_fsh(filtshift):
