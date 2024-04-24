@@ -1,0 +1,31 @@
+{
+"Gusev 4": {
+"other": "2MASS J21224020+4935392, USNO-B1.0 1395-0396648",
+"gsc": "GSC2.3 N2TJ035177",
+"coord": "21 22 40.211 +49 35 39.19",
+"coordc": "21:22:40.211 +49:35:39.19",
+"coordeg": [320.6675458, 49.5942194],
+"type": "EA",
+"max": 17.3,
+"min": "<21.0",
+"system": "r",
+"period": 43.102,
+"epoch": 2455433.6,
+"etype": "min",
+"sp": "",
+"comm": "ATLAS magnitudes partially contaminated by 2MASS J21224058+4935454 (V = 17m.4; sep. 7''). D = 0.23 P.",
+"vsxoid": 2227045,
+"fclnk": ["https://www.aavso.org/vsx_docs/2227045/208/Gusev4-BRIR5x5.jpg"],
+"atlasfnam": "gusev4-atlas.txt",
+"atlaslim": {"o": 0.2, "c": 0.2},
+"dssdata": {"R": [2448534.685, 20.8]},
+"pslim": 0.089,
+"curveshift": true,
+"clrshift": {"g": 1.15, "psg": 1.05, "psr": 0.1, "psi": -0.45, "psz": -0.7, "psy": -0.93, "o": -0.12, "c": 0.54},
+"plot": {"ztffilt": "gr", "psfilt": "griz", "atlasfilt": "oc", "asasfilt": "",
+  "atlasms": {"o": 2, "c": 1.5}, "zms": 5, "atledgclr": "saddlebrown", "atlaselw": 0.26,
+  "xmal": 500, "xmil": 100, "ymal": 0.5, "ymil": 0.1,
+  "xlim": [-0.5, 1.0], "xedges": 190,
+  "ylim": [21.1, 16.5], "ylima": [21.1, 16.45]
+}
+}}
