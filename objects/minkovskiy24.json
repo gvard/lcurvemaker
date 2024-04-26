@@ -1,0 +1,29 @@
+{
+"Minkovskiy 24": {
+"other": "2MASS J19484962+1424281, USNO-B1.0 1044-0529494, GSC2.3 N1UK097057",
+"coord": "19 48 49.643 +14 24 28.26",
+"coordeg": [297.2068458, 14.4078500],
+"type": "EA",
+"max": 18.45,
+"min": 21.02,
+"system": "g",
+"period": 1.364058,
+"epoch": 2459047.763,
+"2ndmin": 0.5,
+"etype": "min",
+"sp": "K",
+"comm": "D=0.15 P. Light curve from ZTF DR20 photometry data folded with the best orbital period",
+"discoverer": "Artur Minkovskiy",
+"vsxoid": 2387050,
+"fclnk": ["https://www.aavso.org/vsx_docs/2487050/4816/Minkovskiy24%20chart.png"],
+"pslim": 0.11,
+"clrshift": {
+  "g": 0, "psg": 0.0, "r": -0.57, "psr": -0.49, "psi": -0.71, "psz": -0.86, "psy": -1.0
+},
+  "curveshift": true,
+"plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "", "asasfilt": "",
+  "xmal": 500, "xmil": 100, "ymil": 0.05, "psms": 6,
+  "ylim": [21.32, 18.13], "ylima": [21.32, 18.13], "xedges": 150
+}
+}
+}
