@@ -96,7 +96,7 @@ class Data:
 
     def read_raw_data(self, add="", ext="csv"):
         self.raw_data = pd.read_csv(f"{self.raw_dir}/{self.name}-{self.survey}{add}.{ext}",
-                                    delim_whitespace=True)
+                                    sep="\s+")
         if self.columns:
             self.raw_data = self.raw_data.rename(columns=self.columns)
 
@@ -227,14 +227,15 @@ class Ztf(Data):
                 except ValueError:
                     self.data = data
 
-    def prepare_data(self, maglim_up=None, maglim_low=None):
+    def prepare_data(self, maglim_up=None, maglim_low=None, catfilt=True):
         if self.maglim:
             self.data = self.data[self.data["magerr"] < self.maglim]
         if maglim_up:
             self.data = self.data[self.data["mag"] > maglim_up]
         if maglim_low:
             self.data = self.data[self.data["mag"] < maglim_low]
-        self.data = self.data[self.data["catflags"] != 32768]
+        if catfilt:
+            self.data = self.data[self.data["catflags"] != 32768]
 
     def mk_phased(self, epoch, period):
         self.data = mk_phased(self.data, epoch, period, jdnam="hjd")

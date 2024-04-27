@@ -24,6 +24,7 @@ from curves import (
     save_datafile,
     save_merged,
     save_gaia_datafile,
+    mk_hjd_corr,
 )
 
 
@@ -34,23 +35,23 @@ parser = ArgumentParser(
     description="Python script for working with light curves of variable stars"
 )
 parser.add_argument("nickname", type=str, default="",
-                    help="object nickname, optionally with directory name")
+                    help="alias of the object, optionally with the directory name")
 parser.add_argument("-v", "--verbose", action="store_true",
                     help="be more verbose")
-parser.add_argument("-l", "--verln", action="store_true",
-    help="draw a vertical line(s) on phased plot to mark phase for eclipses")
+parser.add_argument("-l", "--lines", action="store_true",
+    help="draw lines on the light curve and phase plot to mark the epoch, and max/min values and phases")
 parser.add_argument("-s", "--show", action="store_true",
                     help="show interactive plots instead of saving figures")
 parser.add_argument("-c", "--coord", nargs="+", type=float,
-                    help="set object coordinates")
+                    help="set the coordinates of the object in degrees")
 parser.add_argument("-p", "--period", type=float,
-                    help="set period for phased plot")
+                    help="set the period for phase plot in days")
 parser.add_argument("-e", "--epoch", type=float,
-                    help="set epoch for phased plot")
+                    help="set the epoch for phase plot")
 parser.add_argument("-z", "--ztfran", nargs="+", type=float,
-                    help="remove all ZTF data out of range")
+                    help="delete all ZTF data out of range")
 parser.add_argument("-o", "--localps", action="store_true",
-                    help="use local PS1 files")
+                    help="use local PS1 data instead of requesting it via the API")
 args = parser.parse_args()
 
 if args.verbose:
@@ -314,7 +315,8 @@ zdata = {}
 for filtr in const.ZTFFILT:
     if Zt.is_raw_data_exist(add=f"{filtr}1", ext="csv"):
         data = Zt.read_raw_data_filtr(filtr=filtr)
-        data = data[data["catflags"] != 32768]
+        if obj.get("zcatf"):
+            data = data[data["catflags"] != 32768]
         if obj.get("ztfran"):
             data = data[data["mag"] >= obj["ztfran"][1] + filtshift[filtr]]
             data = data[data["mag"] <= obj["ztfran"][0] + filtshift[filtr]]
@@ -505,6 +507,15 @@ if obj.get("plot"):
     if obj["plot"].get("xedges"):
         xmin, xmax = ax.get_xlim()
         plt.xlim(xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"])
+        if args.lines:
+            if obj.get("max"):
+                plt.plot([xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"]],
+                         [obj["max"], obj["max"]],
+                         "--k", lw=0.95, zorder=-20)
+            if epoch and obj["plot"].get("ylima"):
+                plt.plot([epoch-JD_SHIFT, epoch-JD_SHIFT],
+                         obj["plot"]["ylima"],
+                         "--k", lw=0.95, zorder=-20)
     elif obj["plot"].get("xlima"):
         plt.xlim(obj["plot"].get("xlima"))
 plt.ylabel("Mag", fontsize=16)
@@ -695,6 +706,13 @@ if period:
             markeredgecolor="k", mew=const.MEW, elinewidth=const.CELINWDTH,
         )
 
+    if obj.get("dssdata"):
+        poss = pd.DataFrame.from_dict({"hjd": [obj["dssdata"]["R"][0]], "mag": [obj["dssdata"]["R"][1]]})
+        poss["hjd"] = mk_hjd_corr(poss["hjd"]-JD_SHIFT, ra, dec)
+        poss = mk_phased(poss, epoch, period, jdnam="hjd")
+        plt.plot(poss["phased"], poss["mag"], "v", c="darkred", markeredgecolor="k",
+            markeredgewidth=0.8, ms=9, label="POSS II $R_c$")
+
     if const.PSFILT:
         for i, filter in enumerate(const.PSFILT):
             if filter in psdata:
@@ -743,10 +761,13 @@ if period:
     YLIM = obj["plot"].get("ylim")
     if YLIM:
         ax2.set_ylim(YLIM)
-        if args.verln:
+        if args.lines:
             plt.plot([0, 0], YLIM, "--k", lw=0.95, zorder=-20)
             if obj.get("2ndmin"):
                 plt.plot([obj["2ndmin"], obj["2ndmin"]], YLIM, "--k", lw=0.95, zorder=-20)
+            if obj.get("max"):
+                plt.plot([-0.5, 1], [obj["max"], obj["max"]], "--k", lw=0.95, zorder=-20)
+
     else:
         plt.gca().invert_yaxis()
     if obj["plot"].get("ymal"):
