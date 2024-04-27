@@ -61,7 +61,7 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
 [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
 [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php) and
-[GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H/abstract) photometry data available are:
+[GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H) photometry data available are:
 
 ```json
 {
@@ -99,6 +99,15 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
   }
 }}
 ```
+
+## Data sources for files in the `data` directory
+
+* [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR20 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr20)
+* [Kochanek, C. S.; et al., 2017, The All-Sky Automated Survey for Supernovae (ASAS-SN) Light Curve Server v1.0](https://ui.adsabs.harvard.edu/abs/2017PASP..129j4502K)
+* [Tonry, J. L.; et al., 2018, ATLAS: A High-cadence All-sky Survey System](https://ui.adsabs.harvard.edu/abs/2018PASP..130f4505T)
+* [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
+* [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
+* [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
 
 ## Examples of light curves (presented in the [VSX](https://aavso.org/vsx/) detail sheets)
 
