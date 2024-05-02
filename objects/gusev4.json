@@ -1,5 +1,6 @@
 {
 "Gusev 4": {
+"name": "Gusev 4",
 "other": "2MASS J21224020+4935392, USNO-B1.0 1395-0396648",
 "gsc": "GSC2.3 N2TJ035177",
 "coord": "21 22 40.211 +49 35 39.19",
@@ -13,7 +14,8 @@
 "epoch": 2455433.6,
 "etype": "min",
 "sp": "",
-"comm": "ATLAS magnitudes partially contaminated by 2MASS J21224058+4935454 (V = 17m.4; sep. 7''). D = 0.23 P.",
+"comm": "ATLAS magnitudes partially contaminated by 2MASS J21224058+4935454 (V = 17.4; sep. 7''). D = 0.23 P.",
+"d": 0.23,
 "vsxoid": 2227045,
 "fclnk": ["https://www.aavso.org/vsx_docs/2227045/208/Gusev4-BRIR5x5.jpg"],
 "atlasfnam": "gusev4-atlas.txt",

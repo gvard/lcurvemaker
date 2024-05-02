@@ -113,8 +113,8 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 
 ### Eclipsing binaries
 
-* [Gusev 4](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227045) [phase plot](https://www.aavso.org/vsx_docs/2227045/5780/gusev4-phase-ps1-ztf-atlas.png)
-* [Minkovskiy 16](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2225441) [phase plot](https://www.aavso.org/vsx_docs/2225441/5780/minkovskiy16-phase-ps1-ztf-atlas.png)
+* [Gusev 4](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227045) [settings](objects/gusev4.json), [phase plot](https://www.aavso.org/vsx_docs/2227045/5780/gusev4-phase-ps1-ztf-atlas.png)
+* [Minkovskiy 16](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2225441) [settings](objects/minkovskiy16.json), [phase plot](https://www.aavso.org/vsx_docs/2225441/5780/minkovskiy16-phase-ps1-ztf-atlas.png)
 * [GSC 02150-01562](https://www.aavso.org/vsx/index.php?view=detail.top&oid=359207) [phase plot](https://www.aavso.org/vsx_docs/359207/5780/a293-29-asas-gaia-ph_3.422652.png)
 * [UCAC3 170-058819](https://www.aavso.org/vsx/index.php?view=detail.top&oid=359210) [phase plot](https://www.aavso.org/vsx_docs/359210/5780/u170-ztf-gaia-ph_3.20341.png)
 * [UCAC3 240-187355](https://www.aavso.org/vsx/index.php?view=detail.top&oid=359214) [phase plot](https://www.aavso.org/vsx_docs/359214/5780/u240-ztf-ph_0.699445.png)
