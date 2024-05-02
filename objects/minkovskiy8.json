@@ -1,0 +1,28 @@
+{
+"Minkovskiy 8": {
+"other": "2MASS J18153954+0534220, USNO-B1.0 0955-0346725, GSC2.3 N1M9059733",
+"gdr3": "Gaia DR3 4470911700743691776",
+"coord": "18 15 39.546 +05 34 22.02",
+"coordeg": [273.9147750, 5.5727833],
+"type": "EA",
+"max": 16.38,
+"min": 18.20,
+"system": "r",
+"period": 1.875273,
+"epoch": 2459017.842,
+"etype": "min",
+"sp": "",
+"comm": "Eclipse on 1993-05-27 POSS-II red plate. Min II = 16.5 r. D = 0.18 P.",
+"vsxoid": 2221555,
+"ztfobj": ["ZTF18abinaqo", "ZTF20acqobsz", "ZTF19aaeotyt"],
+"fclnk": "https://images.astronet.ru/pubd/2024/04/25/0001927735/m8brir.png",
+"zcatf": true,
+"curveshift": true,
+"atlasfnam": "minkovskiy8-atlas.txt", "atlaslim": {"o": 0.05, "c": 0.05},
+"gaiadr3fnam": "minkovskiy8-gaiadr3.dat",
+"clrshift": {"g": 0.58, "psg": 0.58, "r": 0, "psr": 0.03, "psi": -0.21, "psz": -0.33, "psy": -0.4, "o": 0, "c": 0.4, "G": 0.02},
+"plot": {"ztffilt": "gr", "zobj": [], "psfilt": "griz", "atlasfilt": "", "asasfilt": "",
+  "atlasms": {"o": 1.5, "c": 1.2}, "atlaselw": 0.26,
+  "xmal": 500, "xmil": 100, "ymil": 0.05, "ylim": [18.7, 16.0], "ylima": [18.7, 16.0], "xedges": 120
+}
+}}

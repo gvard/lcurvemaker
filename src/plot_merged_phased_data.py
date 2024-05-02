@@ -351,7 +351,7 @@ for filtr in const.ZTFFILT:
             print(f"Err {filtr}")
 ztfnam = "-ztf" if obj.get("plot") and const.ZTFFILT else ""
 
-if obj.get("ztfobj"):
+if obj.get("ztfobj") and obj["plot"].get("zobj"):
     Al = Alerce(obj["ztfobj"])
     Al.read_raw_data(add="")
     Al.prepare_data()
@@ -616,7 +616,7 @@ if period:
                         "magerr": zdata[filtr]["magerr"],
                     })
                 )
-    if obj.get("ztfobj"):
+    if obj.get("ztfobj") and obj["plot"].get("zobj"):
         for filt in "gri":
             Aldata_filt = Al.data[Al.data["filter"] == filt]
             if len(Aldata_filt.index):
@@ -711,7 +711,7 @@ if period:
         poss["hjd"] = mk_hjd_corr(poss["hjd"]-JD_SHIFT, ra, dec)
         poss = mk_phased(poss, epoch, period, jdnam="hjd")
         plt.plot(poss["phased"], poss["mag"], "v", c="darkred", markeredgecolor="k",
-            markeredgewidth=0.8, ms=9, label="POSS II $R_c$")
+                 markeredgewidth=0.8, ms=9, label="POSS II $R_c$")
 
     if const.PSFILT:
         for i, filter in enumerate(const.PSFILT):

@@ -2,7 +2,7 @@
 "Minkovskiy 16": {
 "name": "Minkovskiy 16",
 "other": "2MASS J19534454+3838432, USNO-B1.0 1286-0369685, GSC2.3 N2FQ131991",
-"gaiadr3": "Gaia DR3 2072590963233006208",
+"gdr3": "Gaia DR3 2072590963233006208",
 "coord": "19 53 44.553 +38 38 43.45",
 "coordeg": [298.4356375, 38.6454028],
 "type": "EA",
@@ -20,12 +20,14 @@
 "fclnk": ["https://www.aavso.org/vsx_docs/2225441/4816/Minkovskiy%2016%20chart%20brir.png"],
 "atlasfnam": "minkovskiy16-atlas.txt",
 "atlaslim": {"o": 0.139, "c": 0.12},
+"zcatf": true,
+"curveshift": true,
 "clrshift": {"g": 0.24, "psg": 0.24, "r": 0, "i": -0.02, "psi": -0.1, "z": -0.21, "o": -0.02, "c": 0.15, "G": -0.05},
 "plot": {"ztffilt": "gr", "psfilt": "gri", "atlasfilt": "oc", "asasfilt": "",
   "atlasms": {"o": 2, "c": 1.8}, "zms": 5, "psms": 6,
   "atledgclr": "saddlebrown", "atlaselw": 0.26,
-  "xmal": 500, "xmil": 100, "ymal": 0.2, "ymil": 0.05, "xedges": 0,
-  "ylim": [19.2, 17.2],
+  "xmal": 500, "xmil": 100, "ymal": 0.2, "ymil": 0.05, "xedges": 160,
+  "ylim": [19.2, 17.2], "ylima": [19.2, 17.2],
   "legloc": "lower left"
 }
 }}
