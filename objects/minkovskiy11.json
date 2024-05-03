@@ -1,0 +1,30 @@
+{
+"Minkovskiy 11": {
+"other": "2MASS J19451406+3329280, USNO-B1.0 1234-0390122, GSC2.3 N2GT212052",
+"gdr3": 2035014122569303168,
+"coord": "19 45 14.053 +33 29 28.19",
+"coordeg": [296.30858, 33.49128],
+"type": "EA",
+"max": 18.29,
+"min": 20.71,
+"min2": 18.42,
+"system": "r",
+"period": 2.643235,
+"epoch": 2458619.415,
+"etype": "min",
+"sp": "",
+"comm": "Min II = 18.42 r. D = 0.10 P.",
+"d": 0.10,
+"vsxoid": 2225148,
+"ztfobj": ["ZTF18abehuqd"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2225148/208/Minkovskiy11-BRIR-7x7.jpg"],
+"gaiadr3fnam": "minkovskiy11-gaiadr3.dat",
+"zcatf": true,
+"curveshift": true,
+"clrshift": {"g": 0, "psg": 0, "r": -0.38, "psr": 0.35, "i": -0.6, "psi": -0.53, "z": -0.7, "G": -0.36},
+"plot": {"ztffilt": "gri", "psfilt": "ri", "atlasfilt": "", "asasfilt": "",
+  "zms": 4.5, "psms": 6,
+  "xmal": 500, "xmil": 100, "ymil": 0.05,
+  "ylim": [20.98, 17.88], "xedges": 160
+}
+}}

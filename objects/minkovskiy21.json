@@ -1,0 +1,32 @@
+{
+"Minkovskiy 21": {
+"other": "2MASS J18421898+1253090, USNO-B1.0 1028-0439526, GSC2.3 N28G148621",
+"gdr3": 4505577580070069376,
+"coord": "18 42 18.992 +12 53 09.21",
+"coordeg": [280.5791333, 12.8858917],
+"type": "EA",
+"max": 17.06,
+"min": "19.4:",
+"min2": 17.19,
+"system": "r",
+"period": 3.2214,
+"epoch": 2459818.71,
+"etype": "min",
+"sp": "",
+"comm": "Min II = 17.19 r. D = 0.14 P.",
+"d": 0.14,
+"vsxoid": 2226894,
+"ztfobj": ["ZTF18ablhvrr", "ZTF18adlufda"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2226894/4816/Minkovskiy%2021%20chart%20BRIR.png"],
+"atlasfnam": "minkovskiy21-atlas.txt",
+"gaiadr3fnam": "minkovskiy21-gaiadr3.dat",
+"atlaslim": {"o": 0.09, "c": 0.09},
+"zcatf": true,
+"curveshift": true,
+"clrshift": {"g": 0.66, "psg": 0.66, "r": 0, "psr": 0.05, "i": -0.27, "psi": -0.27, "psz": -0.47, "psy": -0.61, "o": -0.02, "c": 0.41, "G": 0.02},
+"plot": {"ztffilt": "gri", "psfilt": "riz", "atlasfilt": "", "asasfilt": "",
+  "atlasms": {"o": 1.5, "c": 1.5}, "atlaselw": 0.26,
+  "xmal": 500, "xmil": 100, "ymil": 0.05,
+  "ylim": [20.55, 16.55], "ylima": [20.55, 16.8], "xedges": 160
+}
+}}

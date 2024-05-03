@@ -1,0 +1,32 @@
+{
+"Minkovskiy 5": {
+"other": "2MASS J18335246+0644492, USNO-B1.0 0967-0400894, GSC2.3 N1RY045562",
+"coord": "18 33 52.476 +06 44 49.35",
+"coordeg": [278.4686500, 6.7470417],
+"type": "EA",
+"max": 17.42,
+"min": 18.81,
+"min2": 17.59,
+"system": "r",
+"period": 1.68741,
+"epoch": 2458667.166,
+"etype": "min",
+"sp": "",
+"comm": "Min II = 17.59 r. D = 0.15 P.",
+"d": 0.15,
+"lc": ["minkovskiy5-ztf-phased-lc.png"],
+"fc": "minkovskiy5-brir.png",
+"vsxoid": 2217906,
+"ztfobj": ["ZTF18aaxyurw"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2217906/4816/Minkovskiy%205.%20BRIR.png"],
+"gaiadr3fnam": "minkovskiy5-gaiadr3.dat",
+"pslim": 0.047,
+"zcatf": true,
+"curveshift": true,
+"clrshift": {"g": 0.9, "psg": 0.9, "r": 0, "psr": 0.1, "i": -0.43, "psi": -0.24, "psz": -0.44, "psy": -0.6, "G": 0.19},
+"plot": {"ztffilt": "gri", "psfilt": "grizy", "atlasfilt": "", "asasfilt": "",
+  "xmal": 500, "xmil": 100, "ymal": 0.5, "ymil": 0.02,
+  "ylim": [19.23, 17.1], "ylima": [19.23, 17.1],
+  "xedges": 160
+}
+}}

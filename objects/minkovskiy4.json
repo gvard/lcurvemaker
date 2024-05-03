@@ -1,0 +1,26 @@
+{
+"Minkovskiy 4": {
+"other": "USNO-B1.0 1178-0517790, GSC2.3 N2FH192786",
+"coord": "19 38 13.322 +27 53 03.81",
+"coordeg": [294.5555, 27.88439],
+"type": "EA",
+"max": 18.80,
+"min": 20.37,
+"min2": 18.91,
+"system": "r",
+"period": 2.00372,
+"epoch": 2458247.954,
+"etype": "min",
+"sp": "",
+"comm": "Eclipse on 1988-07-14 POSS-II blue plate. Min II = 18.91 r. D = 0.12 P.",
+"d": 0.12,
+"vsxoid": 2217869,
+"ztfobj": ["ZTF18aaxyzee", "ZTF18adkfugn"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2217869/4816/Minkovskiy4-BRIR5x5.jpg"],
+"pslim": 0.11,
+"clrshift": {"g": 0.73, "psg": 0.73, "r": 0, "i": -0.31, "psi": -0.2, "z": -0.5},
+"plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "", "asasfilt": "",
+  "xmal": 500, "xmil": 100, "ymil": 0.1,
+  "ylim": [20.9, 18.35], "magl": 0.1, "xedges": 60
+}
+}}

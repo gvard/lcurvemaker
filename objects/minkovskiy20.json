@@ -1,0 +1,25 @@
+{
+"Minkovskiy 20": {
+"other": "GSC2.3 N2IX118496, USNO-B1.0 1299-0358589",
+"coord": "19 50 10.140 +39 57 51.16",
+"coordeg": [297.54225, 39.96422],
+"type": "EA",
+"max": 19.62,
+"min": "21.5:",
+"system": "g",
+"period": 2.251375,
+"epoch": 2459174.27,
+"etype": "min",
+"sp": "",
+"comm": "D = 0.10 P.",
+"d": 0.10,
+"vsxoid": 2226067,
+"ztfobj": ["ZTF18abpndrz"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2226067/4816/Minkovskiy20-chart%20br.png"],
+"pslim": 0.06,
+"clrshift": {"g": 0, "psg": -0.04, "r": -0.54, "psr": -0.54, "psi": -0.78, "psz": -0.92},
+"plot": {"ztffilt": "gr", "psfilt": "griz", "atlasfilt": "", "asasfilt": "",
+  "xmal": 500, "xmil": 100, "ymil": 0.05, "magl": 0.1, "xedges": 0,
+  "ylim": [21.69, 19.12]
+}
+}}

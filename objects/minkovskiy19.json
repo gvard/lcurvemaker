@@ -1,0 +1,26 @@
+{
+"Minkovskiy 19": {
+"other": "2MASS J19435233+1421335, USNO-B1.0 1043-0516571, GSC2.3 N1UL022715",
+"coord": "19 43 52.351 +14 21 33.58",
+"coordeg": [295.96812, 14.35933],
+"type": "EA",
+"max": 18.05,
+"min": 20.30,
+"min2": 18.36,
+"system": "g",
+"period": 2.08702,
+"epoch": 2458645.918,
+"etype": "min",
+"sp": "",
+"comm": "Min II = 18.36 g. D = 0.17 P.",
+"d": 0.17,
+"vsxoid": 2225976,
+"ztfobj": ["ZTF18abojoyx"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2225976/4816/Minkovskiy%2019%20BRIR.png"],
+"clrshift": {"g": 0, "psg": -0.02, "r": -0.63, "psr": -0.6, "i": -0.9, "psz": -1.08, "psi": -0.9},
+"plot": {"ztffilt": "gr", "psfilt": "griz", "atlasfilt": "", "asasfilt": "",
+  "xmal": 500, "xmil": 100, "ymil": 0.05,
+  "zms": 4.5, "psms": 6,
+  "ylim": [20.53, 17.78], "magl": 0.1, "xedges": 0
+}
+}}
