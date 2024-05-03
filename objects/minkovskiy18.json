@@ -1,0 +1,30 @@
+{
+"Minkovskiy 18": {
+"other": "2MASS J20435282+3208022, USNO-B1.0 1221-0585747 GSC2.3 N34O008205",
+"gdr3": 1862860975657981696,
+"coord": "20 43 52.872 +32 08 02.65",
+"coordeg": [310.97029, 32.13406],
+"type": "EA",
+"max": 18.17,
+"min": "20.7:",
+"min2": 18.26,
+"system": "g",
+"period": 2.99298,
+"epoch": 2458618.625,
+"etype": "min",
+"sp": "",
+"comm": "Min II = 18.26 g. D = 0.11 P.",
+"d": 0.11,
+"vsxoid": 2225953,
+"ztfobj": ["ZTF20aappmqj"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2225953/4816/minkovskiy18%20fainder%20chart.png"],
+"zcatf": true,
+"curveshift": true,
+"gaiadr3fnam": "minkovskiy18-gaiadr3.dat",
+"clrshift": {"g": 0, "r": -0.57, "i": -0.95, "psi": -0.7, "z": -0.87, "G": -0.47},
+"plot": {"ztffilt": "gri", "psfilt": "gi", "atlasfilt": "", "asasfilt": "",
+  "xmal": 500, "xmil": 100, "ymil": 0.05,
+  "zms": 4.5, "psms": 6,
+  "ylim": [21.02, 17.77], "xedges": 160
+}
+}}

@@ -63,7 +63,7 @@ FILTER_COLORS = {
     "asasg": "#ff8300",
     "V": "#00cc68",
     "I": "#1f71ff", "z": "k", "crts": "#666",
-    "ps_g": "#2f2",  # "#009F72",
+    "ps_g": "#009F72",
     "ps_r": "#f88", "ps_i": "#33f", "ps_z": "k", "ps_y": "darkgrey",
     "y": "darkgrey",
     "gr": "#f00",
