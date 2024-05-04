@@ -1,82 +1,82 @@
 # lcurvemaker
 
-Python code for working with light curves of variable stars
+Python код для работы с кривыми блеска переменных звезд
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![ru](https://img.shields.io/badge/lang-ru-green.svg)](README-ru.md)
 
-## Dependencies
+## Зависимости
 
 * [Matplotlib](https://matplotlib.org)
 * [pandas](https://pandas.pydata.org)
 * [Astropy](https://www.astropy.org)
 
-## Installation
+## Установка зависимостей
 
 `pip install matplotlib pandas astropy requests`  
-or  
+или  
 `pip install -r requirements.txt`
 
-## Usage
+## Использование
 
 `python plot_merged_phase_data.py [-v] [-l] [-s] [-c RA DEC] [-p PERIOD] [-e EPOCH] [-z MIN MAX] [-o] nickname`
 
-### Positional arguments
+### Аргументы
 
-`nickname` is an alias of the object, optionally with the directory name. It is
-used to search for files and assign names to data processing products.
+`nickname` - обозначение объекта без пробелов и специальных символов, опционально с именем каталога.
+Используется для поиска файлов и присвоения имен результирующим файлам.
 
-The script will search for a settings file named  `nickname.json` in the
-`objects` directory. It should not contain spaces.
+Скрипт ищет файл настроек `nickname.json` в директории `objects`.
 
-### Options
+### Опции
 
-* `-h, --help` show help message and exit
-* `-v, --verbose` be more verbose
-* `-l, --lines` draw lines on the light curve and phase plot to mark the epoch, maximum value, and max/min phase
-* `-s, --show` show interactive plots instead of saving figures
-* `-c RA DEC, --coord RA DEC` set the coordinates of the object in degrees
-* `-p PERIOD, --period PERIOD` set the period for phase plot in days
-* `-e EPOCH, --epoch EPOCH` set the epoch for phase plot in [HJD](https://en.wikipedia.org/wiki/Heliocentric_Julian_Day)
-* `-z MIN MAX, --ztfran MIN MAX` delete all ZTF data out of range
-* `-o, --localps` use local PS1 data instead of requesting it via the API
+* `-h, --help` показывает краткую справку
+* `-v, --verbose` выводит больше информации
+* `-l, --lines` нарисовать линии на кривых блеска, отмечающие эпоху, максимальное значение блеска,
+  длительность затмения, фазы главного и вторичного (при наличии) минимумов
+* `-s, --show` показать интерактивный график вместо сохранения изображения
+* `-c RA DEC, --coord RA DEC` указать координаты объекта в градусах
+* `-p PERIOD, --period PERIOD` указать период в днях для фазовой кривой блеска
+* `-e EPOCH, --epoch EPOCH` указать эпоху в [HJD](https://en.wikipedia.org/wiki/Heliocentric_Julian_Day)
+* `-z MIN MAX, --ztfran MIN MAX` удалить все данные ZTF вне указанного диапазона
+* `-o, --localps` использовать локальные данные PS1 вместо их запроса через API
 
-### Examples
+### Примеры
 
 ```bash
 python plot_merged_phase_data.py gusev4
 python plot_merged_phase_data.py minkovskiy24 -l
 ```
 
-Result:
+Результат:
 
 * [Gusev 4](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227045) [settings](objects/gusev4.json), [phase plot](lc/gusev4-ps1-ztf-atlas-poss-ph.png), [light curve](lc/gusev4-ps1-ztf-atlas.png)
 * [Minkovskiy 24](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2387050) [settings](objects/minkovskiy24.json), [phase plot](lc/minkovskiy24-ps1-ztf-ph.png), [light curve](lc/minkovskiy24-ps1-ztf.png)
 
-To iterate over number of objects:
+Для работы с несколькими объектами можно использовать скрипты. Shell:
 
 ```bash
 for nam in gusev4 minkovskiy17 minkovskiy24; do python plot_merged_phased_data.py $nam; done
 ```
 
-for PowerShell:
+PowerShell:
 
 ```powershell
 ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merged_phased_data.py $nam }
 ```
 
-## Object settings files
+## Файлы настроек
 
-The settings for the object are located in a [JSON](https://en.wikipedia.org/wiki/JSON) file.
-[sample.json](objects/sample.json) contains most of the possible settings.
+Настройки объекта находятся в файле [JSON](https://en.wikipedia.org/wiki/JSON).
+[sample.json](objects/sample.json) содержит большую часть возможных настроек.
 
-Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
+Основные настройки для объекта с фотометрическими данными [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
 [PS1](https://ps1images.stsci.edu/ps1_dr2_api.html), [ASAS-SN](https://asas-sn.osu.edu/),
 [ATLAS](https://fallingstar.com/), [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
 [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
 [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
-[OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php) and
-[GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H) photometry data available are:
+[OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php) и
+[GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H):
 
 ```json
 {
@@ -115,7 +115,7 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 }}
 ```
 
-## References for files in the `data` directory
+## Литературные ссылки к файлам в директории `data`
 
 * [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR20 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr20)
 * [Kochanek, C. S.; et al., 2017, The All-Sky Automated Survey for Supernovae (ASAS-SN) Light Curve Server v1.0](https://ui.adsabs.harvard.edu/abs/2017PASP..129j4502K)
@@ -124,9 +124,9 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 * [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
 * [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
 
-## Examples of light curves (presented in the [VSX](https://aavso.org/vsx/) detail sheets)
+## Примеры кривых блеска (представлены в карточках объектов [VSX](https://aavso.org/vsx/))
 
-### Eclipsing binaries
+### Затменные двойные
 
 * [Gusev 4](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227045) [settings](objects/gusev4.json), [phase plot](https://www.aavso.org/vsx_docs/2227045/5780/gusev4-phased-ps1-ztf-atlas.png)
 * [Minkovskiy 16](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2225441) [settings](objects/minkovskiy16.json), [phase plot](https://www.aavso.org/vsx_docs/2225441/5780/minkovskiy16-phased-ps1-ztf-atlas.png)
@@ -139,19 +139,19 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 * [USNO-B1.0 1534-0125222](https://www.aavso.org/vsx/index.php?view=detail.top&oid=256287) [phase plot](https://www.aavso.org/vsx_docs/256287/5780/u1534-222-ps1-ztf-atlas-gaia-ph_0_1.664525), [light curve](https://www.aavso.org/vsx_docs/256287/5780/u1534-222-ps1-ztf-atlas-gaia.png)
 * [ZTF19acdncga](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2344600) [phase plot](https://www.aavso.org/vsx_docs/2344600/5780/19acdncga-ztf-ph_24.8435.png)
 
-### Cataclysmic variables
+### Катаклизмические переменные
 
 * [NSV 14686](https://www.aavso.org/vsx/index.php?view=detail.top&oid=53310) [phase plot](https://www.aavso.org/vsx_docs/53310/5780/nsv14686-ztf-atlas-asas-gaia-ph_0_1.2101554), [light curve](https://www.aavso.org/vsx_docs/53310/5780/nsv14686-ztf-atlas-asas-gaia_1.png)
 
-### Pulsating variables
+### Пульсирующие переменные
 
 * [DAV V8](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227371) [phase plot](https://www.aavso.org/vsx_docs/2227371/5780/davv8-ps1-ztf-atlas-ogle-ph.png), [light curve](https://www.aavso.org/vsx_docs/2227371/5780/davv8-ps1-ztf-atlas-ogle.png)
 * [DAV V10](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227460) [phase plot](https://www.aavso.org/vsx_docs/2227438/5780/davv10-ztf-atlas-ph_378_1_2.png), [light curve](https://www.aavso.org/vsx_docs/2227438/5780/davv10-ps1-ztf-atlas_1_2_3.png)
 * [DAV V11](https://www.aavso.org/vsx/index.php?view=detail.top&oid=2227460) [phase plot](https://www.aavso.org/vsx_docs/2227460/5780/davv11-ps1-ztf-atlas-gaia-ph_360.png), [light curve](https://www.aavso.org/vsx_docs/2227460/5780/davv11-ps1-ztf-atlas-gaia.png)
 
-## Image optimization applied
+## Применена оптимизация изображений
 
 * [TinyPNG: WebP, PNG, JPEG optimization](https://tinypng.com/)
-* [OptiPNG](https://optipng.sourceforge.net/), see [guide to PNG optimization](https://optipng.sourceforge.net/pngtech/optipng.html)
-* [Jpegoptim](https://www.kokkonen.net/tjko/projects.html), [for Windows](https://github.com/XhmikosR/jpegoptim-windows)
-* [JPEGoptim + OptiPNG + TinyPNG - image optimization (in russian)](https://open-networks.ru/d/14-jpegoptim-optipng-tinypng-optimizaciya-izobrazenii)
+* [OptiPNG](https://optipng.sourceforge.net/), см. [guide to PNG optimization](https://optipng.sourceforge.net/pngtech/optipng.html)
+* [Jpegoptim](https://www.kokkonen.net/tjko/projects.html), [для Windows](https://github.com/XhmikosR/jpegoptim-windows)
+* [JPEGoptim + OptiPNG + TinyPNG - image optimization (на русском)](https://open-networks.ru/d/14-jpegoptim-optipng-tinypng-optimizaciya-izobrazenii)
