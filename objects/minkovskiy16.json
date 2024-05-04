@@ -18,6 +18,7 @@
 "d": 0.08,
 "gaiadr3fnam": "minkovskiy16-gaiadr3.dat",
 "vsxoid": 2225441,
+"lc": "minkovskiy16-ps1-ztf-atlas-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2225441/4816/Minkovskiy%2016%20chart%20brir.png"],
 "atlasfnam": "minkovskiy16-atlas.txt",
 "atlaslim": {"o": 0.139, "c": 0.12},

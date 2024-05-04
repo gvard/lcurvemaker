@@ -1,6 +1,7 @@
 {
 "Minkovskiy 4": {
 "other": "USNO-B1.0 1178-0517790, GSC2.3 N2FH192786",
+"gdr3": 2025211838970305152,
 "coord": "19 38 13.322 +27 53 03.81",
 "coordeg": [294.5555, 27.88439],
 "type": "EA",
@@ -16,13 +17,15 @@
 "d": 0.12,
 "vsxoid": 2217869,
 "ztfobj": ["ZTF18aaxyzee", "ZTF18adkfugn"],
+"lc": "minkovskiy4-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2217869/4816/Minkovskiy4-BRIR5x5.jpg"],
+"gaiadr3fnam": "minkovskiy4-gaiadr3.dat",
 "pslim": 0.11,
 "zcatf": true,
 "curveshift": true,
-"clrshift": {"g": 0.73, "psg": 0.73, "r": 0, "i": -0.31, "psi": -0.2, "z": -0.5},
+"clrshift": {"g": 0.73, "psg": 0.73, "r": 0, "i": -0.31, "psi": -0.2, "z": -0.5, "G": -0.05},
 "plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "", "asasfilt": "",
-  "xmal": 500, "xmil": 100, "ymil": 0.1,
+  "xmal": 500, "xmil": 100, "ymil": 0.05,
   "ylim": [20.9, 18.35], "magl": 0.1, "xedges": 60
 }
 }}

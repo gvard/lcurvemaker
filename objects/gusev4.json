@@ -17,6 +17,7 @@
 "comm": "ATLAS magnitudes partially contaminated by 2MASS J21224058+4935454 (V = 17.4; sep. 7''). D = 0.23 P.",
 "d": 0.23,
 "vsxoid": 2227045,
+"lc": ["gusev4-ps1-ztf-atlas-poss-ph.png", "gusev4-ps1-ztf-atlas.png"],
 "fclnk": ["https://www.aavso.org/vsx_docs/2227045/208/Gusev4-BRIR5x5.jpg"],
 "atlasfnam": "gusev4-atlas.txt",
 "atlaslim": {"o": 0.2, "c": 0.2},

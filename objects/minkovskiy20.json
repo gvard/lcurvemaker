@@ -1,6 +1,7 @@
 {
 "Minkovskiy 20": {
 "other": "GSC2.3 N2IX118496, USNO-B1.0 1299-0358589",
+"gdr3": 2073643127139632000,
 "coord": "19 50 10.140 +39 57 51.16",
 "coordeg": [297.54225, 39.96422],
 "type": "EA",
@@ -15,9 +16,13 @@
 "d": 0.10,
 "vsxoid": 2226067,
 "ztfobj": ["ZTF18abpndrz"],
+"lc": "minkovskiy20-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2226067/4816/Minkovskiy20-chart%20br.png"],
+"gaiadr3fnam": "minkovskiy20-gaiadr3.dat",
 "pslim": 0.06,
-"clrshift": {"g": 0, "psg": -0.04, "r": -0.54, "psr": -0.54, "psi": -0.78, "psz": -0.92},
+"zcatf": true,
+"curveshift": true,
+"clrshift": {"g": 0, "psg": -0.04, "r": -0.54, "psr": -0.54, "psi": -0.78, "psz": -0.92, "G": -0.6},
 "plot": {"ztffilt": "gr", "psfilt": "griz", "atlasfilt": "", "asasfilt": "",
   "xmal": 500, "xmil": 100, "ymil": 0.05, "magl": 0.1, "xedges": 0,
   "ylim": [21.69, 19.12]

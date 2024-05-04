@@ -1,6 +1,7 @@
 {
 "Minkovskiy 23": {
 "other": "2MASS J19431861+3310081, USNO-B1.0 1231-0433523, GSC2.3 N2GV043397",
+"gdr3": 2034912417744194688,
 "coord": "19 43 18.625 +33 10 08.00",
 "coordeg": [295.82763, 33.16889],
 "type": "EA",
@@ -16,8 +17,10 @@
 "d": 0.12,
 "vsxoid": 2227457,
 "ztfobj": ["ZTF18aazlkoh"],
+"gaiadr3fnam": "minkovskiy23-gaiadr3.dat",
+"lc": "minkovskiy23-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2227457/4816/Minkovskiy%2023%20Chart%20BRIR%2010x10.png"],
-"clrshift": {"g": 0, "psg": 0, "r": -0.29, "psr": -0.29, "i": -0.41, "psi": -0.39, "psz": -0.46},
+"clrshift": {"g": 0, "psg": 0, "r": -0.29, "psr": -0.29, "i": -0.41, "psi": -0.39, "psz": -0.46, "G": -0.24},
 "pslim": 0.02,
 "zcatf": true,
 "curveshift": true,
