@@ -767,7 +767,9 @@ if period:
                 plt.plot([obj["2ndmin"], obj["2ndmin"]], YLIM, "--k", lw=0.95, zorder=-20)
             if obj.get("max"):
                 plt.plot([-0.5, 1], [obj["max"], obj["max"]], "--k", lw=0.95, zorder=-20)
-
+            if obj.get("d"):
+                plt.plot([obj["d"]/2, obj["d"]/2], YLIM, "--b", lw=0.95, zorder=-10)
+                plt.plot([-obj["d"]/2, -obj["d"]/2], YLIM, "--b", lw=0.95, zorder=-10)
     else:
         plt.gca().invert_yaxis()
     if obj["plot"].get("ymal"):
