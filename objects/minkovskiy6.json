@@ -13,6 +13,8 @@
 "epoch": 2458509.088,
 "etype": "min",
 "sp": "",
+"r": 404,
+"rp": 415,
 "comm": "Min II = 17.56r. D = 0.08 P. FUV-NUV = -0.22 (GALEX).",
 "d": 0.08,
 "vsxoid": 2221450,

@@ -14,6 +14,8 @@
 "sp": "",
 "comm": "D = 0.10 P.",
 "d": 0.10,
+"r": 7173,
+"rp": 6097,
 "vsxoid": 2226067,
 "ztfobj": ["ZTF18abpndrz"],
 "lc": "minkovskiy20-ps1-ztf-gaia-ph.png",

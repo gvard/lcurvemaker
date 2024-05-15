@@ -1,5 +1,6 @@
 {
 "Minkovskiy 4": {
+"name": "Minkovskiy 4",
 "other": "USNO-B1.0 1178-0517790, GSC2.3 N2FH192786",
 "gdr3": 2025211838970305152,
 "coord": "19 38 13.322 +27 53 03.81",
@@ -12,7 +13,11 @@
 "period": 2.00372,
 "epoch": 2458247.954,
 "etype": "min",
-"sp": "",
+"sp": "K",
+"teff": 4614,
+"logg": 4.98,
+"r": 5783,
+"rp": 6430,
 "comm": "Eclipse on 1988-07-14 POSS-II blue plate. Min II = 18.91 r. D = 0.12 P.",
 "d": 0.12,
 "vsxoid": 2217869,
