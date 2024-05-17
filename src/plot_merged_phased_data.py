@@ -591,6 +591,8 @@ gdsnam = "-gds" if const.GDSFILT else ""
 gaianam = "-gaia" if (obj.get("gaiaobj") or obj.get("gaiadr3fnam")) else ""
 fname = f"{fnam}{psnam}{ztfnam}{crtsnam}{atlasfnam}{asasfnam}{oglenam}{gdsnam}{gaianam}"
 if args.show:
+    fig.set_dpi(const.DPI_SCREEN)
+    plt.get_current_fig_manager().window.state('zoomed')
     plt.show()
 else:
     plt.savefig(
@@ -864,6 +866,8 @@ if period:
     ax2.tick_params(which="major", length=6)
     ax2.tick_params(which="minor", length=4)
     if args.show:
+        fig2.set_dpi(const.DPI_SCREEN)
+        plt.get_current_fig_manager().window.state('zoomed')
         plt.show()
     else:
         plt.savefig(
