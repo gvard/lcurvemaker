@@ -96,7 +96,7 @@ class Data:
 
     def read_raw_data(self, add="", ext="csv"):
         self.raw_data = pd.read_csv(f"{self.raw_dir}/{self.name}-{self.survey}{add}.{ext}",
-                                    sep="\s+")
+                                    sep=r"\s+")
         if self.columns:
             self.raw_data = self.raw_data.rename(columns=self.columns)
 
@@ -175,7 +175,8 @@ class Ogle(Data):
     def read_raw_data(self, add="", ext="dat"):
         columns = ["hjd", "mag", "magerr"]
         self.data = pd.read_csv(
-            f"{self.raw_dir}/{self.name}", delim_whitespace=True,
+            f"{self.raw_dir}/{self.name}",
+            sep=r"\s+",  # delim_whitespace=True,
             names=columns)
         self.data["hjd"] += OGLE_SHIFT
 
@@ -269,6 +270,29 @@ class Ztf(Data):
         return self.data[self.data["filter"] == filtr]
 
 
+class Zobj(Data):
+    def __init__(self, objs):
+        super().__init__()
+        self.filters = {1: "g", 2: "r",  3: "i"}
+        self.objects = objs
+
+    def read_raw_data(self, add="detections", ext="csv"):
+        for obj in self.objects:
+            self.raw_data = pd.read_csv(f"{self.raw_dir}/{obj}{add}.{ext}")
+            self.raw_data["filter"] = self.raw_data["fid"].replace(self.filters)
+
+    def prepare_data(self):
+        self.data = pd.DataFrame({
+            "hjd": self.raw_data["mjd"] + JD_SHIFT,
+            "mag": self.raw_data["mag_corr"],
+            "magerr": self.raw_data["e_mag"],
+            "filter": self.raw_data["filter"],
+        })
+
+    def mk_phased(self, epoch, period):
+        self.data = mk_phased(self.data, epoch, period, jdnam="hjd")
+
+
 class Alerce(Data):
     def __init__(self, objs):
         super().__init__()
@@ -325,7 +349,9 @@ class Crts(Data):
     def read_data(self, filename):
         """Read CRTS data"""
         columns = ["hjd", "mag", "magerr"]
-        self.data = pd.read_csv(filename, delim_whitespace=True, names=columns)
+        self.data = pd.read_csv(filename,
+                                sep=r"\s+",  # delim_whitespace=True,
+                                names=columns)
 
     def save_datafile(self, ext="dat", hjdprec=7, magprec=6):
         if len(self.data.index):
@@ -338,14 +364,20 @@ class Crts(Data):
 def read_crts_data(filename):
     """Read CRTS data"""
     columns = ["hjd", "mag", "magerr"]
-    return pd.read_csv(filename, delim_whitespace=True, names=columns)
+    return pd.read_csv(filename, names=columns,
+                       sep=r"\s+",  # delim_whitespace=True,
+                       )
 
 
 def read_gds_data(filename, filt, ra, dec, errlim=0.049):
     """Read GDS data"""
     columns = ["hjd", "mag", "magerr"]
     data_dir = "../data"
-    data = pd.read_csv(f"{data_dir}/{filename}-g{filt}.dat", delim_whitespace=True, names=columns)
+    data = pd.read_csv(
+        f"{data_dir}/{filename}-g{filt}.dat",
+        sep=r"\s+",  # delim_whitespace=True,
+        names=columns,
+        )
     data["hjd"] = mk_hjd_corr(data["hjd"], ra, dec, obs="Siding Springs")
     # data["hjd"] += JD_SHIFT
     data = data[data["magerr"] < errlim]

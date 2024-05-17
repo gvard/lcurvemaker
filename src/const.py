@@ -26,10 +26,11 @@ GAIADR3_JD_SHIFT = 2455197.5
 
 PS_CONE_RADIUS = 0.53
 
-PSFILT = "griz"
+PSFILT = "grizy"
 ZTFFILT = "gri"
 ATLASFILT = "oc"
 ASASFILT = "Vg"
+GDSFILT = "ri"
 
 # Constants for filtering data by magnitude error
 PS_MAG_LIM = 0.11
@@ -48,12 +49,14 @@ DATA_TO_MERGE = {
 }
 
 # Plotting parameters
-ZEROFILTSHIFT = {"g": 0, "psg": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0,
+ZEROFILTSHIFT = {"u": 0, "g": 0, "psg": 0, "r": 0, "psr": 0, "i": 0, "I": 0, "psi": 0,
                  "z": 0, "psz": 0, "psy": 0, "o": 0, "c": 0, "V": 0, "G": 0, "asasg": 0,
+                 "gr": 0, "gi": 0,
                  }
 
 # Marker colors for given filters
 FILTER_COLORS = {
+    "u": "#00f",
     "g": "#080",
     "r": "#f33",
     "i": "#d61fff",
@@ -67,7 +70,7 @@ FILTER_COLORS = {
     "ps_r": "#f88", "ps_i": "#33f", "ps_z": "k", "ps_y": "darkgrey",
     "y": "darkgrey",
     "gr": "#f00",
-    "gi": "brown",
+    "gi": "#730bdb",
     "o": "darkorange",  # "gold",
     "c": "#11f",
     "G": "#2f2",
@@ -89,10 +92,11 @@ CRTSMS = 4
 OGLEMS = 5
 GAIAMS = 7.5
 GDSMS = 7
+DSSMS = 9
 
 ELINWDTH = 0.5
 PSELINWDTH = 1
-ZELINWDTH = 1
+ZELINWDTH = 0.3
 ATELINWDTH = {"o": 0.5, "c": 0.3}
 ATELINWDTHT = 0.3
 ASELINWDTH = 0.3
@@ -100,9 +104,25 @@ CELINWDTH = 0.3
 OELINWDTH = 0.8
 GDSELINWDTH = 1
 
+XMAL = 500
+XMIL = 100
+YMAL = 0.5
+YMIL = 0.02
+XEDGES = 100
+XLIMP = [-0.5, 1]
+XMALP = 0.5
+XMILP = 0.05
+
 MEW = 0.4
+CMEW = 0.5
+GMEW = 0.8
+DMS = 0.8
 
 TITLEFNTSZ = 18
 LEGFNTSZ = 14
 
 ATLAS_MAGLIM_UP = 10
+
+PLT_EDGES = [0.06, 0.09, 0.985, 0.95]
+FIGSZ = [16, 9]
+DPI = 120
