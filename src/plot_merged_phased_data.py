@@ -40,6 +40,8 @@ parser = ArgumentParser(
 )
 parser.add_argument("nickname", type=str, default="",
                     help="alias of the object, optionally with the directory name")
+parser.add_argument("savedir", type=str, default="",
+                    help="alias of the object, optionally with the directory name")
 parser.add_argument("-v", "--verbose", action="store_true",
                     help="be more verbose")
 parser.add_argument("-l", "--lines", action="store_true",
@@ -596,7 +598,7 @@ if args.show:
     plt.show()
 else:
     plt.savefig(
-        f"../lc/{fname}.{const.EXT}",
+        f"../lc/{args.savedir}{fname}.{const.EXT}",
         dpi=const.DPI,
     )
 # End of lightcurve plot
@@ -871,6 +873,6 @@ if period:
         plt.show()
     else:
         plt.savefig(
-            f"../lc/{fname}-ph_{round(period, 8)}{zmed}.{const.EXT}",
+            f"../lc/{args.savedir}{fname}-ph_{round(period, 8)}{zmed}.{const.EXT}",
             dpi=const.DPI,
         )
