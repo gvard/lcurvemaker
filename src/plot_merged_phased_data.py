@@ -40,8 +40,8 @@ parser = ArgumentParser(
 )
 parser.add_argument("nickname", type=str, default="",
                     help="alias of the object, optionally with the directory name")
-parser.add_argument("savedir", type=str, default="",
-                    help="alias of the object, optionally with the directory name")
+parser.add_argument("savedir", type=str, nargs="?", default="",
+                    help="set default directory for saving plots")
 parser.add_argument("-v", "--verbose", action="store_true",
                     help="be more verbose")
 parser.add_argument("-l", "--lines", action="store_true",
@@ -60,6 +60,8 @@ parser.add_argument("-o", "--localps", action="store_true",
                     help="use local PS1 data instead of requesting it via the API")
 parser.add_argument("-z", "--zoom", action="store_true",
                     help="use settings for zoomed plot")
+parser.add_argument("-m", "--model", action="store_true",
+                    help="draw a simple model")
 parser.add_argument("-t", "--plot", nargs="+", type=str,
     help="what data to plot. Possible values are: zt ps as at cs ga og gd")
 args = parser.parse_args()
@@ -800,6 +802,31 @@ if period:
         save_merged(merged, fnam)
     except ValueError:
         pass
+
+    if args.model and obj["d"] and obj["d2"] and obj["min2"]:
+        datax = [
+            obj["plot"]["xlim"][0],
+            -obj["d"]/2,
+            0,
+            obj["d"]/2,
+            obj["2ndmin"]-obj["d2"]/2,
+            obj["2ndmin"],
+            obj["2ndmin"]+obj["d2"]/2,
+            1-obj["d"]/2,
+            1,
+        ]
+        datay = [
+            obj["max"],
+            obj["max"],
+            obj["min"],
+            obj["max"],
+            obj["max"],
+            obj["min2"],
+            obj["max"],
+            obj["max"],
+            obj["min"],
+        ]
+        plt.plot(datax, datay, "-ok", lw=3)
 
     # Phased plot parameters
     if obj["plot"].get("leg"):
