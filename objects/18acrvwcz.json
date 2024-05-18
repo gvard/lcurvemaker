@@ -37,20 +37,22 @@
 "clrshift": {"g": 0, "psg": -0.03, "r": -0.28, "psr": -0.28, "i": -0.42, "psi": -0.39, "psz": -0.5, "psy": -0.62,
              "o": -0.33, "c": -0.14, "V": -0.01, "asasg": 0, "G": -0.33},
 "plot": {"ztffilt": "gri", "psfilt": "giy", "atlasfilt": "oc", "asasfilt": "",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02, "ymil1": 0.05,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.05,
   "asasms": 3.5,
   "zms": 4,
   "gms": 4,
   "psms": 7.4,
   "atlasms": {"o": 1.8, "c": 1.8},
   "atledgclr": "darkred",
-  "magl": 0.1,
-  "xedges": 90,
+  "xedges": 120,
   "legz": "lower left",
+  "zoom": {
+    "ylim": [14.72, 14.03],
+    "ymil": 0.02
+  },
   "xlim": [-0.5, 1],
   "xlim1": [-0.15, 0.15],
-  "ylim1": [16.86, 14.03],
-  "ylim": [14.722, 14.03],
-  "ylima": [16.62, 13.75]
+  "ylim": [16.86, 14.03],
+  "ylima": [16.63, 14.03]
 }
 }}

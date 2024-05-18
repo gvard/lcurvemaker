@@ -27,7 +27,7 @@
 "gaiadr3fnam": "minkovskiy17-gaiadr3.dat",
 "atlaslim": {"o": 0.12, "c": 0.14},
 "pslim": 0.05,
-"zcatf": true,
+"zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0.66, "psg": 0.66, "r": 0.0, "psi": -0.27, "z": -0.18, "o": -0.29, "c": 0.24, "G": 0.0},
 "plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "oc", "asasfilt": "",

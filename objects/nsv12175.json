@@ -29,7 +29,7 @@
 "asaslim": {"V": 0.039, "g": 0.033},
 "pslim": 0.1,
 "atlasfnam": "nsv12175-atlas.txt",
-"asasfnam": "nsv12175-asas.csv",
+"asasfnam": "nsv/12175-asas.csv",
 "gaiadr3fnam": "nsv12175-gaiadr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.41, "psg": 0.4, "r": 0, "psr": 0.04, "i": 0, "psi": -0.1, "psz": -0.15, "psy": -0.21,
@@ -46,6 +46,7 @@
   "xlimz": [-0.25, 0.75],
   "xlim": [-0.1, 1],
   "ylim": [14.49, 14.0],
+  "ylima": [14.49, 14.0],
   "ylimaz": [13.9, 13.7],
   "ylimazz": [13.88, 13.45]
 }

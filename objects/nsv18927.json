@@ -41,7 +41,6 @@
   "psms": 6,
   "atlasms": {"o": 3, "c": 2.5},
   "atledgclr": "darkred",
-  "magl": 0.1,
   "xedges": 90,
   "xlimz": [-0.1, 0.20],
   "xlim": [-0.1, 1],

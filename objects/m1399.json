@@ -3,6 +3,8 @@
 "name": "Mis V1399",
 "other": "2MASS J02511159+5725096, USNO-B1.0 1474-0116865, GSC2.3 NAVH000144",
 "coord": "02 51 11.590 +57 25 09.66",
+"gdr3": 460822056396477568,
+"epphot": false,
 "coordeg": [42.79833, 57.41936],
 "type": "EA",
 "max": 12.73,
@@ -25,9 +27,8 @@
 "pslim": 0.1,
 "asasfnam": "m1399-asas.csv",
 "atlasfnam": "m1399-atlas.txt",
-"gaiadr3fnamz": "m1399-gaiadr3.dat",
 "ztfranz": [13.4, 12.5],
-"zcatf": ["gr"],
+"zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0.21, "psg": 0.21, "r": -0.36, "psr": -0.36, "i": -0.61, "psi": 0.37, "psz": -0.68, "psy": -0.87,
              "o": -0.45, "c": -0.09, "V": 0.0, "asasg": 0.24, "G": 0.54},
@@ -39,9 +40,11 @@
   "leg": "lower center",
   "atledgclr": "saddlebrown",
   "xedges": 160, "xmal": 500, "xmil": 100, "ymil": 0.02,
-  "xlim": [-0.03, 0.46],
-  "xlim1": [-0.1, 1],
+  "zoom": {
+    "xlim": [-0.03, 0.46]
+  },
+  "xlim": [-0.1, 1],
   "ylim": [13.35, 12.6],
-  "ylimaz": [13.35, 12.6]
+  "ylima": [13.35, 12.6]
 }
 }}

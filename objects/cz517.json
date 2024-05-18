@@ -31,7 +31,7 @@
 "gaiadr3fnamz": "cz517-gaiadr3.dat",
 "zlimz": [16, 15.5],
 "atlaslimz": [17.4, 16.0],
-"zcatf": false,
+"zcatf": "",
 "curveshift": true,
 "clrshift": {"g": 0.24, "psg": 0.22, "r": 0, "psr": 0.0, "i": -0.05, "psi": -0.04, "psz": -0.07, "psy": -0.14,
              "o": 0.1, "c": 0.23, "V": 0, "asasg": 0.18, "G": 0.02},

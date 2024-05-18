@@ -26,7 +26,7 @@
 "atlasfnam": "minkovskiy21-atlas.txt",
 "gaiadr3fnam": "minkovskiy21-gaiadr3.dat",
 "atlaslim": {"o": 0.09, "c": 0.09},
-"zcatf": true,
+"zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0.66, "psg": 0.66, "r": 0, "psr": 0.05, "i": -0.27, "psi": -0.27, "psz": -0.47, "psy": -0.61, "o": -0.02, "c": 0.41, "G": 0.02},
 "plot": {"ztffilt": "gri", "psfilt": "riz", "atlasfilt": "", "asasfilt": "",

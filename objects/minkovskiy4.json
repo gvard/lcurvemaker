@@ -26,11 +26,13 @@
 "fclnk": ["https://www.aavso.org/vsx_docs/2217869/4816/Minkovskiy4-BRIR5x5.jpg"],
 "gaiadr3fnam": "minkovskiy4-gaiadr3.dat",
 "pslim": 0.11,
-"zcatf": true,
+"zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0.73, "psg": 0.73, "r": 0, "i": -0.31, "psi": -0.2, "z": -0.5, "G": -0.05},
 "plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "", "asasfilt": "",
   "xmal": 500, "xmil": 100, "ymil": 0.05,
-  "ylim": [20.9, 18.35], "magl": 0.1, "xedges": 60
+  "ylim": [20.9, 18.35],
+  "ylima": [20.9, 18.35],
+  "magl": 0.1, "xedges": 60
 }
 }}

@@ -17,7 +17,7 @@
 "logg": 4.29,
 "r": 667,
 "rp": 702,
-"comm": "Min II = 17.88 r. D = 0.06 P.",
+"comm": "Min II = 17.88 r. D = 0.06 P",
 "2ndmin": 0.5,
 "d": 0.06,
 "d2": 0.06,
@@ -29,7 +29,9 @@
 "curveshift": true,
 "clrshift": {"g": 1.67, "psg": 1.58, "r": 0, "psr": 0.13, "psi": -0.9, "psz": -1.41},
 "plot": {"ztffilt": "gr", "psfilt": "griz", "asasfilt": "",
-  "xmal": 500, "xmil": 100, "ymil": 0.05,
-  "ylim": [18.55, 17.15], "magl": 0.1, "xedges": 160
+  "xmal": 500, "xmil": 100, "ymil": 0.02,
+  "xedges": 160,
+  "ylim": [18.55, 17.25],
+  "ylima": [18.55, 17.25]
 }
 }}

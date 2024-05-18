@@ -1,3 +1,6 @@
+"""Python script for generating an HTML table from the objects data
+"""
+
 import json
 
 from astropy.coordinates import SkyCoord, get_constellation
@@ -15,7 +18,7 @@ objs.extend((
     "c111-36", "m1338", "nsv1409", "c180-34", "nsv18927",
     "dde2", "nsv61", "18acrvwcz", "a293-29", "g16ams",
     "u170", "m1398", "u248199", "navl02", "svkv70", "u248",
-    "dde65", "u240", "u222", "n2fu0", "dde58",
+    "dde65", "u240", "u222", "n2fu0", "dde58", "dde60",
     ))
 
 # TAB_HEAD = "<tr><th>#</th><th>Name</th><th>Other</th><th>RA (J2000)</th><th>DEC</th><th>Type</th><th>Max</th><th>Min</th><th>Sys</th><th>Period</th><th>Epoch (JD)</th><th>D, %</th><th>Sp</th><th>Comment</th><th>L.Curve</th><th>Find.Chart</th></tr>"

@@ -13,9 +13,15 @@ Python code for working with light curves of variable stars
 
 ## Installation
 
-`pip install matplotlib pandas astropy requests`  
-or  
-`pip install -r requirements.txt`
+```bash
+pip install matplotlib pandas astropy requests
+```
+
+or
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
 
@@ -25,6 +31,8 @@ or
 
 `nickname` is an alias of the object, optionally with the directory name. It is
 used to search for files and assign names to data processing products.
+
+`savedir` set default directory for saving plots (optional).
 
 The script will search for a settings file named  `nickname.json` in the
 `objects` directory. It should not contain spaces.
@@ -38,8 +46,11 @@ The script will search for a settings file named  `nickname.json` in the
 * `-c RA DEC, --coord RA DEC` set the coordinates of the object in degrees
 * `-p PERIOD, --period PERIOD` set the period for phase plot in days
 * `-e EPOCH, --epoch EPOCH` set the epoch for phase plot in [HJD](https://en.wikipedia.org/wiki/Heliocentric_Julian_Day)
-* `-z MIN MAX, --ztfran MIN MAX` delete all ZTF data out of range
+* `-r MIN MAX, --ztfran MIN MAX` delete all ZTF data out of range
 * `-o, --localps` use local PS1 data instead of requesting it via the API
+* `-z, --zoom` use settings for zoomed plot
+* `-m, --model` draw a simple light curve model
+* `-t, --plot` what data to plot. Possible values are: zt ps as at cs ga og gd
 
 ### Examples
 
@@ -123,6 +134,7 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 * [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
 * [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
 * [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
+* [Hackstein, M.; et al., 2015, The Bochum Survey of the Southern Galactic Disk: II. Follow-up measurements and multi-filter photometry for 1323 square degrees monitored in 2010 - 2015](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H)
 
 ## Examples of light curves (presented in the [VSX](https://aavso.org/vsx/) detail sheets)
 

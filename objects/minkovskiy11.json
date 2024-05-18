@@ -24,12 +24,14 @@
 "lc": "minkovskiy11-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2225148/208/Minkovskiy11-BRIR-7x7.jpg"],
 "gaiadr3fnam": "minkovskiy11-gaiadr3.dat",
-"zcatf": true,
+"zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0, "psg": 0, "r": -0.38, "psr": -0.35, "i": -0.6, "psi": -0.53, "z": -0.7, "G": -0.36},
 "plot": {"ztffilt": "gri", "psfilt": "ri", "atlasfilt": "", "asasfilt": "",
   "zms": 4.5, "psms": 6,
   "xmal": 500, "xmil": 100, "ymil": 0.05,
-  "ylim": [20.98, 17.88], "xedges": 160
+  "ylim": [20.98, 17.88],
+  "ylima": [20.98, 17.88],
+  "xedges": 160
 }
 }}

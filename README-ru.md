@@ -13,9 +13,15 @@ Python код для работы с кривыми блеска перемен�
 
 ## Установка зависимостей
 
-`pip install matplotlib pandas astropy requests`  
-или  
-`pip install -r requirements.txt`
+```bash
+pip install matplotlib pandas astropy requests
+```
+
+или
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Использование
 
@@ -25,6 +31,8 @@ Python код для работы с кривыми блеска перемен�
 
 `nickname` - обозначение объекта без пробелов и специальных символов, опционально с именем каталога.
 Используется для поиска файлов и присвоения имен результирующим файлам.
+
+`savedir` устанавливает директорию для сохранения иллюстраций (опционально).
 
 Скрипт ищет файл настроек `nickname.json` в директории `objects`.
 
@@ -38,8 +46,11 @@ Python код для работы с кривыми блеска перемен�
 * `-c RA DEC, --coord RA DEC` указать координаты объекта в градусах
 * `-p PERIOD, --period PERIOD` указать период в днях для фазовой кривой блеска
 * `-e EPOCH, --epoch EPOCH` указать эпоху в [HJD](https://en.wikipedia.org/wiki/Heliocentric_Julian_Day)
-* `-z MIN MAX, --ztfran MIN MAX` удалить все данные ZTF вне указанного диапазона
+* `-r MIN MAX, --ztfran MIN MAX` удалить все данные ZTF вне указанного диапазона
 * `-o, --localps` использовать локальные данные PS1 вместо их запроса через API
+* `-z, --zoom` использовать настройки для увеличенного фрагмента иллюстрации
+* `-m, --model` нарисовать простую модель кривой блеска по данным настроек
+* `-t, --plot` выбрать, какие данные использовать для построения. Возвможные варианты: zt ps as at cs ga og gd
 
 ### Примеры
 
@@ -90,6 +101,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
   "period": 24.8435,
   "epoch": 2460161.091,
   "2ndmin": 0.399,
+  "ztfran": [15.0, 14.2], "ztflim": 0.05
   "atlasfnam": "sample-nickname-atlas.txt", "atlaslim": {"o": 0.013, "c": 0.017},
   "asasfnam": "sample-nickname-asas.csv", "asaslim": {"V": 0.05, "g": 0.06},
   "pslim": 0.1, "pslocal": false,
@@ -123,6 +135,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 * [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
 * [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
 * [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
+* [Hackstein, M.; et al., 2015, The Bochum Survey of the Southern Galactic Disk: II. Follow-up measurements and multi-filter photometry for 1323 square degrees monitored in 2010 - 2015](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H)
 
 ## Примеры кривых блеска (представлены в карточках объектов [VSX](https://aavso.org/vsx/))
 

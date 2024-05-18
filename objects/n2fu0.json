@@ -36,7 +36,7 @@
   "asasms": 2,
   "psms": 7.8,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 160,
+  "xedges": 160,
   "ylim": [15.61, 15.04],
   "ylima": [15.61, 15.04]
 }
