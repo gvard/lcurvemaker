@@ -61,7 +61,7 @@ parser.add_argument("-o", "--localps", action="store_true",
 parser.add_argument("-z", "--zoom", action="store_true",
                     help="use settings for zoomed plot")
 parser.add_argument("-m", "--model", action="store_true",
-                    help="draw a simple model")
+                    help="draw a simple light curve model")
 parser.add_argument("-t", "--plot", nargs="+", type=str,
     help="what data to plot. Possible values are: zt ps as at cs ga og gd")
 args = parser.parse_args()
@@ -803,9 +803,16 @@ if period:
     except ValueError:
         pass
 
+    if args.zoom and obj["plot"].get("zoom") and obj["plot"]["zoom"].get("xlim"):
+        XLIMM = obj["plot"]["zoom"]["xlim"]
+    elif obj["plot"].get("xlim"):
+        XLIMM = obj["plot"]["xlim"]
+    else:
+        XLIMM = const.XLIMP
+
     if args.model and obj["d"] and obj["d2"] and obj["min2"]:
         datax = [
-            obj["plot"]["xlim"][0],
+            XLIMM[0],
             -obj["d"]/2,
             0,
             obj["d"]/2,
@@ -839,12 +846,7 @@ if period:
     plt.xlabel("Phase", fontsize=16)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    if args.zoom and obj["plot"].get("zoom") and obj["plot"]["zoom"].get("xlim"):
-        plt.xlim(obj["plot"]["zoom"]["xlim"])
-    elif obj["plot"].get("xlim"):
-        plt.xlim(obj["plot"]["xlim"])
-    else:
-        plt.xlim(const.XLIMP)
+    plt.xlim(XLIMM)
 
     YLIM = obj["plot"].get("ylim")
     if args.zoom and obj["plot"].get("zoom") and obj["plot"]["zoom"].get("ylim"):

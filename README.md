@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-`python plot_merged_phase_data.py [-v] [-l] [-s] [-c RA DEC] [-p PERIOD] [-e EPOCH] [-z MIN MAX] [-o] nickname`
+`python plot_merged_phase_data.py [-v] [-l] [-s] [-c RA DEC] [-p PERIOD] [-e EPOCH] [-r MIN MAX] [-o] [-z] [-m] [-t PLOT] nickname [savedir]`
 
 ### Positional arguments
 
@@ -131,6 +131,7 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
 * [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR20 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr20)
 * [Kochanek, C. S.; et al., 2017, The All-Sky Automated Survey for Supernovae (ASAS-SN) Light Curve Server v1.0](https://ui.adsabs.harvard.edu/abs/2017PASP..129j4502K)
 * [Tonry, J. L.; et al., 2018, ATLAS: A High-cadence All-sky Survey System](https://ui.adsabs.harvard.edu/abs/2018PASP..130f4505T)
+* [Drake, A. J.; et al., 2009, Catalina Real-time Transient Survey](https://ui.adsabs.harvard.edu/abs/2009ApJ...696..870D)
 * [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
 * [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
 * [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
