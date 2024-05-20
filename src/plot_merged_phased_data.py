@@ -16,7 +16,7 @@ import const
 from curves import (
     Ztf,
     Zobj,
-    Alerce,
+    # Alerce,
     Ps,
     Atlas,
     Ogle,
@@ -81,7 +81,8 @@ try:
 except FileNotFoundError:
     if args.nickname and args.coord:
         print(
-            f"Settings file not found, continue with {args.nickname} name and {args.coord} coordinates"
+            f"Settings file not found, continue with {args.nickname} name and"
+            f"{args.coord} coordinates"
         )
         name = args.nickname
         obj = {"plot": {}}
@@ -271,7 +272,7 @@ if obj.get("gaiaobj"):
 if obj.get("gaiadr3fnam"):
     gdata = pd.read_csv(
         f"../data/{obj.get('gaiadr3fnam')}",
-        sep=r"\s+",  # delim_whitespace=True,
+        sep=r"\s+",
         names=["TimeG", "Gmag"]
         # names=["TimeG", "Gmag", "TimeBP", "BPmag", "TimeRP", "RPmag"]
     )
@@ -810,29 +811,55 @@ if period:
     else:
         XLIMM = const.XLIMP
 
-    if args.model and obj["d"] and obj["d2"] and obj["min2"]:
-        datax = [
-            XLIMM[0],
-            -obj["d"]/2,
-            0,
-            obj["d"]/2,
-            obj["2ndmin"]-obj["d2"]/2,
-            obj["2ndmin"],
-            obj["2ndmin"]+obj["d2"]/2,
-            1-obj["d"]/2,
-            1,
-        ]
-        datay = [
-            obj["max"],
-            obj["max"],
-            obj["min"],
-            obj["max"],
-            obj["max"],
-            obj["min2"],
-            obj["max"],
-            obj["max"],
-            obj["min"],
-        ]
+    if obj.get("min") and isinstance(obj["min"], str):
+        obj["min"] = float(obj["min"].strip("<").strip(":"))
+
+    if args.model:
+        if all([obj.get(x) for x in ("max", "min", "d")]):
+            datax = [
+                XLIMM[0],
+                -obj["d"]/2,
+                0,
+                obj["d"]/2,
+            ]
+            datay = [
+                obj["max"],
+                obj["max"],
+                obj["min"],
+                obj["max"],
+            ]
+        if all([obj.get(x) for x in ("max", "2ndmin", "min2", "d2")]):
+            datax.extend((
+                obj["2ndmin"]-obj["d2"]/2,
+                obj["2ndmin"],
+                obj["2ndmin"]+obj["d2"]/2,
+                1-obj["d"]/2,
+                1,
+                1+obj["d"]/2,
+                XLIMM[1],
+            ))
+            datay.extend((
+                obj["max"],
+                obj["min2"],
+                obj["max"],
+                obj["max"],
+                obj["min"],
+                obj["max"],
+                obj["max"],
+            ))
+        else:
+            datax.extend((
+                1-obj["d"]/2,
+                1,
+                1+obj["d"]/2,
+                XLIMM[1],
+            ))
+            datay.extend((
+                obj["max"],
+                obj["min"],
+                obj["max"],
+                obj["max"],
+            ))
         plt.plot(datax, datay, "-ok", lw=3)
 
     # Phased plot parameters
@@ -859,11 +886,13 @@ if period:
             if obj.get("2ndmin"):
                 plt.plot([obj["2ndmin"], obj["2ndmin"]], YLIM, "--k", lw=0.95, zorder=-20)
             if obj.get("max"):
-                plt.plot([-0.5, 1], [obj["max"], obj["max"]], "--k", lw=0.95, zorder=-20)
+                plt.plot([XLIMM[0], XLIMM[1]], [obj["max"], obj["max"]], "--k", lw=0.95, zorder=-20)
             if obj.get("min"):
-                plt.plot([-0.5, 1], [obj["min"], obj["min"]], "--", c="grey", lw=0.95, zorder=-20)
+                plt.plot([XLIMM[0], XLIMM[1]], [obj["min"], obj["min"]], "--",
+                         c="grey", lw=0.95, zorder=-20)
             if obj.get("min2"):
-                plt.plot([-0.5, 1], [obj["min2"], obj["min2"]], "--", c="grey", lw=0.95, zorder=-20)
+                plt.plot([XLIMM[0], XLIMM[1]], [obj["min2"], obj["min2"]], "--",
+                         c="grey", lw=0.95, zorder=-20)
             if obj.get("d"):
                 plt.plot([obj["d"]/2, obj["d"]/2], YLIM, "--b", lw=0.95, zorder=-10)
                 plt.plot([-obj["d"]/2, -obj["d"]/2], YLIM, "--b", lw=0.95, zorder=-10)

@@ -386,7 +386,7 @@ def read_gds_data(filename, filt, ra, dec, errlim=0.049):
 
 def read_ps_data(filename):
     """read data: mjd mag magerr"""
-    return pd.read_csv(filename, delim_whitespace=True)
+    return pd.read_csv(filename, sep=r"\s+")  # delim_whitespace=True)
 
 
 def save_gaia_datafile(curve, fnsav, hjdprec=5, magprec=2):
@@ -413,8 +413,11 @@ def mk_phased(data, epoch, period, jdnam="hjd"):
     """Make phased lightcurve data"""
     data["phased"] = ((data[jdnam] - epoch) % period) / period
     dsh = data[data["phased"] > 0.5]
+    dsh2 = data[data["phased"] < 0.25]
     dsh["phased"] = dsh["phased"] - 1
-    return pd.concat((data, dsh))
+    dsh2["phased"] = dsh2["phased"] + 1
+    data = pd.concat((data, dsh))
+    return pd.concat((data, dsh2))
 
 
 def save_merged(data, fnam):
