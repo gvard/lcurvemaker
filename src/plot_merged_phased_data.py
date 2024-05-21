@@ -550,29 +550,26 @@ if obj["plot"].get("ymal"):
 if obj["plot"].get("ymil"):
     const.YMIL = obj["plot"].get("ymil")
     ax.yaxis.set_minor_locator(MultipleLocator(const.YMIL))
-if obj["plot"].get("xedges"):
+
+if obj["plot"].get("xlima"):
+    xmin, xmax = obj["plot"].get("xlima")
+    plt.xlim(xmin, xmax)
+    if args.lines and obj.get("max"):
+        plt.plot([xmin, xmax], [obj["max"], obj["max"]],
+                 "--k", lw=0.95, zorder=-20)
+    if args.lines and epoch and obj["plot"].get("ylima"):
+        plt.plot([epoch-JD_SHIFT, epoch-JD_SHIFT], obj["plot"]["ylima"],
+                 "--k", lw=0.95, zorder=-20)
+elif obj["plot"].get("xedges"):
     xmin, xmax = ax.get_xlim()
-    plt.xlim(xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"])
-    if args.lines:
-        if obj.get("max"):
-            plt.plot([xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"]],
-                     [obj["max"], obj["max"]],
-                     "--k", lw=0.95, zorder=-20)
-        if epoch and obj["plot"].get("ylima"):
-            plt.plot([epoch-JD_SHIFT, epoch-JD_SHIFT],
-                     obj["plot"]["ylima"],
-                     "--k", lw=0.95, zorder=-20)
-elif obj["plot"].get("xlima"):
-    plt.xlim(obj["plot"].get("xlima"))
-    if args.lines:
-        if obj.get("max"):
-            plt.plot([obj["plot"]["xlima"][0], obj["plot"]["xlima"][1]],
-                     [obj["max"], obj["max"]],
-                     "--k", lw=0.95, zorder=-20)
-        if epoch and obj["plot"].get("ylima"):
-            plt.plot([epoch-JD_SHIFT, epoch-JD_SHIFT],
-                     obj["plot"]["ylima"],
-                     "--k", lw=0.95, zorder=-20)
+    xmin, xmax = xmin + obj["plot"]["xedges"], xmax - obj["plot"]["xedges"]
+    plt.xlim(xmin, xmax)
+    if args.lines and obj.get("max"):
+        plt.plot([xmin, xmax], [obj["max"], obj["max"]],
+                 "--k", lw=0.95, zorder=-20)
+    if args.lines and epoch and obj["plot"].get("ylima"):
+        plt.plot([epoch-JD_SHIFT, epoch-JD_SHIFT], obj["plot"]["ylima"],
+                 "--k", lw=0.95, zorder=-20)
 
 plt.ylabel("Mag", fontsize=16)
 plt.xlabel(f"HJD - {JD_SHIFT}", fontsize=16)
