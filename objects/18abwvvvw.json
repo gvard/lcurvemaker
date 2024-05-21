@@ -33,6 +33,7 @@
 "asasfnam": "18abwvvvw-asas.csv",
 "gaiadr3fnam": "18abwvvvw-gaiadr3.dat",
 "ztfobj": ["18abwvvvw"],
+"lclnk": "https://www.aavso.org/vsx_docs/2388064/5780/18abwvvvw-ztf-atlas-asas-gaia-ph.png",
 "zcatf": "r",
 "curveshift": true,
 "clrshift": {"g": 0, "psg": 0, "r": -0.69, "psr": -0.69, "i": -0.7, "psi": -0.87, "psz": -0.98, "psy": -1.07,

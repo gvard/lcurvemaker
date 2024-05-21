@@ -37,7 +37,7 @@
 "atlaslim": 0.2, "zms": 3.5, "psms": 6.5, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymal": 0.1, "ymil": 0.02,
   "movavg": false,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 90,
+  "xedges": 90,
   "leg": "lower left",
   "ylim": [17.05, 16.82],
   "ylim1": [17.54, 16.8]

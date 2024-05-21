@@ -2,8 +2,9 @@
 "m1338": {
 "name": "Mis V1338",
 "other": "USNO-B1.0 1497-0087277, 2MASS J02331762+5945104, GSC2.3 NAWK000130",
-"gsc": "GSC2 NAWK000130",
 "nsvs": "NSVS 1846793, NSVS 1873739, NSVS 1920887",
+"gdr3": 465103387175402624,
+"epphot": false,
 "coord": "02 33 17.633 +59 45 10.49",
 "coordeg": [38.32342, 59.75294],
 "type": "EA",
@@ -37,7 +38,7 @@
   "gms": 4,
   "psms": 5,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 160,
+  "xedges": 160,
   "ylim": [13.0, 12.4],
   "ylimz1": [12.21, 11.9],
   "ylimaz": [13.88, 13.45]

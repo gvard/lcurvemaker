@@ -3,6 +3,7 @@
 "name": "USNO-B1.0 1534-0126575",
 "other": "2MASS J03493215+6324223, GSC2.3 NAVL025471",
 "gdr3": 487279540273925504,
+"epphot": true,
 "oldname": "u6575",
 "coord": "03 49 32.147 +63 24 22.45",
 "coordeg": [57.38388, 63.40623],
@@ -36,7 +37,7 @@
   "asasms": 2,
   "psms": 6,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 160,
+  "xedges": 160,
   "legz": "lower left",
   "ylim": [16.58, 15.97],
   "ylima": [16.58, 15.97]

@@ -35,7 +35,7 @@
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "", "asasfilt": "",
 "atlaslim": 0.2, "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.01,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 150,
+  "xedges": 150,
   "ylim": [14.78, 14.40],
   "ylima": [14.78, 14.40]
 }

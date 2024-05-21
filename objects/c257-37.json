@@ -43,8 +43,7 @@
   "asasms": 2.5, "zms": 4, "psms": 7.5,
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
-  "magl": 0.1,
-  "xedgesz": 90,
+    "xedgesz": 90,
   "legz": "lower left",
   "zoom": {
     "xlim": [0.58, 1.05],

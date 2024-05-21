@@ -22,7 +22,7 @@ objs.extend((
     ))
 
 # TAB_HEAD = "<tr><th>#</th><th>Name</th><th>Other</th><th>RA (J2000)</th><th>DEC</th><th>Type</th><th>Max</th><th>Min</th><th>Sys</th><th>Period</th><th>Epoch (JD)</th><th>D, %</th><th>Sp</th><th>Comment</th><th>L.Curve</th><th>Find.Chart</th></tr>"
-TAB_HEAD = "<tr><th>#</th><th>Name</th><th>Other</th><th>RA (J2000)</th><th>DEC</th><th>Con</th><th>Type</th><th>Max</th><th>Min</th><th>Amp</th><th>Sys</th><th>Period</th><th>D %</th><th>Prob</th><th>min II</th><th>Sp</th><th>Teff</th><th>logg</th><th>r</th><th>r ph</th><th>Exc</th><th>Gaia</th><th>Comment</th></tr>"
+TAB_HEAD = "<tr><th>#</th><th>Name</th><th>Other</th><th>RA (J2000)</th><th>DEC</th><th>Con</th><th>Type</th><th>Max</th><th>Min</th><th>Amp</th><th>Sys</th><th>Period</th><th>D %</th><th>Prob</th><th>min II</th><th>Sp</th><th>Teff</th><th>logg</th><th>r</th><th>r ph</th><th>Exc</th><th>Gaia</th><th>L.Curve</th><th>Comment</th></tr>"
 HTML_HEAD = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,7 +94,7 @@ def hms_to_deg(ra="", dec=""):
 
 
 k_prob = 0.8
-href = '<a href="https://vizier.cds.unistra.fr/viz-bin/VizieR-6?-out.form=%2bH%2bm&-source=I/355/gaiadr3*&Source='
+vizier_gaia_lnk = '<a href="https://vizier.cds.unistra.fr/viz-bin/VizieR-6?-out.form=%2bH%2bm&-source=I/355/gaiadr3*&Source='
 with open("../index.html", "w", encoding="utf8") as htmlfile:
     print(HTML_HEAD + TAB_HEAD, file=htmlfile)
     i = 0
@@ -114,12 +114,15 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
         coord_ra = f'<a href="https://simbad.u-strasbg.fr/simbad/sim-coo?Coord={ra.replace(" ", "+")}+{dec.replace("+", "%2B").replace(" ", "+")}%09&CooEpoch=2000&CooEqui=2000&Radius=1&Radius.unit=arcmin&submit=submit+query" target="_blank">{ra}</a>'
         coord_dec = f"<details><summary>{dec}</summary>{hms_to_deg(ra=ra)} {hms_to_deg(dec=dec)}</details>"
         fclnk = obj.get("fclnk")
-        # lc = obj.get("lc")
-        # if isinstance(lc, list):
-        #     lc = lc[0]
-        # lclink = f"https://github.com/gvard/lcurvemaker/raw/main/lc/{lc}" if lc else ""
-        if isinstance(fclnk, list):
-            fclnk = fclnk[0]
+        lc = obj.get("lc")
+        if isinstance(lc, list):
+            lc = lc[0]
+        lclink = f"https://github.com/gvard/lcurvemaker/raw/main/lc/{lc}" if lc else ""
+        if obj.get("lclnk"):
+            lc = "VSX plot"
+            lclink = obj.get("lclnk")
+        # if isinstance(fclnk, list):
+        #     fclnk = fclnk[0]
         try:
             mina = float(obj.get("min").replace("<", "").replace(":", ""))
             min = obj.get("min").replace("<", "&lt;")
@@ -139,6 +142,10 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
             prob = k_prob * (obj["d"] + obj["d2"])
         else:
             prob = k_prob * obj["d"]
+        if "epphot" in obj:
+            epphot = " EP✔️" if obj.get("epphot") else " EP❌"
+        else:
+            epphot = ""
         tr_content = [
             f"<td>{x}</td>"
             for x in (
@@ -166,9 +173,9 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
                 round(abs(0.5 - obj.get("2ndmin")), 3) if (obj.get("2ndmin") and obj.get("2ndmin") != 0.5) else "",
                 # f'{href}{obj.get("gdr3")}" target="_blank">Gaia DR3</a>' if (obj.get("gdr3") and obj.get("epphot")) else "",
                 # obj.get("gdr3") if obj.get("gdr3") else "",
-                f'{href}{obj.get("gdr3")}" target="_blank">Gaia DR3</a>' if obj.get("gdr3") else "",
+                f'{vizier_gaia_lnk}{obj.get("gdr3")}" target="_blank">GDR3</a>{epphot}' if obj.get("gdr3") else "",
+                f'<a href="{lclink}" target="_blank">{lc}</a>' if lc else "",
                 obj.get("comm"),
-                # f'<a href="{lclink}" target="_blank">{lc}</a>' if lc else "",
                 # f'<a href="{fclnk}" target="_blank">{nam.lower().replace(" ", "")}-fc</a>',
             )
         ]

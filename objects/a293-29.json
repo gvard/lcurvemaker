@@ -37,7 +37,7 @@
 "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.01,
   "asasms": 2, "psms": 5,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedgesz": 120, "xlima": [56900, 60400],
+  "xedgesz": 120, "xlima": [56900, 60400],
   "ylim": [12.03, 11.72],
   "ylima": [12.03, 11.72],
   "ylimaz": [13.88, 13.45]

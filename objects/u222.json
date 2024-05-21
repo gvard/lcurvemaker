@@ -4,8 +4,8 @@
 "other": "2MASS J03461696+6327428, GSC2.3 NAVL028103",
 "asas-dub": "ASASSN-V J034616.96+632743.1",
 "gdr3": 487292562614250496,
+"epphot": true,
 "coord": "03 46 16.989 +63 27 42.87",
-"coordc": "",
 "coordeg": [56.57066, 63.46198],
 "type": "EA+VAR",
 "max": 16.50,
@@ -38,7 +38,7 @@
   "asasms": 2,
   "psms": 7,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 140,
+  "xedges": 140,
   "ylim1": [16.8, 16.4],
   "ylim": [17.52, 16.4],
   "ylima": [17.52, 16.37]

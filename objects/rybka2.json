@@ -27,6 +27,6 @@
   "pslim": 0.9,
   "clrshift": {"g": 0.25, "asasg": -0.25, "r": 0, "i": -0.2, "z": -0.64, "o": -0.4, "c": 0, "G": -0.1},
   "plot": {"ztffilt": "gri", "psfilt": "griz", "atlasfilt": "oc", "asasfilt": "g", "atlasms": 1.5,
-    "xmal": 500, "xmil": 100, "ymil": 0.1, "ylim": [21.75, 15.65], "ylima": [21.75, 14.75], "magl": 0.1, "xedges": 160}
+    "xmal": 500, "xmil": 100, "ymil": 0.1, "ylim": [21.75, 15.65], "ylima": [21.75, 14.75], "xedges": 160}
 }
 }

@@ -36,7 +36,7 @@
 "pslim": 0.9,
 "plot": {"ztffilt": "", "psfilt": "", "atlasfilt": "", "asasfilt": "gV",
   "atledgclr": "#e44", "atlasms": 2, "zms": 4,
-  "xmal": 800, "xmil": 100, "ymil": 0.02, "magl": 0.1, "xedges": 130,
+  "xmal": 800, "xmil": 100, "ymil": 0.02, "xedges": 130,
   "leg": "lower left",
   "xlim": [-0.5, 1],
   "ylim": [11.46, 10.25],

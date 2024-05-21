@@ -42,7 +42,7 @@
   "gms": 4,
   "psms": 5,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 160,
+  "xedges": 160,
   "xlim": [-0.25, 1],
   "ylim": [12.30, 12.07],
   "ylimz": [12.87, 12.02],

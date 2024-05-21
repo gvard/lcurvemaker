@@ -2,6 +2,8 @@
 "Minkovskiy 24": {
 "name": "Minkovskiy 24",
 "other": "2MASS J19484962+1424281, USNO-B1.0 1044-0529494, GSC2.3 N1UK097057",
+"gdr3": 4317484611271757312,
+"epphot": false,
 "coord": "19 48 49.643 +14 24 28.26",
 "coordeg": [297.2068458, 14.4078500],
 "type": "EA",

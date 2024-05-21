@@ -4,6 +4,7 @@
 "other": "GSC2.3 N2FF000651, 2MASS J19343148+2932475, WISE J193431.48+293247.4",
 "gsc": "GSC2.3 N2FF000651",
 "gdr3": 2032350422553392768,
+"epphot": true,
 "coord": "19 34 31.479 +29 32 47.47",
 "coordc": "",
 "coordeg": [293.63116, 29.54652],
@@ -29,7 +30,7 @@
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "", "asasfilt": "",
 "atlaslim": 0.2, "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.01,
   "atledgclr": "saddlebrown",
-  "magl": 0.1, "xedges": 150, "atlasms": 2,
+  "xedges": 150, "atlasms": 2,
   "ylim": [13.12, 12.75]
 }
 }}

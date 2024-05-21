@@ -2,6 +2,8 @@
 "Minkovskiy 15": {
 "name": "Minkovskiy 15",
 "other": "2MASS J18420998+1305215, USNO-B1.0 1030-0398784, GSC2.3 N28J098717",
+"gdr3": 4505598509460641408,
+"epphot": false,
 "coord": "18 42 09.980 +13 05 21.71",
 "coordeg": [280.54158, 13.08936],
 "type": "EA",
