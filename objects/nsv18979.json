@@ -34,6 +34,7 @@
 "contamn": {"V": 16.25, "g": 16.25},
 "contamn2": {"V": 15.45, "g": 15.45},
 "contamn3": {"V": 15.45, "g": 14.19},
+"lclnk": "https://www.aavso.org/vsx_docs/57414/5780/nsv18979-ztf-asas-ph_20_1_2_3.9765",
 "curveshift": true,
 "clrshift": {"g": 0.12, "psg": 0.13, "r": 0, "psr": 0, "i": -0.04, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0.1, "c": 0.09, "V": 0, "asasg": -0.08, "G": -0.1, "gr": 0.11, "gi": -0.43},

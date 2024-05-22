@@ -30,7 +30,6 @@
 "pslim": 0.1,
 "atlasfnam": "c344-18-atlas.txt",
 "asasfnam": "c344-18-asas.csv",
-"gaiadr3fnamz": "c344-18-gaiadr3.dat",
 "crtsfnam": "c344-18-crts.csv",
 "curveshift": true,
 "clrshift": {"g": 0.57, "psg": 0.13, "r": 0, "psr": 0, "i": -0.18, "psi": -0.35, "psz": -0.2, "psy": -0.2,

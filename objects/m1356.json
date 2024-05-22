@@ -30,7 +30,6 @@
 "pslim": 0.1,
 "atlasfnam": "m1356-atlas.txt",
 "asasfnam": "m1356-asas.csv",
-"gaiadr3fnamz": "m1356-gaiadr3.dat",
 "crtsfnamz": "m1356-crts.csv",
 "curveshift": true,
 "clrshift": {"g": 0, "psg": 0.13, "r": -0.5, "psr": -0.5, "i": -0.71, "psi": -0.35, "psz": -0.2, "psy": -0.2,

@@ -30,7 +30,6 @@
 "pslim": 0.2,
 "atlasfnam": "cz517-atlas.txt",
 "asasfnamz": "nsv517-asas.csv",
-"gaiadr3fnamz": "cz517-gaiadr3.dat",
 "zlimz": [16, 15.5],
 "atlaslimz": [17.4, 16.0],
 "zcatf": "",

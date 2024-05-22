@@ -29,7 +29,6 @@
 "pslim": 0.1,
 "atlasfnam": "nsv1409-atlas.txt",
 "asasfnam": "nsv1409-asas.csv",
-"gaiadr3fnamz": "m1356-gaiadr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.73, "psg": 0.06, "r": 0, "psr": -0.65, "i": -0.2, "psi": -0.9, "psy": -1.4, "psz": -1.25,
              "o": -0.09, "c": 0.38, "V": 0, "asasg": 0.18, "G": -0.05},
