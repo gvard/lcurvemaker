@@ -23,7 +23,7 @@
 "logg": 3.6,
 "r": 2769,
 "rp": 2746,
-"comm": "Eccentric system. Min II = 15.28 r at phase 0.280",
+"comm": "Eccentric system. Min II = 15.28 r at phase 0.280, duration 5%",
 "vsxoid": 38685,
 "lclnk": "https://www.aavso.org/vsx_docs/38685/5780/nsv61-ps1-ztf-atlas-gaia-ph_4.747285.png",
 "asaslimold": 0.07,
@@ -45,11 +45,10 @@
   "psms": 7,
   "atlasms": {"o": 2.4, "c": 2.4},
   "atledgclr": "darkred",
-    "xedgesz": 120,
+  "xedges": 50,
   "xlima": [56895, 60352],
   "xlim": [-0.1, 1],
   "ylim": [15.47, 14.57],
-  "ylima": [16.02, 15.11],
-  "ylimazz": [13.88, 13.45]
+  "ylima": [15.47, 14.57]
 }
 }}

@@ -12,10 +12,10 @@
 "min": 15.88,
 "min2": "<15.35",
 "d": 0.02,
+"d2": 0.016,
 "system": "r",
 "period": 16.9759,
-"epochz": 2458424.86,
-"epoch": 2456693.314,
+"epoch": 2458492.759,
 "2ndmin": 0.5,
 "etype": "min",
 "sp": "A",
@@ -37,18 +37,21 @@
 "clrshift": {"g": 0.24, "psg": 0.22, "r": 0, "psr": 0.0, "i": -0.05, "psi": -0.04, "psz": -0.07, "psy": -0.14,
              "o": 0.1, "c": 0.23, "V": 0, "asasg": 0.18, "G": 0.02},
 "plot": {"ztffilt": "gri", "psfilt": "grizy", "atlasfilt": "", "asasfilt": "",
-"atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.01, "ymal": 0.1,
+"atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02, "ymal": 0.2,
   "asasms": 2,
   "atlasms": {"o": 1.5, "c": 1.5},
   "zms": 4,
   "gms": 4,
   "psms": 5.5,
   "atledgclr": "saddlebrown",
-  "xedges": 9,
-  "xlim1": [-0.1, 1],
-  "xlim": [-0.036, 0.545],
+  "xedges": 90,
+  "xlim": [-0.1, 1],
+  "zoom": {
+    "xlim": [-0.036, 0.545],
+    "xmalp": 0.1,
+    "xmilp": 0.02
+  },
   "ylim": [16.05, 14.96],
-  "ylimzz": [12.21, 11.9],
-  "ylimaz": [13.88, 13.45]
+  "ylima": [16.05, 14.96]
 }
 }}

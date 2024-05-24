@@ -35,7 +35,7 @@
 "clrshift": {"g": 0.12, "psg": 0.13, "r": 0, "psr": 0, "i": -0.04, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0.1, "c": 0.09, "V": 0, "asasg": 0.12, "G": -0.1, "gr": 0.02, "gi": 0.11},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "", "asasfilt": "gV", "gdsfilt": "ri",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 1.8,
   "zms": 3.5,
   "gms": 4,

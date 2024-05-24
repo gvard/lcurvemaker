@@ -33,16 +33,20 @@
 "ztflim": 0.0165,
 "ztfran": [17.535, 16.8],
 "ztfglim": 0.035,
+"zcatf": "gr",
 "curveshift": true,
-"clrshift": {"g": 1.04, "psg": 0.93, "r": 0.0, "psr": 0.02, "i": -0.49, "psi": -0.41, "psz": -3, "psy": -3, "o": -0.04, "c": 0.25, "G": 0.03},
-"plot": {"ztffilt": "ri", "psfilt": "ri", "atlasfilt": "", "asasfilt": "",
-"atlaslim": 0.2, "zms": 3.5, "psms": 6.5, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymal": 0.1, "ymil": 0.02,
+"clrshift": {"g": 1.04, "psg": 0.93, "r": 0.0, "psr": 0.02, "i": -0.49, "psi": -0.41, "psz": -3, "psy": -3,
+             "o": -0.04, "c": 0.25, "G": 0.03},
+"plot": {"ztffilt": "gri", "psfilt": "ri", "atlasfilt": "", "asasfilt": "",
+  "atlaslim": 0.2, "zms": 3.5, "psms": 6.5, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymal": 0.1, "ymil": 0.02,
   "movavg": false,
   "atledgclr": "saddlebrown",
-  "xedges": 90,
+  "xedges": 110,
   "leg": "lower left",
-  "ylim": [17.05, 16.82],
-  "ylim1": [17.54, 16.8]
-},
-"plotz": {"ztffilt": "ri", "psfilt": "ri", "atlasfilt": "", "asasfilt": "Vg"}
+  "zoom": {
+    "ylim": [17.05, 16.82]
+  },
+  "ylim": [17.54, 16.8],
+  "ylima": [17.54, 16.8]
+}
 }}

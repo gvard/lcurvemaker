@@ -34,8 +34,8 @@
 "curveshift": true,
 "clrshift": {"g": 0, "psg": 0.13, "r": -0.5, "psr": -0.5, "i": -0.71, "psi": -0.35, "psz": -0.2, "psy": -0.2,
              "o": -0.55, "c": -0.25, "V": 0.15, "asasg": 0.51, "G": 0.08, "CV": -0.01},
-"plot": {"ztffilt": "gri", "psfilt": "grizy", "atlasfilt": "oc", "asasfilt": "",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+"plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 2.5, "zms": 4, "psms": 6,
   "atlasms": {"o": 2.75, "c": 2.75},
   "atledgclr": "darkred",
@@ -45,6 +45,6 @@
   "xlim11": [-0.05, 0.05],
   "xlimz": [-0.027, 0.635],
   "ylim": [14.06, 13.07],
-  "ylimaz": [14.06, 13.07]
+  "ylima": [14.06, 13.07]
 }
 }}

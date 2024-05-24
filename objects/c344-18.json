@@ -20,6 +20,7 @@
 "teff": 5513,
 "logg": 4.19,
 "d": 0.013,
+"d2": 0.023,
 "r": 1560,
 "rp": 1539,
 "comm": "Eccentric system. Min II = 15.35 r at phase 0.354",
@@ -35,19 +36,18 @@
 "clrshift": {"g": 0.57, "psg": 0.13, "r": 0, "psr": 0, "i": -0.18, "psi": -0.35, "psz": -0.2, "psy": -0.2,
              "o": -0.04, "c": 0.30, "V": 0.27, "asasg": 0.57, "G": 0.05, "CV": 0.02},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 3.5,
   "zms": 4,
   "gms": 4,
   "psms": 6,
   "atlasms": {"o": 2.8, "c": 2.8},
   "atledgclr": "darkred",
-  "xedges": 90,
+  "xedges": 190,
   "legz": "lower left",
   "xlim": [-0.1, 1],
   "xlimz": [-0.15, 0.15],
   "ylim": [15.6, 14.79],
-  "ylimzz": [14.6, 13.31],
-  "ylimazz": [13.7, 13.45]
+  "ylima": [15.6, 14.79]
 }
 }}

@@ -8,12 +8,12 @@
 "coordeg": [86.96749375, 30.5125439],
 "type": "EA",
 "max": 12.54,
-"min": 13.20,
+"min": 13.19,
 "min2": 12.98,
 "system": "r",
 "d": 0.0043,
 "d2": 0.028,
-"2ndmin": 0.771,
+"2ndmin": 0.7715,
 "period": 32.1562,
 "epoch": 2458494.493,
 "sp": "F",
@@ -26,7 +26,7 @@
 "comm": "Eccentric system. Min II = 12.98 r. at phase 0.772. Contamination!",
 "vsxoid": 1544591,
 "asaslimold": 0.07,
-"atlaslim": {"o": 0.019, "c": 0.017},
+"atlaslim": {"o": 0.017, "c": 0.013},
 "asaslim": {"V": 0.04, "g": 0.024},
 "crtslim": 0.069,
 "pslim": 0.04,
@@ -41,7 +41,7 @@
 "clrshift": {"u": 1.99, "g": 0.35, "psg": 0.35, "r": 0, "psr": 0.03, "i": -0.10, "psi": -0.11, "z": -0.2, "psz": -0.1, "psy": -0.21,
              "o": -0.02, "c": 0.17, "V": 0.13, "asasg": 0.34, "V1": 0.08, "asasg1": 0.3, "G": 0, "CV": -0.01},
 "plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "oc", "asasfilt": "gV",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil1": 0.02, "ymal": 0.05, "ymil": 0.01,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil1": 0.02, "ymal": 0.1, "ymil": 0.02,
   "asasms": 3.5,
   "zms": 4,
   "gms": 4,
@@ -49,10 +49,13 @@
   "atlasms": {"o": 2.8, "c": 2.8},
   "atledgclr": "darkred",
   "xedges": 230,
-  "legz": "lower left",
-  "xlim": [0.7, 1.03],
-  "xlim2": [-0.1, 1],
-  "ylim": [13.35, 12.46],
-  "ylima": [13.37, 12.44]
+  "zoom": {
+    "xlim": [0.72, 1.02],
+    "xmalp": 0.1,
+    "xmilp": 0.01
+  },
+  "xlim": [-0.1, 1],
+  "ylim": [13.34, 12.46],
+  "ylima": [13.34, 12.44]
 }
 }}

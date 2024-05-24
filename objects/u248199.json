@@ -15,6 +15,7 @@
 "period": 1.976275,
 "epoch": 2458280.786,
 "d": 0.08,
+"d2": 0.06,
 "etype": "min",
 "sp": "",
 "comm": "Min II = 12.42 g",
@@ -35,7 +36,7 @@
 "atlaslim": 0.2, "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "atledgclr": "saddlebrown",
   "xedges": 150,
-  "ylim": [12.711, 12.127],
-  "ylima": [12.711, 12.127]
+  "ylim": [12.711, 12.22],
+  "ylima": [12.711, 12.22]
 }
 }}
