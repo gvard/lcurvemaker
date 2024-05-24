@@ -39,7 +39,7 @@
 "clrshift": {"g": 0.44, "r": 0, "i": -0.16,
              "o": -0.04, "c": 0.2, "V": 0.08, "asasg": 0.39, "G": 0.01},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 2.5,
   "zms": 4,
   "psms": 6,

@@ -15,6 +15,7 @@
 "epoch":  2459600.955,
 "2ndmin": 0.5285,
 "d": 0.020,
+"d2": 0.013,
 "etype": "min",
 "sp": "K",
 "teff": 4702,
@@ -34,16 +35,14 @@
 "clrshift": {"g": 0.51, "psg": 0.13, "r": -0.31, "psr": 0, "i": -0.56, "psi": -0.35, "psz": -0.2, "psy": -0.2,
              "o": -0.33, "c": 0.14, "V": 0, "asasg": 0.42, "G": 0.0, "CV": -0.37},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "Vg",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 2.5, "zms": 4, "psms": 6,
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
-    "xedges": 90,
-  "leg": "lower center",
+  "xedges": 130,
+  "legz": "lower center",
   "xlim": [-0.1, 1],
-  "xlimz": [0.45, 0.6],
-  "ylimq": [15.87, 14.62],
-  "ylimzz": [14.6, 13.31],
-  "ylimazz": [13.7, 13.45]
+  "ylim": [15.87, 14.62],
+  "ylima": [15.87, 14.62]
 }
 }}

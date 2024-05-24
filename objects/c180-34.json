@@ -21,7 +21,8 @@
 "r": 904,
 "rp": 905,
 "d": 0.027,
-"comm": "Eccentric system. Min II = 14.96 r at phase 0.536",
+"d2": 0.027,
+"comm": "Eccentric system. Min II = 14.96 r at phase 0.536, duration 2.7%",
 "vsxoid": 381317,
 "lclnk": "https://www.aavso.org/vsx_docs/381317/5780/c180-34-ztf-css-atlas-gaia-ph_6_1_2.57043",
 "asaslimold": 0.07,
@@ -32,23 +33,28 @@
 "asasfnamz": "c180-34-asas.csv",
 "gaiadr3fnam": "c180-34-gaiadr3.dat",
 "crtsfnam": "c180-34-crts.csv",
+"zcatf": "rg",
 "curveshift": true,
 "clrshift": {"g": 0.57, "psg": 0.13, "r": 0, "psr": 0, "i": -0.15, "psi": -0.35, "psz": -0.2, "psy": -0.2,
-              "o": 0.01, "c": 0.31, "V": 0, "asasg": 0.59, "G": 0.08, "CV": -0.01},
+             "o": 0.01, "c": 0.31, "V": 0, "asasg": 0.59, "G": 0.08, "CV": -0.01},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 2.5,
   "zms": 4,
   "gms": 4,
   "psms": 6,
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
-    "xedges": 90,
+  "xedges": 140,
   "legz": "lower left",
   "xlim": [-0.2, 1],
-  "xlimz": [-0.1, 0.6],
+  "zoom": {
+    "xlim": [-0.08, 0.6],
+    "xmalp": 0.2,
+    "xmilp": 0.02
+
+  },
   "ylim": [15.07, 14.09],
-  "ylimzz": [14.6, 13.31],
-  "ylimazz": [13.7, 13.45]
+  "ylima": [15.07, 14.09]
 }
 }}

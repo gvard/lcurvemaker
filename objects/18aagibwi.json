@@ -37,7 +37,7 @@
 "clrshift": {"g": 0, "psg": 0.13, "r": -0.07, "psr": 0, "i": -0.09, "psi": -0.29, "psz": -0.2, "psy": -0.2,
              "o": -0.02, "c": 0.01, "V": 0.31, "asasg": 0.71, "G": 0.05, "CV": -0.1, "ALeRCE g": -0.06, "ALeRCE r": 0, "ALeRCE i": -0.16},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.05,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.05,
   "asasms": 3.5, "zms": 5, "psms": 6,
   "atlasms": {"o": 1.8, "c": 1.8},
   "atledgclr": "darkred",
