@@ -93,6 +93,7 @@ def hms_to_deg(ra="", dec=""):
 
 
 k_prob = 0.8
+obs_dur = 10
 vizier_gaia_lnk = '<a href="https://vizier.cds.unistra.fr/viz-bin/VizieR-6?-out.form=%2bH%2bm&-source=I/355/gaiadr3*&Source='
 with open("../index.html", "w", encoding="utf8") as htmlfile:
     print(HTML_HEAD + TAB_HEAD, file=htmlfile)
@@ -148,6 +149,8 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
             prob = 0
         else:
             prob = k_prob * obj["d"]
+        if obj.get("period"):
+            prob = prob * obs_dur / obj["period"]
         if "epphot" in obj:
             epphot = " EP✔️" if obj.get("epphot") else " EP❌"
         else:
