@@ -98,9 +98,14 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
   "coordeg": [341.7817888, 56.2978492],
   "max": 14.35,
   "min": 14.93,
+  "min2": 14.78,
+  "system": "g",
   "period": 24.8435,
   "epoch": 2460161.091,
   "2ndmin": 0.399,
+  "d": 0.016,
+  "d2": 0.019,
+  "ztfran": [15.0, 14.2], "ztflim": 0.05,
   "atlasfnam": "sample-nickname-atlas.txt", "atlaslim": {"o": 0.013, "c": 0.017},
   "asasfnam": "sample-nickname-asas.csv", "asaslim": {"V": 0.05, "g": 0.06},
   "pslim": 0.1, "pslocal": false,
@@ -108,6 +113,7 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
   "crtsfnam": "sample-nickname-crts.csv", "crtslim": 0.06,
   "oglefnam": "sample-nickname-ogle.dat",
   "sdssfnam": "sample-nickname-sdss.dat",
+  "zcatf": "ri",
   "curveshift": true,
   "clrshift": {
     "g": 0.3, "psg": 0.32, "r": 0, "psr": 0.01, "i": -0.1, "psi": -0.1, "I": 0.1,
@@ -119,7 +125,7 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
     "atlasms": {"o": 2.8, "c": 2.8}, "atlaselw": 0.26, "atledgclr": "darkred",
     "asasms": {"V": 3.5, "g": 3.5}, "asaselw": 0.26,
     "zms": 4, "gms": 4, "psms": 6, "crtsms": 5,
-    "xmal": 500, "xmil": 170, "ymal": 0.1, "ymil": 0.01, "leg": "lower left",
+    "xmal": 500, "xmil": 100, "ymal": 0.1, "ymil": 0.01, "leg": "lower left",
     "xlim": [-0.5, 1.0], "xedges": 90, "xlima": [56963, 60331],
     "ylim": [14.7, 13.94], "ylima": [14.88, 13.8]
   }
