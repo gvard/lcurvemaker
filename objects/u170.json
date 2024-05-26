@@ -29,6 +29,7 @@
 "asasfnamz": "u170-asas.csv",
 "asaslim": {"V": 0.5, "g": 0.5},
 "vsxoid": 359210,
+"lclnk": "https://www.aavso.org/vsx_docs/359210/5780/u170-ztf-gaia-ph_3.20341.png",
 "atlaslim": {"o": 0.02, "c": 0.02},
 "pslim": 0.2,
 "zcatf": "gr",

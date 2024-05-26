@@ -25,6 +25,7 @@
 "rp": 3129,
 "comm": "D = 0.02 P.",
 "vsxoid": 895234,
+"lclnk": "https://www.aavso.org/vsx_docs/895234/5780/cz517-ps1-ztf-ph_16.9759.png",
 "atlaslim": {"o": 0.031, "c": 0.033},
 "asaslim": {"V": 0.12, "g": 0.12},
 "pslim": 0.2,

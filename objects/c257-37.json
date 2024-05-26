@@ -26,6 +26,7 @@
 "rp": 1615,
 "comm": "Eccentric system. Min II = 14.81 g at phase 0.636, duration 3%",
 "vsxoid": 389027,
+"lclnk": "https://www.aavso.org/vsx_docs/389027/5780/c257-37-ps1-ztf-css-gaia-ph_11.4245.png",
 "asaslimold": 0.07,
 "atlaslim": {"o": 0.3, "c": 0.35},
 "asaslim": {"V": 0.04, "g": 0.04},

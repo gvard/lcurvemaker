@@ -1,6 +1,6 @@
 {
 "dde65": {
-"name": "VakhlovaLV1",
+"name": "Vakhlova LV1",
 "other": "ASASSN-V J072832.74+544515.9, GALEX J072832.7+544517, DDE 65",
 "gdr3": 988561597340525056,
 "epphot": true,
@@ -22,7 +22,8 @@
 "epoch": 2458055.893,
 "2ndmin": 0.5,
 "etype": "min",
-"sp": "",
+"sp": "A6IV",
+"spref": "2023ApJS..266...14T",
 "comm": "Min II= 12.05 V. Discovered by 11th grade student Elizabeth Vakhlova during LANAT summer school",
 "vsxoid": 623265,
 "asaslimold": 0.07,
