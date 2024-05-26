@@ -23,7 +23,7 @@
 "logg": 3.94,
 "r": 2330,
 "rp": 2307,
-"comm": "Eccentric system. Min II = 12.96 V. at phase 0.464. ASAS-SN magnitudes contaminated by Gaia DR3 5333065190733743360 (V= 17.7; sep. 5''), 2MASS J11522716-6317104 (V= 16.5; sep. 12'') and 2MASS J11522631-6316596 (V= 14.5; sep. 17''). Range has been corrected.",
+"comm": "Eccentric system. Min II = 12.96 V. at phase 0.464, duration 1.4%. ASAS-SN magnitudes contaminated by Gaia DR3 5333065190733743360 (V= 17.7; sep. 5''), 2MASS J11522716-6317104 (V= 16.5; sep. 12'') and 2MASS J11522631-6316596 (V= 14.5; sep. 17''). Range has been corrected.",
 "vsxoid": 57414,
 "asaslimold": 0.07,
 "atlaslim": {"o": 0.04, "c": 0.04},

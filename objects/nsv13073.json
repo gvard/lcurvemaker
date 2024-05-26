@@ -28,6 +28,7 @@
 "comm": "Ellipsoidal variations amplitude 0.25 g",
 "rem": "MinII = 14.84 g. Reflection effect amplitude 0.23 g.",
 "vsxoid": 51697,
+"lclnk": "https://www.aavso.org/vsx_docs/51697/5780/nsv13073-ps1-ztf-atlas-gaia-ph.png",
 "asaslimold": 0.07,
 "atlaslim": {"o": 0.01, "c": 0.015},
 "asaslim": {"V": 0.06, "g": 0.065},

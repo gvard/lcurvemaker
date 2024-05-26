@@ -10,14 +10,14 @@ objs = []
 for mnum in (4, 5, 6, 8, 11, 15, 16, 17, 18, 19, 20, 21, 23, 24):
     objs.append(f"minkovskiy{mnum}")
 objs.extend((
-    "gusev4", "18abwvvvw", "cz1850", "c79-0", "19acdncga", "m1399", "nsv18979",
-    "nsv13073", "nsv12175", "m1356", "m1366", "cz517", "c344-18", "18aaaawyw",
-    "c210-16",
-    "c257-37",
-    "c111-36", "m1338", "nsv1409", "c180-34", "nsv18927",
-    "dde2", "nsv61", "18acrvwcz", "a293-29", "g16ams", "18aagibwi",
+    "gusev4", "18abwvvvw", "m1396", "cz1850", "c79-0", "19acdncga", "m1399", "nsv18979",
+    "nsv13073", "nsv12175", "m1356", "m1366", "cz517", "c344-18", "18aaaawyw", "oxdel",
+    "c210-16", "c350-33", "18aceoesf", "m1397", "c257-37", "cz1156", "cz1153", "c132-17",
+    "c336-2", "18aabpshf", "c111-36", "m1338", "nsv1409", "c180-34", "nsv18927", "nsv18857",
+    "dde2", "g021-005", "nsv61", "18acrvwcz", "a293-29", "g16ams", "18aagibwi", "nsv14698",
     "u170", "m1398", "u248199", "navl02", "svkv70", "u248",
-    "dde65", "u240", "u222", "n2fu0", "dde58", "dde60",
+    "dde65", "u240", "u222", "n2fu0",
+    "dde58", "dde60", "dde62",
     ))
 
 # TAB_HEAD = "<tr><th>#</th><th>Name</th><th>Other</th><th>RA (J2000)</th><th>DEC</th><th>Type</th><th>Max</th><th>Min</th><th>Sys</th><th>Period</th><th>Epoch (JD)</th><th>D, %</th><th>Sp</th><th>Comment</th><th>L.Curve</th><th>Find.Chart</th></tr>"
@@ -99,8 +99,12 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
     i = 0
     for obj in objs:
         i += 1
-        with open(f"../objects/{obj}.json", encoding="utf-8") as json_data:
-            data = json.loads(json_data.read())
+        try:
+            with open(f"../objects/{obj}.json", encoding="utf-8") as json_data:
+                data = json.loads(json_data.read())
+        except FileNotFoundError:
+            print("No", obj, "settings file")
+            continue
         des = str(next(iter(data)))
         obj = data[des]
         nam = obj.get("name") if obj.get("name") else des
@@ -123,7 +127,7 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
         # if isinstance(fclnk, list):
         #     fclnk = fclnk[0]
         try:
-            mina = float(obj.get("min").replace("<", "").replace(":", ""))
+            mina = float(obj.get("min").replace("<", "").replace(":", "")) if obj.get("min") else None
             min = obj.get("min").replace("<", "&lt;")
         except AttributeError:
             min = obj.get("min")
@@ -137,8 +141,11 @@ with open("../index.html", "w", encoding="utf8") as htmlfile:
             min2 = min2.replace("<", "&lt;")
         if not obj.get("d") and obj.get("prob"):
             prob = obj["prob"]
-        elif obj.get("d2"):
+        elif obj.get("d") and obj.get("d2"):
             prob = k_prob * (obj["d"] + obj["d2"])
+        elif not obj.get("d"):
+            print(des, "without D")
+            prob = 0
         else:
             prob = k_prob * obj["d"]
         if "epphot" in obj:

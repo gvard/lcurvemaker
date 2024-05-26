@@ -810,7 +810,10 @@ if period:
 
     if obj.get("min") and isinstance(obj["min"], str):
         obj["min"] = float(obj["min"].strip("<").strip(":"))
-
+    if args.model and obj.get("minecl"):
+        obj["min"] = obj["minecl"]
+    if obj.get("min2") and isinstance(obj["min2"], str):
+        obj["min2"] = float(obj["min2"].strip("<").strip(":"))
     if args.model:
         if all([obj.get(x) for x in ("max", "min", "d")]):
             datax = [
@@ -833,7 +836,7 @@ if period:
                 1-obj["d"]/2,
                 1,
                 1+obj["d"]/2,
-                XLIMM[1],
+                max(XLIMM[1], 1+obj["d"]/2),
             ))
             datay.extend((
                 obj["max"],
@@ -844,12 +847,12 @@ if period:
                 obj["max"],
                 obj["max"],
             ))
-        else:
+        elif all([obj.get(x) for x in ("max", "min", "d")]):
             datax.extend((
                 1-obj["d"]/2,
                 1,
                 1+obj["d"]/2,
-                XLIMM[1],
+                max(XLIMM[1], 1+obj["d"]/2),
             ))
             datay.extend((
                 obj["max"],
@@ -857,7 +860,10 @@ if period:
                 obj["max"],
                 obj["max"],
             ))
-        plt.plot(datax, datay, "-ok", lw=3)
+        try:
+            plt.plot(datax, datay, "-ok", lw=3)
+        except NameError:
+            pass
 
     # Phased plot parameters
     if obj["plot"].get("leg"):
@@ -878,8 +884,9 @@ if period:
     if YLIM:
         ax2.set_ylim(YLIM)
         if args.lines:
-            plt.plot([0, 0], YLIM, "--k", lw=0.95, zorder=-20)
-            plt.plot([1, 1], YLIM, "--k", lw=0.95, zorder=-20)
+            plt.plot([0, 0], YLIM, "--k", lw=const.LW_MIN, zorder=-20)
+            if XLIMM[1] != 1:
+                plt.plot([1, 1], YLIM, "--k", lw=const.LW_MIN, zorder=-20)
             if obj.get("2ndmin"):
                 plt.plot([obj["2ndmin"], obj["2ndmin"]], YLIM, "--k", lw=0.95, zorder=-20)
             if obj.get("max"):
