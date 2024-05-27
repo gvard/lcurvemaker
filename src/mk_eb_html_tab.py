@@ -10,10 +10,10 @@ objs = []
 for mnum in (4, 5, 6, 8, 11, 15, 16, 17, 18, 19, 20, 21, 23, 24):
     objs.append(f"minkovskiy{mnum}")
 objs.extend((
-    "gusev4", "18abwvvvw", "m1396", "cz1850", "c79-0", "19acdncga", "m1399", "nsv18979",
-    "nsv13073", "nsv12175", "m1356", "m1366", "cz517", "c344-18", "18aaaawyw", "oxdel",
+    "gusev4", "18abwvvvw", "m1396", "m1404", "cz1850", "c79-0", "19acdncga", "m1399", "nsv18979",
+    "nsv13073", "nsv12175", "m1356", "m1366", "cz517", "g187", "c344-18", "18aaaawyw", "oxdel",
     "c210-16", "c350-33", "18aceoesf", "m1397", "c257-37", "cz1156", "cz1153", "c132-17",
-    "c336-2", "18aabpshf", "c111-36", "m1338", "nsv1409", "c180-34", "nsv18927", "nsv18857",
+    "c336-2", "18aabpshf", "c111-36", "m1338", "nsv1409", "g333", "c180-34", "nsv18927", "nsv18857",
     "dde2", "g021-005", "nsv61", "18acrvwcz", "a293-29", "g16ams", "18aagibwi", "nsv14698",
     "u170", "m1398", "u248199", "navl02", "svkv70", "u248",
     "dde65", "u240", "u222", "n2fu0",
