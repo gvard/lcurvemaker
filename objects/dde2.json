@@ -28,7 +28,7 @@
 "lclnk": "https://www.aavso.org/vsx_docs/174679/5780/dde2-asas-gaia-ph_6.09311.png",
 "r": 652,
 "rp": 656,
-"comm": "Min II = 10.55 V",
+"comm": "Min II = 10.55 V. D = 0.15 P.",
 "asaslim": {"V": 0.015, "g": 0.015},
 "curveshift": true,
 "clrshift": {"g": 0.84, "psg": 0.73, "asasg": 0.38, "r": 0.1, "psr": 0.06, "i": 0, "psi": -0.22, "z": 0, "psz": -0.31, "psy": -0.5,

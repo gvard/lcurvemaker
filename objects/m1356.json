@@ -25,6 +25,7 @@
 "comm": "Eccentric system. Min II = 13.36 g at phase 0.607, duration 2%",
 "vsxoid": 275734,
 "lclnk": "https://www.aavso.org/vsx_docs/275734/5780/mis1356-ztf-atlas-ph_20.6458.png",
+"lczoom": "https://www.aavso.org/vsx_docs/275734/5780/mis1356-ztf-atlas-zoomed-ph_20.6458.png",
 "asaslimold": 0.07,
 "atlaslim": {"o": 0.01, "c": 0.031},
 "asaslim": {"V": 0.03, "g": 0.039},
