@@ -24,7 +24,7 @@
 "rp": 993,
 "comm": "Eccentric system. Min II = 12.97 V at phase 0.423, duration 3%. Double-line spectroscopic binary",
 "lclnk": "https://www.aavso.org/vsx_docs/275767/5780/m1399-ztf-atlas-asas-ph_22.4621.png",
-"lclnkz": "https://www.aavso.org/vsx_docs/275767/5780/m1399-ztf-atlas-asas-ph_22_1_2.4621-zoomed",
+"lczoom": "https://www.aavso.org/vsx_docs/275767/5780/m1399-ztf-atlas-asas-ph_22_1_2.4621-zoomed",
 "vsxoid": 275767,
 "asaslim": {"V": 0.032, "g": 0.024},
 "atlaslim": {"o": 0.018, "c": 0.02},

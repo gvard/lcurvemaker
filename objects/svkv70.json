@@ -22,7 +22,7 @@
 "r": 1524,
 "rp": 1327,
 "d": 0.07,
-"comm": "Rotation period P= 0.777934 with amplitude 0.1 mag in ZTF data in r and i filters.",
+"comm": "D = 0.07 P. Rotation period P= 0.777934 with amplitude 0.1 mag in ZTF data in r and i filters.",
 "lclnk": "https://www.aavso.org/vsx_docs/476539/5780/svkv70-ztf-gaia-ps1-ph_1.770518.png",
 "gaiadr3fnam": "svkv70-gaiadr3.dat",
 "asasfnamz": "svkv70-asas.csv",

@@ -26,6 +26,7 @@
 "comm": "Eccentric system. Min II = 12.69 V at phase 0.338, duration 8%. Heartbeat amplitude 0.02 mag.",
 "vsxoid": 275766,
 "lclnk": "https://www.aavso.org/vsx_docs/275766/5780/m1398-ztf-asas-gaia-ph_2.912715.png",
+"lczoom": "https://www.aavso.org/vsx_docs/275766/5780/m1398-ztf-asas-gaia-ph_2.912715-zoomed.png",
 "asaslim": {"V": 0.014, "g": 0.00999},
 "atlaslim": {"o": 0.04, "c": 0.04},
 "pslim": 0.1,

@@ -25,7 +25,7 @@
 "rp": 656,
 "comm": "Min II = 14.49 r.",
 "lclnk": "https://www.aavso.org/vsx_docs/275743/5780/mis1366-ztf-atlas-gaia-ph_20.48335.png",
-"lclnkz": "https://www.aavso.org/vsx_docs/275743/5780/mis1366-ztf-atlas-gaia-ph_20.48335-zoomed.png",
+"lczoom": "https://www.aavso.org/vsx_docs/275743/5780/mis1366-ztf-atlas-gaia-ph_20.48335-zoomed.png",
 "vsxoid": 275743,
 "asaslimold": 0.07,
 "atlaslim": {"o": 0.017, "c": 0.031},
