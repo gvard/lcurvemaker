@@ -2,7 +2,7 @@
 "oxdel": {
 "name": "OX Del",
 "other": "BD+15 4264, NSV 25346, ASASSN-V J204900.63+161348.0",
-"desig": "USNO-B1.0 1062-0572176, 2MASS J20490058+1613482, GSC2.3 N2QI001017",
+"desig": "TYC 1647-1627-1, UCAC4 532-132774, GSC 01647-01627, USNO-B1.0 1062-0572176, 2MASS J20490058+1613482, GSC2.3 N2QI001017",
 "gdr3": 1763049135451370496,
 "epphot": false,
 "coord": "20 49 00.588 +16 13 48.21",
@@ -24,18 +24,20 @@
 "logg": 3.73,
 "r": 704,
 "rp": 703,
-"comm": "Min II = 11.49 V. A twice shorter period is not excluded",
+"comm": "Min II = 11.49 V at phase 0.5025. Primary minimum might be the secondary",
 "vsxoid": 63781,
+"lclnk": "https://www.aavso.org/vsx_docs/63781/5780/oxdel-asas3-assn-ph_14.24963.png",
+"lczoom": "https://www.aavso.org/vsx_docs/63781/5780/oxdel-asas3-assn-ph_7.124815z.png",
 "atlaslim": {"o": 0.13, "c": 0.15},
 "asaslim": {"V": 0.022, "g": 0.017},
 "pslim": 0.1,
 "atlasfnamz": "oxdel-atlas.txt",
 "asasfnam": "oxdel-asas.csv",
-"gaiadr3fnamz": "oxdel-gaiadr3.dat",
+"asas3nam": "oxdel",
 "curveshift": true,
 "clrshift": {"g": 0.12, "psg": 0.13, "r": 0, "psr": 0, "i": -0.04, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0.5, "c": 1.02, "V": 0, "asasg": 0.21, "G": 0.0},
-"plot": {"ztffilt": "", "psfilt": "", "atlasfilt": "oc", "asasfilt": "Vg",
+"plot": {"ztffilt": "", "psfilt": "", "atlasfilt": "", "asasfilt": "Vg",
   "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 2.5,
   "zms": 3.5,
@@ -43,7 +45,6 @@
   "psms": 6,
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
-  "magl": 0.1,
   "xedges": 90,
   "xlim": [-0.07, 1],
   "zoom": {
@@ -52,7 +53,7 @@
     "xmalp": 0.05,
     "xmilp": 0.01
   },
-  "ylim": [11.55, 10.9],
-  "ylima": [11.55, 10.9]
+  "ylim": [11.545, 10.895],
+  "ylima": [11.545, 10.895]
 }
 }}
