@@ -1,0 +1,41 @@
+{
+"gusev3": {
+"name": "Gusev 3",
+"other": "IRAS 21210+4922, 2MASS J21224796+4935165, USNO-B1.0 1395-0396745, CGCS 5273",
+"desig": "GSC2.3 N2TJ075654, AllWISE J212247.95+493516.3",
+"gdr3": 2171049416308375168,
+"epphot": true,
+"coord": "21 22 47.961 +49 35 16.48",
+"coordeg": [320.6998379, 49.5879114],
+"type": "L|SRB",
+"max": 16.2,
+"min": 20.45,
+"system": "r",
+"period": 3570,
+"epoch": 2459305,
+"etype": "max",
+"sp": "",
+"comm": "J-K=3.1 (2MASS)",
+"lc": "gusev3-ps1-ztf-atlas-gaia.png",
+"vsxoid": 2227044,
+"atlasfnam": "gusev3-atlas.txt",
+"gaiadr3fnam": "gusev3-gdr3.dat",
+"atlaslim": {"o": 0.172, "c": 0.29},
+"clrshift": {"g": 3, "psg": 4.6, "r": 0, "psr": 0, "psi": -2.78, "psz": -4.54, "psy": -5.43, "o": -1.3, "c": 3.6, "G": -2},
+"curveshift": true,
+"fclnk": "https://www.aavso.org/vsx_docs/2227044/208/Gusev3-BRIR5x5.jpg",
+"plot": {"ztffilt": "r", "psfilt": "izry", "atlasfilt": "o",
+"zms": 5.7, "atlasms": {"o": 3, "c": 2.2},
+"atledgclr": "darkred",
+"ylim": [20.38, 16.1],
+"ylima": [20.38, 16.1],
+"zoom": {
+  "xlim": [57220, 60330]
+},
+"xedges": 200,
+"xmal": 500,
+"xmil": 100,
+"ymal": 0.5,
+"ymil": 0.1
+}
+}}
