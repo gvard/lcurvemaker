@@ -1,0 +1,35 @@
+{
+"DAV V11": {
+"name": "DAV V11",
+"other": "IRAS 18484+0149, 2MASS J18505837+0153276, GSC2.3 N1NZ028223",
+"desig": "WISEA J185058.36+015327.8",
+"coord": "18 50 58.385 +01 53 27.60",
+"gaiadr3": 4279090455474684672,
+"epphot": true,
+"coordeg": [282.7432692, 1.8909996],
+"type": "M",
+"max": "17.3:",
+"min": "21.0:",
+"system": "i",
+"period": 360,
+"epoch": 2459555,
+"etype": "min",
+"sp": "",
+"comm": "ATLAS magnitudes are contaminated by 2MASS J18505828+0153343 (G= 18.5; V= 20.4)",
+"vsxoid": 2227460,
+"lclnk": ["https://www.aavso.org/vsx_docs/2227460/5780/davv11-ps1-ztf-atlas-gaia.png",
+          "https://www.aavso.org/vsx_docs/2227460/5780/davv11-ps1-ztf-atlas-gaia-ph_360.png"],
+"fclnk": ["https://www.aavso.org/vsx_docs/2227460/5067/DAVV11_finder_chart.gif"],
+"atlaslim": {"o": 0.39, "c": 0.39},
+"gaiadr3fnam": "davv11-gdr3.txt",
+"clrshift": {"psg": 4.6, "r": 1.7, "psr": 2.2, "i": 0, "psi": 0, "o": 1, "psz": -3.4, "psy": -5.3, "G": -0.5},
+"clrshiftold": {"psg": 4.6, "r": 1.7, "psr": 2.2, "i": 0, "psi": 0, "o": 1.5, "psz": -3.4, "psy": -5.3},
+"curveshift": true,
+"plot": {
+  "ztffilt": "i", "atlasfilt": "o", "psfilt": "izy",
+  "atledgclr": "#922",
+  "xmal": 500, "xmil": 100, "ymalz": 0.5, "ymil": 0.1, "xedges": 190,
+  "ylima": [21.2, 16.3],
+  "ylim": [21.2, 16.3]
+}
+}}
