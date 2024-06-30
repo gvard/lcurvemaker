@@ -22,6 +22,8 @@
 "sp": "A",
 "teff": 8606,
 "logg": 2.60,
+"r": 3982,
+"rp": 3948,
 "comm": "Eccentric system. Min II = 14.17 r at phase 0.575, duration 10%. Period determination: 2022MNRAS.509.2566M",
 "vsxoid": 57292,
 "lclnk": "https://www.aavso.org/vsx_docs/57292/5780/nsv18857-atl-gds-gaia-ph_6.3637.png",
