@@ -47,7 +47,6 @@
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
   "legz": "lower center",
-  "magl": 0.1,
   "xedges": 130,
   "xlim": [-0.1, 1],
   "zoom": {

@@ -2,6 +2,7 @@
 "dde65": {
 "name": "Vakhlova LV1",
 "other": "ASASSN-V J072832.74+544515.9, GALEX J072832.7+544517, DDE 65",
+"tic": 444989702,
 "gdr3": 988561597340525056,
 "epphot": true,
 "desig": "2MASS J07283273+5445162, USNO-B1.0 1447-0181076, GSC2.3 N7E5000171, WISE J072832.72+544516.0",
@@ -20,7 +21,7 @@
 "G": 11.92,
 "system": "r",
 "period": 1.281401,
-"epoch": 2458055.893,
+"epoch": 2458055.895,
 "2ndmin": 0.5,
 "etype": "min",
 "sp": "A6IV",
@@ -35,7 +36,7 @@
 "pslim": 0.1,
 "atlasfnamz": "dde65-atlas.txt",
 "asasfnam": "dde65-asas.csv",
-"gaiadr3fnam": "dde65-gaiadr3.dat",
+"gaiadr3fnam": "dde65-gdr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.12, "psg": 0.13, "r": 0, "psr": 0, "i": 0.02, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0.0, "c": 0.03, "V": 0, "asasg": 0.19, "G": -0.06},
@@ -48,6 +49,7 @@
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
   "xedges": 130,
+  "ylimtess": [0.497, 1.052],
   "xlim": [-0.5, 1],
   "ylim": [12.8, 11.9],
   "ylima": [12.8, 11.9]

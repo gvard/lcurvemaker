@@ -24,7 +24,7 @@
 "ztfobj": ["ZTF18abojoyx"],
 "lc": "minkovskiy19-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2225976/4816/Minkovskiy%2019%20BRIR.png"],
-"gaiadr3fnam": "minkovskiy19-gaiadr3.dat",
+"gaiadr3fnam": "minkovskiy19-gdr3.dat",
 "zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0, "psg": -0.02, "r": -0.63, "psr": -0.6, "i": -0.9, "psz": -1.08, "psi": -0.9, "G": -0.62},

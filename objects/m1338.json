@@ -5,9 +5,10 @@
 "nsvs": "NSVS 1846793, NSVS 1873739, NSVS 1920887",
 "gdr3": 465103387175402624,
 "epphot": false,
+"tic": 450141293,
 "coord": "02 33 17.633 +59 45 10.49",
 "coordeg": [38.32342, 59.75294],
-"type": "EA",
+"type": "EA+HB",
 "max": 12.48,
 "min": 12.96,
 "min2": 12.81,
@@ -42,7 +43,13 @@
   "psms": 5,
   "atledgclr": "saddlebrown",
   "xedges": 160,
+  "ylimtess": [0.655, 1.032],
   "xlim": [-0.25, 1.06],
+  "zoom": {
+    "xlim": [0.79, 1.06],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
   "ylim": [13.0, 12.4],
   "ylima": [13.0, 12.4]
 }

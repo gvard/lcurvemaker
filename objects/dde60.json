@@ -31,7 +31,7 @@
 "crtsfnam": "dde60-crts.csv",
 "atlasfnam": "dde60-atlas.txt",
 "asasfnam": "dde60-asas.csv",
-"gaiadr3fnam": "dde60-gaiadr3.dat",
+"gaiadr3fnam": "dde60-gdr3.dat",
 "zcatf": "gr",
 "curveshift": true,
 "clrshift": {"g": 0, "psg": 0, "r": -0.78, "psr": -0.78, "i": 0.0, "psi": 0, "psz": -0, "psy": -0,

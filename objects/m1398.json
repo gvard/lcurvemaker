@@ -3,6 +3,7 @@
 "name": "Mis V1398",
 "other": "AASAS-SN J004456.92+570420.3, USNO-B1.0 1470-0028554, 2MASS J00445692+5704196",
 "more": "USNO-B1.0 1470-0028554, GSC2.3 NAMT000443",
+"tic": 445140172,
 "gdr3": 424628813666720384,
 "epphot": true,
 "coord": "00 44 56.924 +57 04 19.59",
@@ -13,8 +14,8 @@
 "min2": 12.69,
 "system": "V",
 "period": 2.912715,
-"epoch": 2459484.878,
-"2ndmin": 0.338,
+"epoch": 2459484.879,
+"2ndmin": 0.3385,
 "etype": "min",
 "sp": "A8III/A9V",
 "d": 0.083,
@@ -33,7 +34,7 @@
 "ztfran": [13.07, 12.04],
 "asasfnam": "m1398-asas.csv",
 "atlasfnamz": "m1398-atlas.txt",
-"gaiadr3fnam": "m1398-gaiadr3.dat",
+"gaiadr3fnam": "m1398-gdr3.dat",
 "zcatf": "g",
 "curveshift": true,
 "clrshift": {"g": 0.21, "psg": 0.27, "r": 0, "psr": 0, "i": -0.26, "psi": -0.26, "psy": -1.4, "psz": -1.25,
@@ -47,10 +48,14 @@
   "atledgclr": "saddlebrown",
   "xedges": 160,
   "xlim": [-0.25, 1],
+  "ylimtess": [0.553, 1.049],
   "zoom": {
-    "ylim": [12.30, 12.07]
+    "ylimz": [12.30, 12.07],
+    "xlim": [-0.065, 0.405],
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
-  "ylim": [12.87, 12.02],
-  "ylima": [12.87, 12.02]
+  "ylim": [12.85, 12.05],
+  "ylima": [12.85, 12.05]
 }
 }}

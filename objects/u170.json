@@ -25,7 +25,7 @@
 "rp": 1090,
 "sp": "G",
 "comm": "Min II = 14.72 r. D = 0.05 P.",
-"gaiadr3fnam": "u170-gaiadr3.dat",
+"gaiadr3fnam": "u170-gdr3.dat",
 "asasfnamz": "u170-asas.csv",
 "asaslim": {"V": 0.5, "g": 0.5},
 "vsxoid": 359210,

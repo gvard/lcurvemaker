@@ -3,6 +3,7 @@
 "name": "V1123 Cas",
 "other": "ASASSN-V J013316.20+603801.4, HIP 7238, USNO-B1.0 1506-0057146, GSC2.3 NAML000336",
 "desig": "2MASS J01331633+6038014, NSV 15320",
+"tic": 389771144,
 "gdr3": 509862478327484288,
 "epphot": true,
 "coord": "01 33 16.332 +60 38 01.46",
@@ -19,7 +20,7 @@
 "rp": 2418,
 "system": "V",
 "period": 4.501525,
-"epoch":  2457675.945,
+"epoch":  2457675.946,
 "2ndmin": 0.695,
 "etype": "min",
 "sp": "B2V",
@@ -33,7 +34,7 @@
 "pslim": 0.1,
 "atlasfnam": "v1123cas-atlas.txt",
 "asasfnam": "v1123cas-asas.csv",
-"gaiadr3fnam": "v1123cas-gaiadr3.dat",
+"gaiadr3fnam": "v1123cas-gdr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.12, "psg": 0.13, "r": 0, "psr": 0, "i": 0.04, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0, "c": 0.0, "V": 0, "asasg": 0.1, "G": -0.07},
@@ -46,13 +47,13 @@
   "atlasms": {"o": 2, "c": 2},
   "asasmsz": {"V": 2, "g": 2},
   "atledgclr": "darkred",
-  "magl": 0.1,
   "xedges": 90,
   "xlim": [-0.38, 1],
+  "ylimtess": [0.8, 1.07],
   "zoom": {
     "xlim": [0.64, 1.055],
-    "xmalp": 0.1,
-    "xmilp": 0.02
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [11.48, 11.18],
   "ylima": [11.48, 11.18]

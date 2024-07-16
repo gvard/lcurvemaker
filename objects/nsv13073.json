@@ -35,7 +35,7 @@
 "pslim": 0.05,
 "atlasfnam": "nsv13073-atlas.txt",
 "asasfnam": "nsv/13073-asas.csv",
-"gaiadr3fnam": "nsv13073-gaiadr3.dat",
+"gaiadr3fnam": "nsv13073-gdr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0, "psg": -0.02, "r": -0.93, "psr": -0.88, "i": -0.86, "psi": -1.23, "psz": -1.38, "psy": -1.49,
              "o": -1.01, "c": -0.44, "V": -0.53, "asasg": 0, "G": -0.86},

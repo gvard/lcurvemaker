@@ -25,7 +25,7 @@
 "lc": "minkovskiy21-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2226894/4816/Minkovskiy%2021%20chart%20BRIR.png"],
 "atlasfnam": "minkovskiy21-atlas.txt",
-"gaiadr3fnam": "minkovskiy21-gaiadr3.dat",
+"gaiadr3fnam": "minkovskiy21-gdr3.dat",
 "atlaslim": {"o": 0.09, "c": 0.09},
 "zcatf": "gr",
 "curveshift": true,

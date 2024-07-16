@@ -31,7 +31,7 @@
 "pslim": 0.1,
 "atlasfnamz": "c180-34-atlas.txt",
 "asasfnamz": "c180-34-asas.csv",
-"gaiadr3fnam": "c180-34-gaiadr3.dat",
+"gaiadr3fnam": "c180-34-gdr3.dat",
 "crtsfnam": "c180-34-crts.csv",
 "zcatf": "rg",
 "curveshift": true,
@@ -52,7 +52,6 @@
     "xlim": [-0.08, 0.6],
     "xmalp": 0.2,
     "xmilp": 0.02
-
   },
   "ylim": [15.07, 14.09],
   "ylima": [15.07, 14.09]
