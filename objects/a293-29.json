@@ -1,9 +1,11 @@
 {
 "a293-29": {
 "name": "GSC 02150-01562",
-"other": "ASASSN-V J193516.52+294631.2, ATO J293.8188+29.7753, GSC2.3 N2FF000422",
+"other": "ASASSN-V J193516.52+294631.2, TYC 2150-1562-1, UCAC4 599-084822",
+"desig": "ATO J293.8188+29.7753, USNO-B1.0 1197-0371328, 2MASS J19351653+2946315, GSC2.3 N2FF000422",
 "gdr3": 2032385778726741376,
 "epphot": true,
+"tic": 213146587,
 "coord": "19 35 16.534 +29 46 31.46",
 "coordeg": [293.81896, 29.77539],
 "type": "EA",
@@ -31,7 +33,7 @@
 "atlaslim": {"o": 0.018, "c": 0.02},
 "pslim": 0.0094,
 "asasfnam": "a293-29-asas.csv",
-"gaiadr3fnam": "a293-29-gaiadr3.dat",
+"gaiadr3fnam": "a293-29-gdr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.52, "psg": 0.61, "r": 0, "psr": 0.05, "i": -0.18, "psi": -0.11, "psy": -1.43, "psz": -1.34,
              "o": -0.15, "c": -0.17, "V": 0, "asasg": 0.19, "G": -0.13},
@@ -39,6 +41,12 @@
 "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymal": 0.1, "ymil": 0.01,
   "asasms": 2, "psms": 5,
   "atledgclr": "saddlebrown",
+  "ylimtess": [0.797, 1.023],
+  "zoom": {
+    "xlim": [-0.1, 0.6],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
   "xedges": 120, "xlima": [56900, 60400],
   "ylim": [12.03, 11.72],
   "ylima": [12.03, 11.72]
