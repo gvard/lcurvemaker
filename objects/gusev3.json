@@ -18,6 +18,8 @@
 "comm": "J-K=3.1 (2MASS)",
 "lc": "gusev3-ps1-ztf-atlas-gaia.png",
 "vsxoid": 2227044,
+"r": 3634,
+"rp": 4473,
 "atlasfnam": "gusev3-atlas.txt",
 "gaiadr3fnam": "gusev3-gdr3.dat",
 "atlaslim": {"o": 0.172, "c": 0.29},

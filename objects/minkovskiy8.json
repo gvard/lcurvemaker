@@ -27,7 +27,7 @@
 "zcatf": "gr",
 "curveshift": true,
 "atlasfnam": "minkovskiy8-atlas.txt", "atlaslim": {"o": 0.05, "c": 0.05},
-"gaiadr3fnam": "minkovskiy8-gaiadr3.dat",
+"gaiadr3fnam": "minkovskiy8-gdr3.dat",
 "clrshift": {"g": 0.58, "psg": 0.58, "r": 0, "psr": 0.03, "psi": -0.21, "psz": -0.33, "psy": -0.4, "o": 0, "c": 0.4, "G": 0.02},
 "plot": {"ztffilt": "gr", "zobj": [], "psfilt": "griz", "atlasfilt": "", "asasfilt": "",
   "atlasms": {"o": 1.5, "c": 1.2}, "atlaselw": 0.26,

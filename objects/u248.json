@@ -21,7 +21,7 @@
 "comm": "Min II = 13.59 r. D = 0.195 P.",
 "lclnk": "https://www.aavso.org/vsx_docs/359219/5780/u248-ztf-ps1-ph_1.328946.png",
 "vsxoid": 359219,
-"gaiadr3fnam": "u248-gaiadr3.dat",
+"gaiadr3fnam": "u248-gdr3.dat",
 "con": "Peg",
 "asaslim": {"g": 0.03, "V": 0.03},
 "atlaslim":{"o": 0.04, "c": 0.04},

@@ -6,6 +6,7 @@
 "coord": "23 02 37.511 +58 35 09.21",
 "gdr3": 2013271387502721664,
 "epphot": false,
+"tic": 314039042,
 "coordeg": [345.6562958, 58.5858923],
 "type": "EA",
 "max": 13.09,
@@ -16,7 +17,7 @@
 "system": "V",
 "period": 3.34370,
 "epoch":  2459202.682,
-"2ndmin": 0.651,
+"2ndmin": 0.6515,
 "etype": "min",
 "sp": "",
 "r": 1495,
@@ -34,7 +35,7 @@
 "clrshift": {"g": 0.11, "psg": 0.13, "r": -0.03, "psr": 0, "i": -0.04, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0, "c": 0.0, "V": 0, "asasg": 0.2, "G": 0.0},
 "plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "Vg",
-  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 170, "ymil": 0.02,
+  "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 1.8,
   "zms": 3.5,
   "gms": 4,
@@ -42,9 +43,12 @@
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
   "xedges": 90,
+  "ylimtess": [0.53, 1.058],
   "xlim": [-0.1, 1],
   "zoom": {
-    "xlim": [-0.06, 0.69]
+    "xlim": [-0.06, 0.69],
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [13.91, 13.0],
   "ylima": [13.91, 13.0]

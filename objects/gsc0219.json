@@ -5,6 +5,7 @@
 "desig": "2MASS J21392103+2652366, GSC2.3 N307001031, USNO-B1.0 1168-0580254, GALEX J213921.0+265237",
 "gdr3": 1800427823512536064,
 "epphot": true,
+"tic": 248018382,
 "coord": "21 39 21.031 +26 52 36.72",
 "coordeg": [324.83763, 26.87687],
 "type": "EA",
@@ -48,6 +49,7 @@
   "atlasms": {"o": 2.5, "c": 3},
   "atledgclr": "saddlebrown",
   "xlim": [-0.1, 1],
+  "ylimtess": [0.744, 1.023],
   "legz": "lower right",
   "xedges": 160,
   "zoom": {

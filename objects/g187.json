@@ -5,6 +5,7 @@
 "desig": "Gaia DR3 1876642941594794752",
 "gdr3": 1876642941594794752,
 "epphot": true,
+"tic": 405529883,
 "coord": "22 45 53.455 +24 37 26.52",
 "coordeg": [341.4727308, 24.6240328],
 "type": "EA",
@@ -13,7 +14,7 @@
 "min2": 12.52,
 "system": "V",
 "period": 16.1404,
-"epoch": 2458293.975,
+"epoch": 2458293.981,
 "2ndmin": 0.469,
 "etype": "min",
 "d": 0.02,
@@ -30,7 +31,7 @@
 "asaslim": {"V": 0.023, "g": 0.022},
 "pslim": 0.1,
 "asasfnam": "g187-asas.csv",
-"gaiadr3fnam": "g187-gaiadr3.dat",
+"gaiadr3fnam": "g187-gdr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.12, "psg": 0.13, "r": 0, "psr": 0, "i": -0.04, "psi": 0, "psz": -0.2, "psy": -0.2,
              "o": 0, "c": 0, "V": 0, "asasg": 0.28, "G": -0.11},
@@ -42,13 +43,13 @@
   "psms": 6,
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
-  "magl": 0.1,
   "xedges": 130,
   "xlim": [-0.1, 1],
+  "ylimtess": [0.572, 1.027],
   "zoom": {
     "xlim": [-0.04, 0.53],
-    "xmalp": 0.1,
-    "xmilp": 0.02
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [12.67, 11.98],
   "ylima": [12.67, 11.98]

@@ -21,7 +21,7 @@
 "ztfobj": ["ZTF18abpndrz"],
 "lc": "minkovskiy20-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2226067/4816/Minkovskiy20-chart%20br.png"],
-"gaiadr3fnam": "minkovskiy20-gaiadr3.dat",
+"gaiadr3fnam": "minkovskiy20-gdr3.dat",
 "pslim": 0.06,
 "zcatf": "gr",
 "curveshift": true,

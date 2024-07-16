@@ -25,7 +25,7 @@
 "ztfobj": ["ZTF18aaxyzee", "ZTF18adkfugn"],
 "lc": "minkovskiy4-ps1-ztf-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/2217869/4816/Minkovskiy4-BRIR5x5.jpg"],
-"gaiadr3fnam": "minkovskiy4-gaiadr3.dat",
+"gaiadr3fnam": "minkovskiy4-gdr3.dat",
 "pslim": 0.11,
 "zcatf": "gr",
 "curveshift": true,

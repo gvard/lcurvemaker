@@ -27,7 +27,7 @@
 "fclnk": ["https://www.aavso.org/vsx_docs/2225953/4816/minkovskiy18%20fainder%20chart.png"],
 "zcatf": "gr",
 "curveshift": true,
-"gaiadr3fnam": "minkovskiy18-gaiadr3.dat",
+"gaiadr3fnam": "minkovskiy18-gdr3.dat",
 "clrshift": {"g": 0, "r": -0.57, "i": -0.95, "psi": -0.7, "z": -0.87, "G": -0.47},
 "plot": {"ztffilt": "gri", "psfilt": "gi", "atlasfilt": "", "asasfilt": "",
   "xmal": 500, "xmil": 100, "ymil": 0.05,

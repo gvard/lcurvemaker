@@ -33,7 +33,7 @@
 "pslim": 0.04,
 "atlasfnam": "c79-0-atlas.txt",
 "asasfnamz": "c79-0-asas.csv",
-"gaiadr3fnam": "c79-0-gaiadr3.dat",
+"gaiadr3fnam": "c79-0-gdr3.dat",
 "crtsfnam": "c79-0-crts.csv",
 "curveshift": true,
 "clrshift": {"u": 1.99, "g": 0.52, "psg": 0.54, "r": 0, "psr": 0, "i": -0.10, "psi": -0.11, "z": -0.2, "psz": -0.1, "psy": -0.21,

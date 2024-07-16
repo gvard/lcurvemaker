@@ -2,6 +2,7 @@
 "m1396": {
 "name": "Mis V1396",
 "other": "USNO-B1.0 1471-0044599, 2MASS J01072293+5708019, GSC2.3 NANY000947",
+"tic": 252182608,
 "gdr3": 412061228270135168,
 "epphot": true,
 "coord": "01 07 22.936 +57 08 01.95",
@@ -13,7 +14,7 @@
 "system": "V",
 "period": 45.16715,
 "epoch": 2457653.006,
-"2ndmin": 0.826,
+"2ndmin": 0.8259,
 "etype": "min",
 "sp": "A",
 "d": 0.008,
@@ -32,7 +33,7 @@
 "ztfranz": [13.07, 12.04],
 "asasfnam": "m1396-asas.csv",
 "atlasfnam": "m1396-atlas.txt",
-"gaiadr3fnam": "m1396-gaiadr3.dat",
+"gaiadr3fnam": "m1396-gdr3.dat",
 "zcatf": "g",
 "curveshift": true,
 "clrshift": {"g": 0.21, "psg": 0.27, "r": 0, "psr": 0, "i": -0.26, "psi": -0.26, "psy": -1.4, "psz": -1.25,
@@ -46,6 +47,7 @@
   "psms": 5,
   "atledgclr": "saddlebrown",
   "xedges": 160,
+  "ylimtess": [0.517, 1.029],
   "xlim": [-0.1, 1],
   "zoom": {
     "xlim": [0.7995, 1.02],

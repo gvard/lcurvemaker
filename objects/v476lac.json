@@ -3,6 +3,7 @@
 "name": "V476 Lac",
 "other": "TYC 3633-2139-1, UCAC4 713-108278, USNO-B1.0 1424-0525647",
 "desig": "2MASS J22491811+5226360, ASASSN-V J224918.41+522636.3, Gaia DR3 1990333238486114176",
+"tic": 66881144,
 "gdr3": 1990333238486114176,
 "epphot": true,
 "coord": "22 49 18.100 +52 26 35.83",
@@ -12,8 +13,8 @@
 "min": 11.09,
 "min2": 10.93,
 "system": "g",
-"period": 17.919,
-"epoch": 2451441.28,
+"period": 17.9195,
+"epoch": 2451441.081,
 "2ndmin": 0.5,
 "etype": "min",
 "d": 0.077,
@@ -47,13 +48,13 @@
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
   "legz": "lower center",
-  "magl": 0.1,
   "xedges": 130,
   "xlim": [-0.1, 1],
+  "ylimtess": [0.70, 1.116],
   "zoom": {
-    "xlim": [-0.05, 0.42],
-    "xmalp": 0.1,
-    "xmilp": 0.02
+    "xlim": [-0.07, 0.57],
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [11.16, 10.48],
   "ylima": [11.16, 10.48]

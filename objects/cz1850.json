@@ -5,6 +5,7 @@
 "desig": "GSC2.3 N9SU000505, GSC 02405-00186, Gaia DR3 3444763985587536896",
 "gdr3": 3444763985587536896,
 "epphot": true,
+"tic": 239784244,
 "coord": "05 47 52.198 +30 30 45.16",
 "coordeg": [86.96749375, 30.5125439],
 "type": "EA",
@@ -35,7 +36,7 @@
 "contamn": {"V": 15.8, "g": 16.39, "o": 17.5, "c": 17.5},
 "atlasfnam": "cz1850-atlas.txt",
 "asasfnam": "cz1850-asas.csv",
-"gaiadr3fnam": "cz1850-gaiadr3.dat",
+"gaiadr3fnam": "cz1850-gdr3.dat",
 "zcatf": "",
 "curveshift": true,
 "clrshift": {"g": 0.35, "psg": 0.35, "r": 0, "psr": 0.03, "i": -0.10, "psi": -0.11, "z": -0.2, "psz": -0.1, "psy": -0.21,
@@ -46,9 +47,10 @@
   "atlasms": {"o": 2, "c": 2.8},
   "atledgclr": "darkred",
   "xedges": 230,
+  "ylimtess": [0.549, 1.024],
   "zoom": {
     "xlim": [0.73, 1.02],
-    "xmalp": 0.1,
+    "xmalp": 0.05,
     "xmilp": 0.01
   },
   "xlim": [-0.1, 1],

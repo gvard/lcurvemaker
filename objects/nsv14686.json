@@ -41,7 +41,6 @@
   "asasms": 3, "zms": 3.5, "gms": 4, "psms": 5,
   "atlasms": {"o": 4, "c": 3.5},
   "atledgclr": "#000",
-  "magl": 0.1,
   "xedges": 120,
   "zoom": {
     "xlima": [58226, 60365],

@@ -27,7 +27,7 @@
 "rp": 870,
 "atlaslim": {"o": 0.04, "c": 0.04},
 "pslim": 0.2,
-"gaiadr3fnam": "u248199-gaiadr3.dat",
+"gaiadr3fnam": "u248199-gdr3.dat",
 "asasfnam": "u248199-asas.csv",
 "curveshift": true,
 "asaslim": {"V": 0.03, "g": 0.01},
