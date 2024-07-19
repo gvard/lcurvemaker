@@ -5,6 +5,7 @@
 "desig": "GSC2.3 N8RT000899",
 "gdr3": 897218397553319424,
 "epphot": false,
+"tic": 9959728,
 "coord": "07 24 53.744 +36 09 32.34",
 "coordeg": [111.22391, 36.15899],
 "type": "EA",
@@ -43,11 +44,12 @@
   "atledgclr": "darkred",
   "xedges": 160,
   "legz": "lower left",
+  "ylimtess": [0.546, 1.049],
   "xlim": [-0.25, 1],
   "zoom": {
-    "xlim": [-0.1, 0.7],
-    "xmalp": 0.2,
-    "xmilp": 0.02
+    "xlim": [-0.076, 0.698],
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [14.27, 13.48],
   "ylima": [14.27, 13.48]

@@ -5,6 +5,7 @@
 "coord": "03 55 12.840 +43 44 19.28",
 "gdr3": 231779288818129536,
 "epphot": false,
+"tic": 424090533,
 "coordeg": [58.80346, 43.73892],
 "type": "EA",
 "max": 13.66,
@@ -15,7 +16,7 @@
 "system": "r",
 "period": 7.06050,
 "epoch": 2460140.993,
-"2ndmin": 0.528,
+"2ndmin": 0.5285,
 "etype": "min",
 "sp": "G",
 "teff": 5634,
@@ -38,7 +39,13 @@
 "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 2, "zms": 3, "psms": 5,
   "atledgclr": "saddlebrown",
+  "ylimtess": [0.565, 1.037],
   "xedges": 120,
+  "zoom": {
+    "xlim": [-0.05, 0.575],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
   "ylim": [14.4, 13.55],
   "ylima": [14.4, 13.55]
 }

@@ -5,6 +5,7 @@
 "desig": "USNO-B1.0 1424-0203649, GSC2.3 N7CJ000014, 2MASS J06315268+5227019",
 "gdr3": 992832886481406336,
 "epphot": true,
+"tic": 253016113,
 "coord": "06 31 52.693 +52 27 01.93",
 "coordeg": [97.9695542, 52.4505361],
 "type": "EA/RS",
@@ -39,6 +40,7 @@
   "atledgclr": "#e44", "atlasms": 2, "zms": 4,
   "xmal": 800, "xmil": 100, "ymil": 0.02, "xedges": 130,
   "leg": "lower left",
+  "ylimtess": [0.598, 1.081],
   "xlim": [-0.5, 1],
   "ylim": [11.46, 10.25],
   "ylima": [11.57, 10.25]

@@ -3,9 +3,9 @@
 "name": "UCAC3 240-187355",
 "other": "ASASSN-V J193431.37+293246.0, GSC2.3 N2FF000651, 2MASS J19343148+2932475",
 "desig": "ZTFJ193431.47+293247.5, ATO J293.6311+29.5465, WISE J193431.48+293247.4",
-"gsc": "GSC2.3 N2FF000651",
 "gdr3": 2032350422553392768,
 "epphot": true,
+"tic": 239478559,
 "coord": "19 34 31.479 +29 32 47.47",
 "coordeg": [293.63116, 29.54652],
 "type": "EA",
@@ -33,6 +33,7 @@
   "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymal": 0.1, "ymil": 0.01,
   "atledgclr": "saddlebrown",
   "xedges": 150, "atlasms": 2,
+  "ylimtess": [0.75, 1.114],
   "ylim": [13.12, 12.77],
   "ylima": [13.12, 12.77]
 }
