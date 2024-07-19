@@ -5,6 +5,7 @@
 "desig": "USNO-B1.0 1238-0394807",
 "gdr3": 2035133320828876416,
 "epphot": true,
+"tic": 86440073,
 "coord": "19 54 06.252 +33 48 38.36",
 "coordeg": [298.52605, 33.81064],
 "type": "EA",
@@ -14,7 +15,7 @@
 "2ndmin": 0.5,
 "system": "g",
 "period": 1.976275,
-"epoch": 2458280.786,
+"epoch": 2458280.788,
 "d": 0.08,
 "d2": 0.06,
 "etype": "min",
@@ -37,6 +38,7 @@
 "atlaslim": 0.2, "zms": 3, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "atledgclr": "saddlebrown",
   "xedges": 150,
+  "ylimtess": [0.58, 1.23],
   "ylim": [12.711, 12.22],
   "ylima": [12.711, 12.22]
 }

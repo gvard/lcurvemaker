@@ -2,9 +2,9 @@
 "18acrvwcz": {
 "name": "ZTF18acrvwcz",
 "other": "ATO J059.9558+43.2431, GALEX J035949.3+431434, USNO-B1.0 1332-0108554",
+"desig": "GSC2.3 NCEH000229, 2MASS J03594940+4314354",
 "gdr3": 231586771205537024,
 "epphot": true,
-"desig": "GSC2.3 NCEH000229, 2MASS J03594940+4314354",
 "coord": "03 59 49.408 +43 14 35.47",
 "coordeg": [59.9558654, 43.2431850],
 "type": "EA",
@@ -51,7 +51,8 @@
   "legz": "lower left",
   "zoom": {
     "ylim": [14.72, 14.03],
-    "ymil": 0.02
+    "ymal": 0.05,
+    "ymil": 0.01
   },
   "xlim": [-0.5, 1],
   "xlim1": [-0.15, 0.15],
