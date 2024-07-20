@@ -1,0 +1,32 @@
+{
+"dde74": {
+"name": "DDE 74",
+"other": "ASASSN-V J211531.48+123957.5",
+"coord": "21 15 31.476 +12 39 57.68",
+"coordeg": [318.88117, 12.66603],
+"type": "EA/HW",
+"max": 15.79,
+"min": 16.62,
+"min2": 15.845,
+"d": 0.058,
+"system": "g",
+"period": 0.34776815,
+"epoch": 2455517.4216,
+"etype": "min",
+"sp": "",
+"comm": "Min II = 15.85 g. D = 0.058 P.",
+"atlaslim": {"o": 0.05, "c": 0.05},
+"crtslim": 0.1,
+"vsxoid": 477422,
+"crtsfnam": "dde74-crts.csv",
+"curveshift": true,
+"clrshift": {"g": 0, "psg": 0, "r": 0.43, "psr": -0.02, "i": 0.74, "psi": -0.42, "psz": 0.37, "o": -0.13, "c": -0.12, "CV": 0.2},
+"plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc",
+  "crtsms": 2.5, "atlasms": {"o": 2, "c": 2}, "zms": 3.5, "elw": 1,
+  "atledgclr": "#922",
+  "xmal": 800, "xmil": 100, "ymil": 0.02,
+  "xedges": 130,
+  "ylim": [16.72, 15.69],
+  "ylima": [16.72, 15.69]
+}
+}}
