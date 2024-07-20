@@ -1,0 +1,32 @@
+{
+"dde80": {
+"name": "DDE 80",
+"other": "CRTS J135719.0-372017",
+"coord": "13 57 19.061 -37 20 16.97",
+"coordeg": [209.3294208, -37.3380467],
+"type": "EA",
+"max": 16.05,
+"min": 17.07,
+"min2": 16.22,
+"d": 0.11,
+"system": "o",
+"period": 0.12373542,
+"epoch": 2454587.1343,
+"etype": "min",
+"sp": "",
+"comm": "",
+"crtsfnam": "dde80-crts.csv",
+"atlaslim": {"o": 0.08, "c": 0.09},
+"crtslim": 0.15,
+"vsxoid": 477633,
+"curveshift": true,
+"clrshift": {"g": 0.93, "r": 0, "i": -1.4, "o": 0, "c": -0.32, "CV": -0.36},
+"plot": {"ztffilt": "", "psfilt": "", "atlasfilt": "oc",
+  "crtsms": 2.5, "atlasms": {"o": 2, "c": 2}, "zms": 3, "elw": 1,
+  "atledgclr": "#922",
+  "xmal": 800, "xmil": 100, "ymil": 0.05,
+  "xedges": 120,
+  "ylim": [17.30, 15.9],
+  "ylima": [17.30, 15.9]
+}
+}}
