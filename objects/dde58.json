@@ -4,6 +4,7 @@
 "other": "ASASSN-V J044921.77+340359.6, USNO-B1.0 1240-0077612, GSC2.3 NCCY024512",
 "gdr3": 161880585858554496,
 "epphot": true,
+"tic": 96071817,
 "desig": "2MASS J04492177+3403596",
 "asassn": "ASASSN-V J044921.77+340359.6",
 "coord": "04 49 21.771 +34 03 59.67",
@@ -20,14 +21,13 @@
 "rp": 1036,
 "system": "r",
 "period": 3.368332,
-"epoch": 2459472.953,
+"epoch": 2459472.954,
 "2ndmin": 0.5,
 "etype": "min",
 "sp": "F",
 "comm": "Min II = 14.58 r",
 "vsxoid": 477142,
 "lc": "dde58-ztf-css-atl-gaia-ph.png",
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.011, "c": 0.01},
 "asaslim": {"V": 0.04, "g": 0.032},
 "pslim": 0.1,
@@ -47,8 +47,11 @@
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
   "xedges": 120,
+  "ylimtess": [0.605, 1.05],
   "xlim": [-0.25, 1],
-  "xlimzz": [-0.1, 1],
+  "zoom": {
+    "xlim": [-0.08, 0.58]
+  },
   "ylim": [14.66, 14.02],
   "ylima": [14.66, 14.02]
 }
