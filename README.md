@@ -81,13 +81,22 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 The settings for the object are located in a [JSON](https://en.wikipedia.org/wiki/JSON) file.
 [sample.json](objects/sample.json) contains most of the possible settings.
 
-Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
-[PS1](https://ps1images.stsci.edu/ps1_dr2_api.html), [ASAS-SN](https://asas-sn.osu.edu/),
-[ATLAS](https://fallingstar.com/), [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
-[Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
-[SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
-[OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php) and
-[GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H) photometry data available are:
+Basic settings for an object with
+* [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
+* [PS1](https://ps1images.stsci.edu/ps1_dr2_api.html),
+* [ASAS-SN](https://asas-sn.osu.edu/),
+* [ASAS-3](https://ui.adsabs.harvard.edu/abs/2002AcA....52..397P),
+* [ATLAS](https://fallingstar.com/),
+* [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
+* [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
+* [GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H),
+* [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
+* [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
+* [TESS](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
+* [CoRoT](https://cdsarc.cds.unistra.fr/viz-bin/cat/B/corot),
+* [Kepler](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html)
+* [K2](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html)
+photometry data available are:
 
 ```json
 {
@@ -95,7 +104,10 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
   "name": "ZTF19acdncga",
   "other": "USNO-B1.0 1462-0437198, 2MASS J22470763+5617523, GSC2.3 N1CQ180004",
   "coord": "22 47 07.629 +56 17 52.26",
-  "coordeg": [341.7817888, 56.2978492],
+  "coordeg": [341.781789, 56.297849],
+  "gdr3": 2003952476707473152,
+  "epphot": false,
+  "tic": 343765322,
   "max": 14.35,
   "min": 14.93,
   "min2": 14.78,
@@ -109,9 +121,10 @@ Basic settings for an object with [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Ga
   "atlasfnam": "sample-nickname-atlas.txt", "atlaslim": {"o": 0.013, "c": 0.017},
   "asasfnam": "sample-nickname-asas.csv", "asaslim": {"V": 0.05, "g": 0.06},
   "pslim": 0.1, "pslocal": false,
-  "gaiadr3fnam": "sample-nickname-gaiadr3.dat",
+  "gaiadr3fnam": "sample-nickname-gdr3.dat",
   "crtsfnam": "sample-nickname-crts.csv", "crtslim": 0.06,
   "oglefnam": "sample-nickname-ogle.dat",
+  "corotfnam": "cr1029-crt.dat",
   "sdssfnam": "sample-nickname-sdss.dat",
   "zcatf": "ri",
   "curveshift": true,
