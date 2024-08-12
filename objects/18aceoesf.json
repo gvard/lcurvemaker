@@ -9,12 +9,12 @@
 "coord": "06 19 30.597 +13 11 46.06",
 "coordeg": [94.8774867, 13.1961283],
 "type": "EA",
-"max": 13.24,
-"min": 13.99,
-"min2": 13.99,
-"system": "r",
-"d": 0.018,
-"d2": 0.018,
+"max": 13.37,
+"min": 14.13,
+"min2": 13.42,
+"system": "g",
+"d": 0.037,
+"d2": 0.024,
 "period": 11.66167,
 "epoch": 2459253.687,
 "2ndmin": 0.6485,
@@ -29,7 +29,6 @@
 "vsxoid": 2345589,
 "lclnk": "https://www.aavso.org/vsx_docs/2345589/5780/18aceoesf-ztf-atl-asas-gaia-ph_23.32334.png",
 "lczoom": "https://www.aavso.org/vsx_docs/2345589/5780/18aceoesf-ztf-atl-asas-gaia-ph_23.32334z.png",
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.023, "c": 0.019},
 "asaslim": {"V": 0.029, "g": 0.029},
 "pslim": 0.1,
@@ -57,8 +56,8 @@
   "xlim": [-0.1, 1],
   "zoom": {
     "xlim": [0.6, 1.052],
-    "xmalp": 0.1,
-    "xmilp": 0.02
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [14.21, 13.29],
   "ylima": [14.21, 13.29]

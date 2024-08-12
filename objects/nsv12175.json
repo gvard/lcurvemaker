@@ -4,6 +4,7 @@
 "other": "2MASS J19342391+3041366, GSC2.3 N2GL008903",
 "gdr3": 2032756623345741696,
 "epphot": true,
+"tic": 40685348,
 "coord": "19 34 23.912 +30 41 36.58",
 "coordeg": [293.5996167, 30.6934658],
 "type": "EA",
@@ -26,7 +27,6 @@
 "comm": "Eccentric system. Min II = 14.46 r. at phase 0.665, duration 2%",
 "lclnk": "https://www.aavso.org/vsx_docs/50799/5780/nsv12175-ps1-ztf-atlas-gaia-ph_20.7594.png",
 "vsxoid": 50799,
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.015, "c": 0.018},
 "asaslim": {"V": 0.039, "g": 0.033},
 "pslim": 0.1,
@@ -46,7 +46,11 @@
   "atlasms": {"o": 2, "c": 2},
   "atledgclr": "darkred",
   "xedges": 90,
-  "xlimz": [-0.25, 0.75],
+  "zoom": {
+    "xlim": [0.62, 1.05],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
   "xlim": [-0.1, 1],
   "ylim": [14.49, 14.0],
   "ylima": [14.49, 14.0],

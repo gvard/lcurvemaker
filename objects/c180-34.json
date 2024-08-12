@@ -4,6 +4,7 @@
 "other": "USNO-B1.0 1248-0195190, GSC2.3 N55C000009, 2MASS J12005372+3448502",
 "gdr3": 4028370708773685376,
 "epphot": true,
+"tic": 173081122,
 "coord": "12 00 53.721 +34 48 50.29",
 "coordeg": [180.22382, 34.81396],
 "type": "EA",
@@ -25,7 +26,6 @@
 "comm": "Eccentric system. Min II = 14.96 r at phase 0.536, duration 2.7%",
 "vsxoid": 381317,
 "lclnk": "https://www.aavso.org/vsx_docs/381317/5780/c180-34-ztf-css-atlas-gaia-ph_6_1_2.57043",
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.017, "c": 0.031},
 "asaslim": {"V": 0.05, "g": 0.049},
 "pslim": 0.1,
@@ -49,9 +49,9 @@
   "legz": "lower left",
   "xlim": [-0.2, 1],
   "zoom": {
-    "xlim": [-0.08, 0.6],
-    "xmalp": 0.2,
-    "xmilp": 0.02
+    "xlim": [-0.07, 0.6],
+    "xmalp": 0.1,
+    "xmilp": 0.01
   },
   "ylim": [15.07, 14.09],
   "ylima": [15.07, 14.09]

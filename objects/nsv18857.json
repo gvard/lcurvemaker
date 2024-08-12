@@ -13,8 +13,8 @@
 "max": 13.97,
 "min": 14.33,
 "min2": 14.17,
-"d": 0.09,
-"d2": 0.10,
+"d": 0.106,
+"d2": 0.11,
 "system": "V",
 "period": 6.3637,
 "epoch": 2460046.493,
@@ -28,7 +28,6 @@
 "comm": "Eccentric system. Min II = 14.17 r at phase 0.575, duration 10%. Period determination: 2022MNRAS.509.2566M",
 "vsxoid": 57292,
 "lclnk": "https://www.aavso.org/vsx_docs/57292/5780/nsv18857-atl-gds-gaia-ph_6.3637.png",
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.027, "c": 0.032},
 "asaslim": {"V": 0.045, "g": 0.036},
 "pslim": 0.1,
@@ -52,7 +51,7 @@
   "zoom": {
     "xlim": [-0.25, 0.75],
     "xmalp": 0.05,
-    "xmip": 0.01
+    "xmilp": 0.01
   },
   "xlimzz": [-0.1, 1],
   "ylim": [14.515, 13.9],

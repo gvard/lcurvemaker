@@ -1,5 +1,5 @@
 {
-"Minkovskiy 4": {
+"minkovskiy4": {
 "name": "Minkovskiy 4",
 "other": "USNO-B1.0 1178-0517790, GSC2.3 N2FH192786",
 "gdr3": 2025211838970305152,
@@ -32,8 +32,8 @@
 "clrshift": {"g": 0.73, "psg": 0.73, "r": 0, "i": -0.31, "psi": -0.2, "z": -0.5, "G": -0.05},
 "plot": {"ztffilt": "gri", "psfilt": "gri", "atlasfilt": "", "asasfilt": "",
   "xmal": 500, "xmil": 100, "ymil": 0.05,
-  "ylim": [20.9, 18.35],
-  "ylima": [20.9, 18.35],
+  "ylim": [20.9, 18.38],
+  "ylima": [20.9, 18.38],
   "xedges": 60
 }
 }}
