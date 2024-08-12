@@ -36,6 +36,6 @@
   "atlasms": {"o": 2, "c": 1.5}, "zms": 5, "atledgclr": "saddlebrown", "atlaselw": 0.26,
   "xmal": 500, "xmil": 100, "ymal": 0.5, "ymil": 0.1,
   "xlim": [-0.5, 1.0], "xedges": 190,
-  "ylim": [21.1, 16.5], "ylima": [21.1, 16.45]
+  "ylim": [21.1, 16.52], "ylima": [21.1, 16.52]
 }
 }}

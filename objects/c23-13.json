@@ -9,7 +9,7 @@
 "coord": "01 33 30.961 -13 52 16.14",
 "coordeg": [23.379004, -13.871150],
 "type": "EA",
-"max": 14.21,
+"max": 14.22,
 "min": 14.85,
 "min2": 14.43,
 "d": 0.13,
@@ -25,7 +25,7 @@
 "vsxoid": 362439,
 "primref": "2014ApJS..213....9D",
 "atlaslim": {"o": 0.025, "c": 0.017},
-"asaslim": {"V": 0.06, "g": 0.07},
+"asaslim": {"V": 0.054, "g": 0.053},
 "pslim": 0.1,
 "crtslim": 0.09,
 "atlasfnam": "c23-13-atlas.txt",
@@ -34,18 +34,16 @@
 "crtsfnam": "c23-13-crts.csv",
 "curveshift": true,
 "clrshift": {"g": 0.83, "psg": 0.13, "r": 0, "psr": 0, "i": -0.34, "psi": -0.35, "psz": -0.2, "psy": -0.2,
-             "o": -0.01, "c": 0.31, "V": 0.27, "asasg": 0.57, "G": 0.04, "CV": 0.03},
-"plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
+             "o": -0.01, "c": 0.31, "V": 0.37, "asasg": 0.87, "G": 0.04, "CV": 0.03},
+"plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "gV",
   "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
-  "asasms": 3.5, "zms": 4, "gms": 4, "psms": 6,
+  "asasms": 2.8, "zms": 4, "gms": 4, "psms": 6,
   "atlasms": {"o": 2.8, "c": 2.8},
   "atledgclr": "darkred",
   "xedges": 90,
-  "legz": "lower left",
-  "ylimtess": [0.5, 1.05]
+  "ylimtess": [0.5, 1.05],
   "xlim": [-0.25, 1],
-  "xlimz": [-0.15, 0.15],
-  "ylim": [14.92, 14.14],
-  "ylima": [14.92, 14.14]
+  "ylim": [14.99, 14.14],
+  "ylima": [14.99, 14.14]
 }
 }}

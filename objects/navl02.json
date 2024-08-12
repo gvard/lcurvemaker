@@ -6,7 +6,7 @@
 "epphot": true,
 "oldname": "u6575",
 "coord": "03 49 32.147 +63 24 22.45",
-"coordeg": [57.38388, 63.40623],
+"coordeg": [57.383946, 63.406236],
 "type": "EA",
 "max": 16.05,
 "min": 16.49,
@@ -39,7 +39,11 @@
   "psms": 6,
   "atledgclr": "saddlebrown",
   "xedges": 160,
-  "legz": "lower left",
+  "zoom": {
+    "xlim": [-0.08, 0.58],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
   "ylim": [16.58, 15.97],
   "ylima": [16.58, 15.97]
 }

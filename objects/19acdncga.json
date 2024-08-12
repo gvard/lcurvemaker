@@ -4,8 +4,9 @@
 "other": "USNO-B1.0 1462-0437198, 2MASS J22470763+5617523, GSC2.3 N1CQ180004",
 "gdr3": 2003952476707473152,
 "epphot": false,
+"tic": 343765322,
 "coord": "22 47 07.629 +56 17 52.26",
-"coordeg": [325.111253, 33.934401],
+"coordeg": [341.781788, 56.297850],
 "type": "EA",
 "max": 14.34,
 "min": 14.93,
@@ -24,7 +25,6 @@
 "rp": 3076,
 "comm": "Eccentric system. Min II = 14.78 g. at phase 0.399, duration 1.9%",
 "vsxoid": 2344600,
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.013, "c": 0.017},
 "asaslim": {"V": 0.02, "g": 0.018},
 "pslim": 0.1,
@@ -49,7 +49,9 @@
   "xedges": 120,
   "legz": "lower left",
   "zoom": {
-    "xlim": [-0.05, 0.45]
+    "xlim": [-0.05, 0.45],
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "xlim": [-0.1, 1],
   "xlimaz": [56963, 60331],

@@ -1,8 +1,8 @@
 {
 "cz1826": {
 "name": "CzeV1826",
-"other": "2MASS J19582061+1242144, GSC2.3 N1UC000352, USNO-B1.0 1027-0658286",
-"gsc": "GSC2.3 NAVL028103",
+"other": "GSC 01079-03156, UCAC4 514-116534, USNO-B1.0 1027-0658286",
+"desig": "2MASS J19582061+1242144, GSC2.3 N1UC000352",
 "gdr3": 4304280915401539584,
 "epphot": false,
 "tic": 387548739,
@@ -20,6 +20,8 @@
 "sp": "",
 "teff": 5637,
 "logg": 4.15,
+"r": 535,
+"rp": 534,
 "comm": "",
 "vsxoid": 1544568,
 "asaslim": {"V": 0.02, "g": 0.018},
@@ -27,7 +29,6 @@
 "pslim": 0.0094,
 "atlasfnam": "cz1826-atlas.txt",
 "asasfnam": "cz1826-asas.csv",
-"gaiadr3fnamz": "cz1826-gdr3.dat",
 "curveshift": true,
 "clrshift": {"g": 0.40, "psg": 0.5, "r": -0.06, "psr": 0.14, "i": -0.23, "psi": -0.36, "psy": -1.0, "psz": -0.7,
              "o": 0.06, "c": 0.4, "V": 0, "asasg": 0.36, "G": 0.12},
@@ -41,8 +42,8 @@
   "xlim": [-0.1, 1],
   "zoom": {
     "xlim": [-0.1, 0.6],
-    "ymal": 0.05,
-    "ymil": 0.01
+    "xmalp": 0.05,
+    "xmilp": 0.01
   },
   "ylim": [13.05, 12.70],
   "ylima": [13.05, 12.70]

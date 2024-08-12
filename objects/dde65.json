@@ -30,7 +30,6 @@
 "vsxoid": 623265,
 "lc": "dde65-asas-gaia-ph.png",
 "fclnk": ["https://www.aavso.org/vsx_docs/623265/3930/cross-rgb.jpg"],
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.021, "c": 0.025},
 "asaslim": {"V": 0.029, "g": 0.02},
 "pslim": 0.1,

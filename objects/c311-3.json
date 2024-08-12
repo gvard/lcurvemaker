@@ -24,7 +24,6 @@
 "comm": "Eccentric system. Min II = 14.74 r at phase 0.383, duration 2.5%",
 "vsxoid": 392212,
 "lclnk": "https://www.aavso.org/vsx_docs/392212/5780/c311-3-ztf-css-atl-ph_6.67167.png",
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.023, "c": 0.014},
 "asaslim": {"V": 0.045, "g": 0.045},
 "pslim": 0.1,
@@ -48,7 +47,7 @@
   "xedges": 90,
   "leg": "lower right",
   "zoom": {
-    "xlim": [-0.020, 0.411],
+    "xlim": [-0.035, 0.426],
     "xmalp": 0.1,
     "xmilp": 0.02
   },

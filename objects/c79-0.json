@@ -26,7 +26,6 @@
 "lclnk": "https://www.aavso.org/vsx_docs/370750/5780/c79-0-ps1-ztf-css-atlas-gaia-ph.png",
 "lczoom": "https://www.aavso.org/vsx_docs/370750/5780/c79-0-ps1-ztf-css-atlas-gaia-ph-zoom.png",
 "vsxoid": 370750,
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.019, "c": 0.017},
 "asaslim": {"V": 0.06, "g": 0.07},
 "crtslim": 0.069,
@@ -48,8 +47,8 @@
   "xedges": 230,
   "xlim": [-0.05, 1],
   "zoom": {
-    "xlim": [0.78, 1.07],
-    "xmalp": 0.1,
+    "xlim": [0.815, 1.03],
+    "xmalp": 0.05,
     "xmilp": 0.01
   },
   "ylim": [15.86, 15.04],

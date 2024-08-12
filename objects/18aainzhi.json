@@ -7,7 +7,7 @@
 "epphot": false,
 "tic": 356894627,
 "coord": "18 12 55.160 +58 13 02.56",
-"coordeg": [273.22974393, 58.217389],
+"coordeg": [273.229833, 58.217378],
 "type": "EA",
 "max": 13.62,
 "min": 14.27,
@@ -29,7 +29,6 @@
 "vsxoid": 2387302,
 "lclnk": "https://www.aavso.org/vsx_docs/2387302/5780/18aainzhi-ztf-ph_9.79134.png",
 "lczoom": "https://www.aavso.org/vsx_docs/2387302/5780/18aainzhi-ztf-ph_9.79134zoom.png",
-"asaslimold": 0.07,
 "atlaslim": {"o": 0.025, "c": 0.017},
 "asaslim": {"V": 0.031, "g": 0.0205},
 "pslim": 0.1,
@@ -55,7 +54,7 @@
   "zoom": {
     "xlim": [-0.029, 0.512],
     "xmalp": 0.1,
-    "xmilp": 0.02
+    "xmilp": 0.01
   },
   "ylimtess": [0.456, 1.048],
   "xlim": [-0.1, 1],

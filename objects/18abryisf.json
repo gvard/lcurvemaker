@@ -2,7 +2,7 @@
 "18abryisf": {
 "name": "ZTF18abryisf",
 "other": "Gaia DR3 506343418333793536, GSC 03696-02112, UCAC4 746-018023",
-"desig": "",
+"desig": "USNO-B1.0 1491-0064932, GSC2.3 NAJG000446, 2MASS J01551619+5906109",
 "gdr3": 506343418333793536,
 "epphot": true,
 "tic": 400537998,
@@ -22,6 +22,7 @@
 "spref": "2018ApJS..235...16B/2019ApJS..245...34X",
 "teff": 7281,
 "teffref": "2018yCat.5153....0L",
+"G": 12.49,
 "r": 893,
 "rp": 892,
 "comm": "",
@@ -30,14 +31,14 @@
 "asaslim": {"V": 0.06, "g": 0.07},
 "pslim": 0.1,
 "atlasfnamz": "18abryisf-atlas.txt",
-"asasfnamz": "18abryisf-asas.csv",
+"asasfnam": "18abryisf-asas.csv",
 "gaiadr3fnam": "18abryisf-gdr3.dat",
 "crtsfnamz": "18abryisf-crts.csv",
 "curveshift": true,
 "zcatf": "gri",
 "clrshift": {"g": 0.37, "psg": 0.13, "r": 0, "psr": 0, "i": -0.14, "psi": -0.35, "psz": -0.2, "psy": -0.2,
-             "o": -0.01, "c": 0.31, "V": 0.27, "asasg": 0.57, "G": 0.05, "CV": -0.1},
-"plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "",
+             "o": -0.01, "c": 0.31, "V": -0.02, "asasg": 0.2, "G": -0.01, "CV": -0.1},
+"plot": {"ztffilt": "gri", "psfilt": "", "atlasfilt": "oc", "asasfilt": "V",
   "atlaslim": 0.2, "atlaselw": 0.26, "xmal": 500, "xmil": 100, "ymil": 0.02,
   "asasms": 3.5, "zms": 4, "gms": 4, "psms": 6,
   "atlasms": {"o": 2.8, "c": 2.8},
@@ -46,7 +47,11 @@
   "legz": "lower left",
   "ylimtess": [0.529, 1.05],
   "xlim": [-0.5, 1],
-  "xlimz": [-0.15, 0.15],
+  "zoom": {
+    "xlim": [-0.09, 0.59],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
   "ylim": [13.26, 12.4],
   "ylima": [13.26, 12.4]
 }
