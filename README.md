@@ -82,6 +82,7 @@ The settings for the object are located in a [JSON](https://en.wikipedia.org/wik
 [sample.json](objects/sample.json) contains most of the possible settings.
 
 Basic settings for an object with
+
 * [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
 * [PS1](https://ps1images.stsci.edu/ps1_dr2_api.html),
 * [ASAS-SN](https://asas-sn.osu.edu/),
@@ -90,11 +91,12 @@ Basic settings for an object with
 * [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
 * [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
 * [GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H),
+* [SuperWASP](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries),
 * [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
 * [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
 * [TESS](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
 * [CoRoT](https://cdsarc.cds.unistra.fr/viz-bin/cat/B/corot),
-* [Kepler](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html)
+* [Kepler](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
 * [K2](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html)
 photometry data available are:
 

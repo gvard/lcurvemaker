@@ -81,13 +81,23 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 Настройки объекта находятся в файле [JSON](https://en.wikipedia.org/wiki/JSON).
 [sample.json](objects/sample.json) содержит большую часть возможных настроек.
 
-Основные настройки для объекта с фотометрическими данными [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
-[PS1](https://ps1images.stsci.edu/ps1_dr2_api.html), [ASAS-SN](https://asas-sn.osu.edu/),
-[ATLAS](https://fallingstar.com/), [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
-[Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
-[SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
-[OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php) и
-[GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H):
+Основные настройки для объекта с фотометрическими данными
+
+* [ZTF](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF),
+* [PS1](https://ps1images.stsci.edu/ps1_dr2_api.html),
+* [ASAS-SN](https://asas-sn.osu.edu/),
+* [ASAS-3](https://ui.adsabs.harvard.edu/abs/2002AcA....52..397P),
+* [ATLAS](https://fallingstar.com/),
+* [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
+* [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
+* [GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H),
+* [SuperWASP](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries),
+* [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
+* [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
+* [TESS](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
+* [CoRoT](https://cdsarc.cds.unistra.fr/viz-bin/cat/B/corot),
+* [Kepler](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
+* [K2](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html)
 
 ```json
 {
@@ -109,7 +119,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
   "atlasfnam": "sample-nickname-atlas.txt", "atlaslim": {"o": 0.013, "c": 0.017},
   "asasfnam": "sample-nickname-asas.csv", "asaslim": {"V": 0.05, "g": 0.06},
   "pslim": 0.1, "pslocal": false,
-  "gaiadr3fnam": "sample-nickname-gaiadr3.dat",
+  "gaiadr3fnam": "sample-nickname-gdr3.dat",
   "crtsfnam": "sample-nickname-crts.csv", "crtslim": 0.06,
   "oglefnam": "sample-nickname-ogle.dat",
   "sdssfnam": "sample-nickname-sdss.dat",
