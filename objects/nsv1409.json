@@ -22,7 +22,7 @@
 "teff": 5634,
 "logg": 4.34,
 "r": 469,
-"rp": 473,
+"rp": 470,
 "comm": "Eccentric system. Min II= 13.80 r at phase 0.528, duration 2%",
 "vsxoid": 40033,
 "lclnk": "https://www.aavso.org/vsx_docs/40033/5780/nsv1409-ztf-atlas-ph_7_1.0605",
@@ -41,7 +41,7 @@
   "ylimtess": [0.565, 1.037],
   "xedges": 120,
   "zoom": {
-    "xlim": [-0.05, 0.575],
+    "xlim": [0.49, 1.04],
     "xmalp": 0.05,
     "xmilp": 0.01
   },
