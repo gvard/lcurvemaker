@@ -1,23 +1,28 @@
 {
-"Minkovskiy 6": {
-"other": "2MASS J18162799+0319295, GSC2.3 N1MN075300",
+"minkovskiy6": {
+"name": "Minkovskiy 6",
+"other": "Gaia DR3 4277843261400146944, 2MASS J18162799+0319295, GSC2.3 N1MN075300",
 "gdr3": 4277843261400146944,
 "epphot": true,
-"coord": "18 16 27.991 +03 19 29.55",
+"veb": false,
+"tic": 19579927,
+"coord": "18 16 27.991 +03 19 29.56",
 "coordeg": [274.116629, 3.324875],
 "type": "EA/WD",
 "max": 17.41,
 "min": 17.73,
 "min2": 17.56,
 "system": "r",
-"period": 0.2428946,
-"epoch": 2458509.088,
+"period": 0.2428944,
+"epoch": 2458509.089,
 "etype": "min",
 "sp": "",
+"G": 17.18,
+"BP-RP": 2.17,
 "r": 404,
 "rp": 415,
 "comm": "Min II = 17.56r. D = 0.08 P. FUV-NUV = -0.22 (GALEX).",
-"d": 0.08,
+"d": 0.077,
 "vsxoid": 2221450,
 "ztfobj": ["ZTF18abwtymd"],
 "lc": "minkovskiy6-ps1-ztf-gaia-ph.png",
@@ -26,11 +31,18 @@
 "pslim": 0.025,
 "zcatf": "gr",
 "curveshift": true,
-"clrshift": {"g": 1.23, "psg": 1.1, "psr": 0.08, "psi": -0.84, "psz": -1.34, "psy": -1.62, "G": -0.24},
-"plot": {"ztffilt": "gr", "psfilt": "grizy", "atlasfilt": "", "asasfilt": "",
+"clrshift": {"g": 1.23, "psg": 1.13, "psr": 0.08, "psi": -0.84, "psz": -1.34, "psy": -1.62, "G": -0.24},
+"plot": {"ztffilt": "gr", "psfilt": "i", "atlasfilt": "", "asasfilt": "",
+  "zms": 4.5, "gms": 6.5,
   "xmal": 500, "xmil": 100, "ymil": 0.02,
-  "ylim": [18.3, 17.25],
-  "ylima": [18.3, 17.25],
-  "yml": 0.2, "xedges": 160
+  "yml": 0.2, "xedges": 150,
+  "zoom": {
+    "xlim": [-0.18, 0.18],
+    "ylim": [18.31, 17.35],
+    "xmalp": 0.05,
+    "xmilp": 0.01
+  },
+  "ylim": [18.31, 17.30],
+  "ylima": [18.31, 17.30]
 }
 }}
