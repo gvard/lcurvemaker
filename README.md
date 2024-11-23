@@ -91,6 +91,7 @@ Basic settings for an object with
 * [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
 * [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
 * [GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H),
+* [Hipparcos](https://ui.adsabs.harvard.edu/abs/1997ESASP1200.....E),
 * [SuperWASP](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries),
 * [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
 * [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
