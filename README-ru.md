@@ -91,11 +91,11 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 * [CRTS](http://nunuku.caltech.edu/cgi-bin/getcssconedb_priv.cgi),
 * [Gaia DR3](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G),
 * [GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H),
-* [Hipparcos](https://ui.adsabs.harvard.edu/abs/1997ESASP1200.....E),
 * [SuperWASP](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries),
 * [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
 * [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
 * [SkyMapper Southern Sky Survey](https://skymapper.anu.edu.au/cone-search/),
+* [Hipparcos](https://ui.adsabs.harvard.edu/abs/1997ESASP1200.....E),
 * [TESS](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
 * [CoRoT](https://cdsarc.cds.unistra.fr/viz-bin/cat/B/corot),
 * [Kepler](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
@@ -146,14 +146,20 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 
 ## Литературные ссылки к файлам в директории `data`
 
-* [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR20 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr20)
+* [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR22 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr22)
+* [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
 * [Kochanek, C. S.; et al., 2017, The All-Sky Automated Survey for Supernovae (ASAS-SN) Light Curve Server v1.0](https://ui.adsabs.harvard.edu/abs/2017PASP..129j4502K)
+* [Pojmanski, G., 2002, The All Sky Automated Survey](https://ui.adsabs.harvard.edu/abs/2002AcA....52..397P)
 * [Tonry, J. L.; et al., 2018, ATLAS: A High-cadence All-sky Survey System](https://ui.adsabs.harvard.edu/abs/2018PASP..130f4505T)
 * [Drake, A. J.; et al., 2009, Catalina Real-time Transient Survey](https://ui.adsabs.harvard.edu/abs/2009ApJ...696..870D)
-* [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
 * [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
 * [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
 * [Hackstein, M.; et al., 2015, The Bochum Survey of the Southern Galactic Disk: II. Follow-up measurements and multi-filter photometry for 1323 square degrees monitored in 2010 - 2015](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H)
+* [Butters, O. W.; et al., 2010, The first WASP public data release](https://ui.adsabs.harvard.edu/abs/2010A%26A...520L..10B)
+
+## Переменные звезды, исследованные при помощи lcurvemaker: таблицы с данными и кривые блеска
+
+* [Затменные двойные](https://gvard.github.io/variability/eb/)
 
 ## Примеры кривых блеска (представлены в карточках объектов [VSX](https://aavso.org/vsx/))
 
