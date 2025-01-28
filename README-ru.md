@@ -93,6 +93,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 * [GDS](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H),
 * [SuperWASP](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries),
 * [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
+* [MASCARA](https://home.strw.leidenuniv.nl/~burggraaff/MASCARA_variables/),
 * [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
 * [SkyMapper Southern Sky Survey](https://skymapper.anu.edu.au/cone-search/),
 * [Hipparcos](https://ui.adsabs.harvard.edu/abs/1997ESASP1200.....E),
@@ -144,7 +145,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 }}
 ```
 
-## Литературные ссылки к файлам в директории `data`
+## Литературные ссылки к файлам в директориях `data` и `lc`
 
 * [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR22 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr22)
 * [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
@@ -156,6 +157,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 * [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
 * [Hackstein, M.; et al., 2015, The Bochum Survey of the Southern Galactic Disk: II. Follow-up measurements and multi-filter photometry for 1323 square degrees monitored in 2010 - 2015](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H)
 * [Butters, O. W.; et al., 2010, The first WASP public data release](https://ui.adsabs.harvard.edu/abs/2010A%26A...520L..10B)
+* [Burggraaff, O.; et al, 2018, Studying bright variable stars with the Multi-site All-Sky CAmeRA (MASCARA)](https://ui.adsabs.harvard.edu/abs/2018A%26A...617A..32B)
 
 ## Переменные звезды, исследованные при помощи lcurvemaker: таблицы с данными и кривые блеска
 
