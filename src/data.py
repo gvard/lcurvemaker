@@ -86,8 +86,8 @@ EB = [
     "cz127", "c108-28", "da240", "cz2494", "nsv4595",
     #  P<4
     "gsc1958", "17aabgexm", "brh160", "hd13716", "dde207", "18abryisf", "18abujawk", "c70-6", "18acrvwcz", "hd277600", "a293-29", "g16ams",
-    "dde58", "c248-3", "18aagibwi", "u170", "epic0636", "bd61320", "dde43", "18aaapdvk", "18abqadhy", "dde62", "18accbyba", "dde205", "nsv20816",
-    "beuma", "18abbeqiq", "da243", "18aablqtm", "18aabkmsm", "hd261171", "20aaobwvw", "dde63", "u248199", "g2051", "navl02", "dde33",
+    "dde58", "c248-3", "18aagibwi", "u170", "epic0636", "mvper", "bd61320", "dde43", "18aaapdvk", "18abqadhy", "dde62", "18accbyba", "dde205", "nsv20816",
+    "beuma", "18abbeqiq", "da243", "18aablqtm", "18aabkmsm", "nsv19317", "hd261171", "20aaobwvw", "dde63", "u248199", "g2051", "navl02", "dde33",
     "dde60", "c86-5", "svkv70", "dde203", "karachurin8", "18aablhoq", "dde64", "nsv1791", "dde222", "18aabhpso", "cz968", "u248", "dde215",
     "dde65",  # Vakhlova LV1
     "dde192", "c154-3", "z1220", "18aabgitx", "bmam440", "dde78", "sd1443", "19aakqteu", "18aaaaqlo", "c66-7", "z0308", "18adaucsy",
@@ -391,6 +391,7 @@ TESS_QLP_SECT = {
     "m1399": [18, 58],
     "m1404": [18, 58],
     "mgab282": [17, 24, 57, 58],
+    "mvper": [86, 19, 59],
     "n171549": [17, 18, 24, 25, 52, 59],
     "n637-68": [18, 24, 25, 52, 58],
     "nsv1409": [19, 59],
@@ -415,6 +416,7 @@ TESS_QLP_SECT = {
     "nsv18777": [22, 48],
     "nsv18857": [10, 11, 37, 38, 64],
     "nsv18927": [10, 11, 37, 38, 64],
+    "nsv19317": [11, 37, 38, 64],
     "nsv19944": [11, 38, 65],
     "nsv20816": [66, 39],  # 12,
     # "nsv18968": [10, 11],
