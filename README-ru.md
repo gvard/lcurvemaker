@@ -94,7 +94,7 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 * [SuperWASP](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries),
 * [OGLE](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php),
 * [MASCARA](https://home.strw.leidenuniv.nl/~burggraaff/MASCARA_variables/),
-* [SDSS](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx),
+* [SDSS](https://skyserver.sdss.org/dr19/en/tools/search/radial.aspx),
 * [SkyMapper Southern Sky Survey](https://skymapper.anu.edu.au/cone-search/),
 * [Hipparcos](https://ui.adsabs.harvard.edu/abs/1997ESASP1200.....E),
 * [TESS](https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html),
@@ -147,17 +147,25 @@ ForEach ($nam in "gusev4", "minkovskiy17", "minkovskiy24") { python .\plot_merge
 
 ## Литературные ссылки к файлам в директориях `data` и `lc`
 
-* [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [ZTF DR23 query form](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr23)
+* [Masci, F. J.; et al., 2019, The Zwicky Transient Facility: Data Processing, Products, and Archive](https://ui.adsabs.harvard.edu/abs/2019PASP..131a8003M), [форма поиска ZTF DR23](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=ztf_objects_dr23)
 * [Chambers, K. C.; et al., 2016, The Pan-STARRS1 Surveys](https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C)
-* [Kochanek, C. S.; et al., 2017, The All-Sky Automated Survey for Supernovae (ASAS-SN) Light Curve Server v1.0](https://ui.adsabs.harvard.edu/abs/2017PASP..129j4502K)
 * [Pojmanski, G., 2002, The All Sky Automated Survey](https://ui.adsabs.harvard.edu/abs/2002AcA....52..397P)
+* [Kochanek, C. S.; et al., 2017, The All-Sky Automated Survey for Supernovae (ASAS-SN) Light Curve Server v1.0](https://ui.adsabs.harvard.edu/abs/2017PASP..129j4502K)
 * [Tonry, J. L.; et al., 2018, ATLAS: A High-cadence All-sky Survey System](https://ui.adsabs.harvard.edu/abs/2018PASP..130f4505T)
 * [Drake, A. J.; et al., 2009, Catalina Real-time Transient Survey](https://ui.adsabs.harvard.edu/abs/2009ApJ...696..870D)
-* [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
-* [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
 * [Hackstein, M.; et al., 2015, The Bochum Survey of the Southern Galactic Disk: II. Follow-up measurements and multi-filter photometry for 1323 square degrees monitored in 2010 - 2015](https://ui.adsabs.harvard.edu/abs/2015AN....336..590H)
 * [Butters, O. W.; et al., 2010, The first WASP public data release](https://ui.adsabs.harvard.edu/abs/2010A%26A...520L..10B)
-* [Burggraaff, O.; et al, 2018, Studying bright variable stars with the Multi-site All-Sky CAmeRA (MASCARA)](https://ui.adsabs.harvard.edu/abs/2018A%26A...617A..32B)
+* [Udalski, A.; et al., 2008, The Optical Gravitational Lensing Experiment. Final Reductions of the OGLE-III Data](https://ui.adsabs.harvard.edu/abs/2008AcA....58...69U)
+* [Udalski, A.; et al., 2015, OGLE-IV: Fourth Phase of the Optical Gravitational Lensing Experiment](https://ui.adsabs.harvard.edu/abs/2015AcA....65....1U)
+* [Burggraaff, O.; et al., 2018, Studying bright variable stars with the Multi-site All-Sky CAmeRA (MASCARA)](https://ui.adsabs.harvard.edu/abs/2018A%26A...617A..32B)
+
+* [Perryman, M. A. C.; et al., 1997, The HIPPARCOS and TYCHO catalogues](https://ui.adsabs.harvard.edu/abs/1997HIP...C......0E)
+* [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
+* [Gaia Photometric Science Alerts](http://gsaweb.ast.cam.ac.uk/alerts)
+* [Huang, C. X.; et al., 2020, Photometry of 10 Million Stars from the First Two Years of TESS Full Frame Images: Part I](https://ui.adsabs.harvard.edu/abs/2020RNAAS...4..204H)
+* [Han, T.; Brandt, T. D., 2023, TESS-Gaia Light Curve: A PSF-based TESS FFI Light-curve Product](https://ui.adsabs.harvard.edu/abs/2023AJ....165...71H)
+* [Solano, E.; et al., 2009, The LAEX and NASA portals for CoRoT public data](https://ui.adsabs.harvard.edu/abs/2009A&A...506..455S)
+* [Howell, S. B.; et al., 2014, The K2 Mission: Characterization and Early Results](https://ui.adsabs.harvard.edu/abs/2014PASP..126..398H)
 
 ## Переменные звезды, исследованные при помощи lcurvemaker: таблицы с данными и кривые блеска
 

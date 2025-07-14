@@ -3,6 +3,7 @@
 ## Фотометрические данные
 
 * [ZTF (Zwicky Transient Facility, Установка для поиска транзиентов имени Цвикки): список доступных выпусков данных)](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF)
+* [PTF (Palomar Transient Factory, Паломарская фабрика транзиентов): форма поиска](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd)
 * [Pan-STARRS1, PS1 DR2: примеры кода для запроса фотометрии](https://ps1images.stsci.edu/ps1_dr2_api.html)
 * [ASAS-3 (All Sky Automated Survey)](https://www.astrouw.edu.pl/asas/?page=catalogues)
 * [ASAS-SN (All-Sky Automated Survey for Supernovae)](https://asas-sn.osu.edu/)
@@ -15,7 +16,7 @@
 * [SuperWASP (Wide Angle Search for Planets)](https://en.wikipedia.org/wiki/Wide_Angle_Search_for_Planets), [форма поиска](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries)
 * [OGLE (Optical Gravitational Lensing Experiment) catalogue of variable stars, форма поиска](https://ogledb.astrouw.edu.pl/~ogle/OCVS/catalog_query.php)
 * [MASCARA (Multi-site All-Sky CAmeRA) variable star catalogue](https://home.strw.leidenuniv.nl/~burggraaff/MASCARA_variables/)
-* [SDSS (Sloan Digital Sky Survey) DR19, форма поиска](https://skyserver.sdss.org/dr18/en/tools/search/radial.aspx)
+* [SDSS (Sloan Digital Sky Survey) DR19, форма поиска](https://skyserver.sdss.org/dr19/en/tools/search/radial.aspx)
 * [SkyMapper Southern Sky Survey, форма поиска](https://skymapper.anu.edu.au/cone-search/)
 
 * [Hipparcos](https://ui.adsabs.harvard.edu/abs/1997ESASP1200.....E),
@@ -66,6 +67,7 @@
 * [Perryman, M. A. C.; et al., 1997, The HIPPARCOS and TYCHO catalogues](https://ui.adsabs.harvard.edu/abs/1997HIP...C......0E)
 * [Gaia collaboration; et al., 2022, Gaia Data Release 3 (Gaia DR3) Part 1 Main source](https://ui.adsabs.harvard.edu/abs/2022yCat.1355....0G)
 * [Huang, C. X.; et al., 2020, Photometry of 10 Million Stars from the First Two Years of TESS Full Frame Images: Part I](https://ui.adsabs.harvard.edu/abs/2020RNAAS...4..204H)
+* [Han, T.; Brandt, T. D., 2023, TESS-Gaia Light Curve: A PSF-based TESS FFI Light-curve Product](https://ui.adsabs.harvard.edu/abs/2023AJ....165...71H)
 * [Solano, E.; et al., 2009, The LAEX and NASA portals for CoRoT public data](https://ui.adsabs.harvard.edu/abs/2009A&A...506..455S)
 * [Howell, S. B.; et al., 2014, The K2 Mission: Characterization and Early Results](https://ui.adsabs.harvard.edu/abs/2014PASP..126..398H)
 
