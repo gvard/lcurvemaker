@@ -2,7 +2,7 @@
 
 ## Фотометрические данные
 
-* [ZTF (Zwicky Transient Facility, Установка для поиска транзиентов имени Цвикки): список доступных выпусков данных)](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF)
+* [ZTF (Zwicky Transient Facility, Установка для поиска транзиентов имени Цвикки): список доступных выпусков данных](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-scan?projshort=ZTF)
 * [PTF (Palomar Transient Factory, Паломарская фабрика транзиентов): форма поиска](https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd)
 * [Pan-STARRS1, PS1 DR2: примеры кода для запроса фотометрии](https://ps1images.stsci.edu/ps1_dr2_api.html)
 * [ASAS-3 (All Sky Automated Survey)](https://www.astrouw.edu.pl/asas/?page=catalogues)
