@@ -6,6 +6,7 @@ import pandas as pd
 from astropy.io import ascii
 from astropy.coordinates import EarthLocation, SkyCoord
 from astropy.time import Time
+from astropy.table import Table
 
 from panstarrs import ps1cone, ps1search, addfilter
 
@@ -19,8 +20,11 @@ CATALINA = EarthLocation(lon=-110.789, lat=32.442, height=2791)
 SIDINGSPRINGS = EarthLocation(lon=149.1, lat=-31.3, height=1150)
 JD_SHIFT = 2400000.5
 OGLE_SHIFT = 2450000
+TESS_BD_SHIFT = 2457000
 ABZPMAG_JY = 8.9
 LGE_25 = 2.5 / np.log(10.0)
+DATA = "data"
+FITS = "fits"
 
 
 class Ps:
@@ -387,6 +391,46 @@ def read_gds_data(filename, filt, ra, dec, errlim=0.049):
 def read_ps_data(filename):
     """read data: mjd mag magerr"""
     return pd.read_csv(filename, sep=r"\s+")  # delim_whitespace=True)
+
+
+def read_tess_qlp_data(nickname, tic, num, magsh, epoch, period, contamn_mag=False):
+    """Read TESS data in FITS format.
+    Dates are presented in BJD format.
+    BTJD is TESS Barycentric Julian Day (BTJD), this is a Julian day minus 2457000.0
+    and corrected to the arrival times at the barycenter of the Solar System.
+    """
+    FILENAME = f"hlsp_qlp_tess_ffi_s00{str(num).zfill(2)}-{tic.zfill(16)}_tess_v0"
+    try:
+        pth = f"../{DATA}/{FITS}/{nickname}/{FILENAME}1_llc.fits"
+        dat = Table.read(pth, format='fits')
+    except FileNotFoundError:
+        pth = f"../{DATA}/{FITS}/{nickname}/{FILENAME}2_llc.fits"
+        dat = Table.read(pth, format='fits')
+    df = dat.to_pandas()
+    FLX = "SAP_FLUX"  # PDCSAP_FLUX
+    df["mag"] = -2.5 * np.log10(df[FLX]) + magsh
+    if contamn_mag:
+        df["mag"] = contamn_mag - 2.5 * np.log10(10**((contamn_mag - df["mag"]) * 0.4) - 1)
+    df["bjd"] = df["TIME"] + TESS_BD_SHIFT
+    df = mk_phased(df, epoch, period, jdnam="bjd")
+    return df
+
+
+def cut_data_tess(data, cuts=None, filtshift=0, mags=(0, 0)):
+    "Cut TESS sector data according to specified constraints"
+    if mags[0]:
+        data = data[(data.mag - filtshift > mags[0])]
+    if mags[1]:
+        data = data[(data.mag - filtshift < mags[1])]
+    if cuts:
+        for cut in cuts:
+            if cut[0] and cut[1]:
+                data = data[~((data.bjd - JD_SHIFT > cut[0]) & (data.bjd - JD_SHIFT < cut[1]))]
+            if cut[0] and not cut[1]:
+                data = data[~(data.bjd - JD_SHIFT > cut[0])]
+            if not cut[0] and cut[1]:
+                data = data[~(data.bjd - JD_SHIFT < cut[1])]
+    return data
 
 
 def save_gaia_datafile(curve, fnsav, hjdprec=5, magprec=2):

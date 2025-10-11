@@ -66,6 +66,7 @@
 ```jsonc
 "tess": {
   "sect": [59, 73, 19],  // Sector numbers to be used. The data will be plotted on the graph in the specified order.
+  "mags": {"52": [8.538, 0], "87": [8.538, 10]},  // Magnitude intervals for the specified sectors to be cut. Zero means that this boundary is not used.
   "cuts": {"52": [59721.9, 59723.64], "87": [60688.97, 0]},  // Time intervals in MJD for the specified sectors to be cut. Zero means that this boundary is not used.
 }
 "plot": {
